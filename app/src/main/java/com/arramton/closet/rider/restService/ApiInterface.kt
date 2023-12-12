@@ -4,6 +4,8 @@ import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.auth.verifyOTP.VerifyOTPResponse
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
 import com.arramton.closet.rider.model.home.HomePageResponse
+import com.arramton.closet.rider.model.order.OrderResponse
+import com.arramton.closet.rider.model.orderDetails.OrderDetailsResponse
 import com.arramton.closet.rider.model.profile.ProfileResponse
 import retrofit2.Call
 import retrofit2.http.Field
@@ -11,6 +13,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 
 interface ApiInterface {
@@ -31,6 +34,14 @@ interface ApiInterface {
 
     @GET("api/pickup_user/getDeliveryOrders")
     fun deliveryOrders(@Header("Authorization") token:String):Call<DeliveryResponse>
+
+    @GET("api/pickup_user/getPickupOrder")
+    fun pickupOrder(@Header("Authorization") token: String):Call<OrderResponse>
+
+    @GET("api/order/getOrderDetails/{id}")
+    fun orderDetails(@Header("Authorization") token: String,@Path("id") id:String):Call<OrderDetailsResponse>
+
+
 
 
 

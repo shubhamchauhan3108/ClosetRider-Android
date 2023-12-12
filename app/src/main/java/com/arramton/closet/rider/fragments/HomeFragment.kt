@@ -40,6 +40,7 @@ class HomeFragment : Fragment() {
     private lateinit var layoutTotalDelivered:LinearLayout
     private lateinit var layoutTodayEarn:LinearLayout
     private lateinit var layoutTotalEarn:LinearLayout
+    private lateinit var tvUserName:TextView
 
 
 
@@ -52,6 +53,8 @@ class HomeFragment : Fragment() {
     }
 
     fun init(view: View){
+
+        tvUserName=view.findViewById(R.id.home_page_userName)
 
         tvSubmittedOrder=view.findViewById(R.id.home_order_submitted)
 
@@ -127,6 +130,8 @@ class HomeFragment : Fragment() {
                     tvTodayDelivered.text=""+it.data.todayOrderDeliveredCount
 
                     tvTotalDelivered.text=""+it.data.totalOrderDeliveredCount
+
+                    tvUserName.text=""+it.data.user
 
 //                    tvTodayEarn.text=""+it.data.to
                 }
