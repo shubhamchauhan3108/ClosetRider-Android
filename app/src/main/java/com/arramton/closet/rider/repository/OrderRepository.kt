@@ -35,6 +35,11 @@ class OrderRepository(val apiInterface: ApiInterface,val context: Context,val ap
     val orderDetailsLiveData:LiveData<OrderDetailsResponse>
         get() = orderDetailsMutableLiveData
 
+    private var orderSubmittedMutableLiveData=MutableLiveData<OrderResponse>()
+    val submittedLiveData:LiveData<OrderResponse>
+        get() = orderSubmittedMutableLiveData
+
+
 
 
     suspend fun delivered(){
@@ -77,6 +82,7 @@ class OrderRepository(val apiInterface: ApiInterface,val context: Context,val ap
             }
         })
     }
+
     suspend fun newJob(){
         loginManager= LoginManager(context)
 
@@ -129,6 +135,46 @@ class OrderRepository(val apiInterface: ApiInterface,val context: Context,val ap
 
             ) {               if (response.isSuccessful() && response.body() != null) {
                     pickupOrderRepository.postValue(response.body())
+                }else{
+                    val responseBody = response.errorBody()
+                    try {
+//                        val response1 = responseBody!!.string()
+//                        val apiError = ApiErrorRestApi(call.request().url.toString(),
+//                            Gson().toJson(call.request().body),
+//                            Gson().toJson(response1), ApiErrorRestApi.getCurrentDateAndTime(), VerifyOTPRespository::class.java.name, application)
+//                        apiError.makeAPICall();
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<OrderResponse?>, t: Throwable) {
+
+//                val apiError:ApiErrorRestApi = ApiErrorRestApi(call.request().url.toString(),
+//                    Gson().toJson(call.request().body),
+//                    Gson().toJson(t.message), ApiErrorRestApi.getCurrentDateAndTime(), AddCartRepository::class.java.name, application)
+//                apiError.makeAPICall();
+//                EventTracking.apiFailure(application, "resendEmailOtp", call.request().url().toString(), new Gson().toJson(call.request().body()), t.getMessage(), new LoginManager(context).getnumber(), Tools.getCurrentDateAndTime(), AccountSecurityViewModel.class.getName());
+
+//                val eventTracking:EventTracking=EventTracking
+
+                println("error message  = " + t.message)
+            }
+        })
+    }
+    suspend fun orderSubmitted(){
+        loginManager= LoginManager(context)
+
+        val call: Call<OrderResponse> =apiInterface.pickupOrder(loginManager.gettoken())
+        call.enqueue(object : retrofit2.Callback<OrderResponse?> {
+            override fun onResponse(
+                call: Call<OrderResponse?>,
+                response: Response<OrderResponse?>
+
+            ) {               if (response.isSuccessful() && response.body() != null) {
+                orderSubmittedMutableLiveData.postValue(response.body())
                 }else{
                     val responseBody = response.errorBody()
                     try {

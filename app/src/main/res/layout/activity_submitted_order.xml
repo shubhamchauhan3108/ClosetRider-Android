@@ -11,14 +11,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.Toolbar
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/submitted_back_btn"
+                    android:layout_gravity="center"
+                    android:src="@drawable/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_18"
+                    android:text="New Job"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:background="#E7E7E7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/submitted_order_check_weeks_rv"
-            tools:listitem="@layout/custom_week_name"
+            tools:listitem="@layout/custom_time_slot"
             android:layout_width="match_parent"
             tools:itemCount="1"
             android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/submitted_order_rv"
             tools:listitem="@layout/custom_submitted_item"
             android:layout_width="match_parent"
             tools:itemCount="1"

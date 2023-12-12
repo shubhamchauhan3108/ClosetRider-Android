@@ -38,11 +38,15 @@ interface ApiInterface {
 
     @GET("api/pickup_user/getNewJobs")
     fun getNewJob(@Header("Authorization") token:String): Call<NewOrderResponse>
+
     @GET("api/pickup_user/getPickupOrder")
     fun pickupOrder(@Header("Authorization") token: String):Call<OrderResponse>
 
     @GET("api/order/getOrderDetails/{id}")
     fun orderDetails(@Header("Authorization") token: String,@Path("id") id:String):Call<OrderDetailsResponse>
+
+    @GET("api/pickup_user/getOrderSubmitted")
+    fun submitted(@Header("Authorization") token: String):Call<OrderResponse>
 
 
 

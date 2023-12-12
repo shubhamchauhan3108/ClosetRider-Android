@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/nav_customer_care_back_btn"
+                    android:id="@+id/user_profile_back_btn"
                     android:layout_gravity="center"
                     android:src="@drawable/back_btn"
                     android:layout_width="wrap_content"
@@ -82,25 +82,25 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/profile_name"
+                            android:id="@+id/profile_user_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_10"
                             android:padding="2sp"
-                            android:text="Shubham Chauhan"
+                            tools:text="Shubham Chauhan"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size_18"
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/profile_email"
+                            android:id="@+id/profile_user_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/margin_10"
                             android:padding="2sp"
                             android:textSize="@dimen/text_size_14"
                             android:textColor="@color/black"
-                            android:text="shubham@123gmail.com" />
+                            tools:text="shubham@123gmail.com" />
 
                     </LinearLayout>
 
@@ -140,14 +140,14 @@
                             android:text="Name" />
 
                         <TextView
-                            android:id="@+id/profile_user_name"
+                            android:id="@+id/profile_name"
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:textStyle="bold"
                             android:textSize="@dimen/text_size_16"
 
-                            android:text="Shubham" />
+                            tools:text="Shubham" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -185,13 +185,13 @@
                             android:text="Email" />
 
                         <TextView
-                            android:id="@+id/profile_user_email"
+                            android:id="@+id/profile_email"
                             android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:textSize="@dimen/text_size_16"
-                            android:text="s@gmail.com" />
+                            tools:text="s@gmail.com" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -229,13 +229,13 @@
                             android:text="Mobile" />
 
                         <TextView
-                            android:id="@+id/profile_user_phone"
+                            android:id="@+id/profile_phone"
                             android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:textSize="@dimen/text_size_16"
-                            android:text="8571056426" />
+                            tools:text="8571056426" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -273,13 +273,13 @@
                             android:text="Gender" />
 
                         <TextView
-                            android:id="@+id/profile_user_gender"
+                            android:id="@+id/profile_gender"
                             android:textColor="@color/black"
                             android:textStyle="bold"
                             android:textSize="@dimen/text_size_16"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Male" />
+                            tools:text="Male" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -317,13 +317,13 @@
                             android:text="Date of birth" />
 
                         <TextView
-                            android:id="@+id/profile_user_dob"
+                            android:id="@+id/profile_dob"
                             android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:textSize="@dimen/text_size_16"
-                            android:text="31 Aug 1997 " />
+                            tools:text="31 Aug 1997 " />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -361,13 +361,13 @@
                             android:text="Address " />
 
                         <TextView
-                            android:id="@+id/profile_user_address"
+                            android:id="@+id/profile_address"
                             android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:textStyle="bold"
                             android:textSize="@dimen/text_size_16"
                             android:layout_height="wrap_content"
-                            android:text="Delhi " />
+                            tools:text="Delhi " />
                     </LinearLayout>
 
                 </LinearLayout>

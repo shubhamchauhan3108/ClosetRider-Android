@@ -46,4 +46,10 @@ class OrderViewModel(val orderRepository: OrderRepository):ViewModel() {
 
     val orderDetailsLiveData:LiveData<OrderDetailsResponse>
         get() = orderRepository.orderDetailsLiveData
+
+    fun submittedOrder(){
+        viewModelScope.launch(Dispatchers.IO) { orderRepository.orderSubmitted() }
+    }
+    val orderSubmitted:LiveData<OrderResponse>
+        get() = orderRepository.submittedLiveData
 }

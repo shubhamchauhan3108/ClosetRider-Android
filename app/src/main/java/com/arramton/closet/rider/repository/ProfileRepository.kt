@@ -24,8 +24,9 @@ class ProfileRepository(val context: Context, val apiInterface: ApiInterface, va
         get() = homePageProfileMutableLiveData
 
 
-    suspend fun profileResponse(mobile:String){
-        val call: Call<ProfileResponse> =apiInterface.profile(mobile)
+    suspend fun profileResponse(){
+        loginManager=LoginManager(context)
+        val call: Call<ProfileResponse> =apiInterface.profile(loginManager.gettoken())
         call.enqueue(object : retrofit2.Callback<ProfileResponse?> {
             override fun onResponse(
                 call: Call<ProfileResponse?>,
