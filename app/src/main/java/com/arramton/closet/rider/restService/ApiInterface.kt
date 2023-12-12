@@ -4,6 +4,7 @@ import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.auth.verifyOTP.VerifyOTPResponse
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
 import com.arramton.closet.rider.model.home.HomePageResponse
+import com.arramton.closet.rider.model.newOrder.NewOrderResponse
 import com.arramton.closet.rider.model.profile.ProfileResponse
 import retrofit2.Call
 import retrofit2.http.Field
@@ -32,7 +33,8 @@ interface ApiInterface {
     @GET("api/pickup_user/getDeliveryOrders")
     fun deliveryOrders(@Header("Authorization") token:String):Call<DeliveryResponse>
 
-
+    @GET("api/pickup_user/getNewJobs")
+    fun getNewJob(@Header("Authorization") token:String): Call<NewOrderResponse>
 
 
 }
