@@ -22,7 +22,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <ImageView
-                    android:id="@+id/nav_customer_care_back_btn"
+                    android:id="@+id/order_details_back_btn"
                     android:layout_gravity="center"
                     android:src="@drawable/back_btn"
                     android:layout_width="wrap_content"
@@ -56,6 +56,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/order_details_order_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -128,6 +129,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/order_details_order_date"
                     android:text="7 OCT 2023"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -149,6 +151,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
+                    android:id="@+id/order_details_order_time"
                     android:text="8 to 10 am"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -175,14 +178,17 @@
             android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/order_details_costume_rv"
             tools:itemCount="1"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/order_details_costume_child_rv"
             tools:listitem="@layout/custom_order_details_category_item"
-            tools:itemCount="2"
+            tools:itemCount="1"
+            android:nestedScrollingEnabled="true"
             android:layout_marginTop="@dimen/margin_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -226,6 +232,7 @@
                     android:text="Subtotal" />
 
                 <TextView
+                    android:id="@+id/order_details_subtotal"
                     android:textColor="@color/black"
                     android:textStyle="normal"
                     android:layout_weight="1"
@@ -261,6 +268,7 @@
                     android:text="Status" />
 
                 <TextView
+                    android:id="@+id/order_details_status"
                     android:textColor="#72AA55"
                     android:textStyle="normal"
                     android:layout_weight="1"
@@ -296,6 +304,7 @@
                     android:text="Mode" />
 
                 <TextView
+                    android:id="@+id/order_details_mode"
                     android:textColor="@color/black"
                     android:textStyle="normal"
                     android:layout_weight="1"

@@ -38,12 +38,12 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/home_page_userName"
                     android:layout_weight="1"
-
                     android:textColor="@color/white"
                     android:fontFamily="@font/robotobold"
                     android:layout_marginTop="@dimen/margin_5"
-                    android:text="Shubham Chauhan"
+                    tools:text="Shubham Chauhan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 

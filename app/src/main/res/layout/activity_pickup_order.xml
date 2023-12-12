@@ -44,6 +44,7 @@
          android:layout_width="match_parent"
          android:layout_height="1dp"/>
      <androidx.recyclerview.widget.RecyclerView
+         android:id="@+id/pickup_order_rv"
          tools:itemCount="1"
          tools:listitem="@layout/custom_new_job_pickup"
          android:layout_width="match_parent"
