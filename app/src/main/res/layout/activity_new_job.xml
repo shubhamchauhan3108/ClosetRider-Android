@@ -10,7 +10,7 @@
 <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
         android:background="@color/white"
@@ -33,6 +33,7 @@
                 android:textStyle="bold"
                 android:textSize="@dimen/text_size_18"
                 android:text="New Job"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -46,7 +47,7 @@
 
 
 
-    <RadioGroup
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -56,31 +57,36 @@
             android:padding="@dimen/margin_10"
             android:background="@drawable/purple_btn"
             android:text="Pickup"
-            android:button="@null"
             android:gravity="center"
             android:textColor="@color/white"
-            android:layout_marginStart="@dimen/margin_10"
-            android:layout_marginEnd="@dimen/margin_10"
-            android:layout_marginTop="@dimen/margin_10"
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/new_job_delivery_btn"
             android:layout_weight="1"
             android:padding="@dimen/margin_10"
-            android:background="@drawable/edit_text_bg"
             android:text="Delivery"
+            android:background="@drawable/purple_btn"
             android:gravity="center"
-            android:button="@null"
-            android:textColor="@color/black"
             android:layout_marginStart="@dimen/margin_10"
             android:layout_marginEnd="@dimen/margin_10"
             android:layout_marginTop="@dimen/margin_10"
-            app:backgroundTint="#F2F2F2"
+            android:backgroundTint="#F2F2F2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-    </RadioGroup>
+    </LinearLayout>
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pickupRv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/deliveryRv"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
 </RelativeLayout>

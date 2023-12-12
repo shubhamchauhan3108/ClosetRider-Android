@@ -1,7 +1,7 @@
 package com.arramton.closet.rider.model.newOrder
 
 data class Address(
-    val address_line_1: Int,
+    val address_line_1: String,
     val city: String,
     val created_at: String,
     val id: Int,
