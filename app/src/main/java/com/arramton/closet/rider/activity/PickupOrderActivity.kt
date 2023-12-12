@@ -1,5 +1,6 @@
 package com.arramton.closet.rider.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -11,6 +12,7 @@ import com.arramton.closet.restService.RetrofitBuilder
 import com.arramton.closet.rider.R
 import com.arramton.closet.rider.adapter.PickupOrderAdapter
 import com.arramton.closet.rider.factory.OrderFactory
+import com.arramton.closet.rider.listener.PickupListener
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.viewModel.OrderViewModel
@@ -49,7 +51,11 @@ class PickupOrderActivity : AppCompatActivity() {
             if (it!=null){
 
                 if (it.success){
-                    pickupOrderAdapter= PickupOrderAdapter(this,it.data)
+                    pickupOrderAdapter= PickupOrderAdapter(this,it.data,object:PickupListener{
+                        override fun onClick(id: String) {
+                            startActivity(Intent(this@PickupOrderActivity,OrderDetailsActivity::class.java).putExtra("id",id))
+                        }
+                    })
                     rvOrderPickup.adapter=pickupOrderAdapter
 
                 }

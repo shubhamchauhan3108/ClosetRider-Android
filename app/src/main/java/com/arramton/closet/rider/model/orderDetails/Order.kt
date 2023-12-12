@@ -25,5 +25,6 @@ data class Order(
     val sub_total: Int,
     val total: Int,
     val updated_at: String,
-    val user_id: Int
+    val user_id: Int,
+    val payment_mode:String
 )

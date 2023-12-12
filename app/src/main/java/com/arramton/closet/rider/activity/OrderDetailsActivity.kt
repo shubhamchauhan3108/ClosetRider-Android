@@ -17,6 +17,7 @@ import com.arramton.closet.rider.model.orderDetails.CostumesOrderItem
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.viewModel.OrderViewModel
+import org.w3c.dom.Text
 
 class OrderDetailsActivity : AppCompatActivity() {
     private lateinit var imgBackBtn:ImageView
@@ -30,16 +31,25 @@ class OrderDetailsActivity : AppCompatActivity() {
     private lateinit var rvChildCostume:RecyclerView
     private lateinit var orderDetailsParentCategoryAdapter: OrderDetailsParentCategoryAdapter
 
-//    private lateinit var tv
+    private lateinit var id:String
+    private lateinit var tvSubTotal:TextView
+    private lateinit var tvStatus:TextView
+    private lateinit var tvMode:TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_details)
+
+        init()
     }
 
     fun init(){
 
+        id=intent.getStringExtra("id").toString()
+        tvSubTotal=findViewById(R.id.order_details_subtotal)
+        tvStatus=findViewById(R.id.order_details_status)
+        tvMode=findViewById(R.id.order_details_mode)
         imgBackBtn=findViewById(R.id.order_details_back_btn)
         imgBackBtn.setOnClickListener{onBackPressed()}
         tvOrderNumber=findViewById(R.id.order_details_order_number)
@@ -71,6 +81,9 @@ class OrderDetailsActivity : AppCompatActivity() {
                     tvOrderNumber.text="Order #"+it.data.order.id
                     tvOrderDate.text=it.data.order.pickup_date
                     tvOrderTime.text=it.data.order.pickup_time
+                    tvSubTotal.text="₹ "+it.data.order?.sub_total
+                    tvStatus.text=""+it.data.order?.payment_status
+                    tvMode.text=""+it.data.order?.payment_mode
 
                     orderDetailsParentCategoryAdapter= OrderDetailsParentCategoryAdapter(this,it.data.orderItem,object :OrderDetailsListener{
                         override fun listAdd(list1: List<CostumesOrderItem>) {
@@ -87,7 +100,7 @@ class OrderDetailsActivity : AppCompatActivity() {
                 }
             }
         })
-        orderViewModel.orderDetails("19")
+        orderViewModel.orderDetails(id)
 
 
     }
