@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ClosetRider"
+        tools:targetApi="31">
+        <activity
+            android:name=".activity.TotalEarnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".leftNavigation.HomePageActivity"
+            android:exported="false"
+            android:label="@string/title_activity_home_page"
+            android:theme="@style/Theme.ClosetRider.NoActionBar" />
+        <activity
+            android:name=".activity.TransacationDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.MyWalletActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.DeliveredActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UpdateNewJobActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.OrderDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.NewJobActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AppSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SubmittedOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ThankyouActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SupportHelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UnderReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UploadProfilePhotoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.BankDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UploadDocumentsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.VerifyOTPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ChooseAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

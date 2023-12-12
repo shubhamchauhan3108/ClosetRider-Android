@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/choose_account"
+    tools:context=".activity.ChooseAccountActivity">
+
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="right"
+        android:src="@drawable/spark_management"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textColor="@color/white"
+            android:textSize="66dp"
+            android:gravity="center"
+            android:fontFamily="@font/michlandscript"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Closet"
+            />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:text="WELCOME"
+            android:fontFamily="@font/robotobold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/choose_account_login_btn"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:background="@drawable/purple_btn"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="Login"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textColor="@color/white"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+
+            android:id="@+id/choose_account_signup_btn"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:strokeColor="@color/light_yellow"
+            app:backgroundTint="@color/white"
+            android:text="Sign Up"
+            app:cornerRadius="@dimen/margin_10"
+            app:strokeWidth="2dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+<!--    <ImageView-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:src="@drawable/choose_account_bottom_bg"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"/>-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,0 +1,31 @@
+package com.arramton.closet.rider.model.newOrder
+
+data class Data(
+    val address: Address,
+    val address_id: Int,
+    val costume: Any,
+    val coupon: Any,
+    val coupon_id: Any,
+    val created_at: String,
+    val delivery_charge: Int,
+    val delivery_date: Any,
+    val delivery_earn: Any,
+    val delivery_user: Int,
+    val delivery_user_status: Int,
+    val discount: Int,
+    val gst: Int,
+    val id: Int,
+    val order_items: List<OrderItem>,
+    val order_reference_no: Int,
+    val order_status: OrderStatus,
+    val order_status_id: Int,
+    val payment_mode: Any,
+    val payment_status: Int,
+    val pickup_date: String,
+    val pickup_earn: Int,
+    val pickup_time: String,
+    val sub_total: Int,
+    val total: Int,
+    val updated_at: String,
+    val user_id: Int
+)

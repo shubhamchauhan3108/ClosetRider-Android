@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.NewJobActivity">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.Toolbar
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/nav_customer_care_back_btn"
+                android:layout_gravity="center"
+                android:src="@drawable/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/margin_10"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_18"
+                android:text="New Job"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:background="#E7E7E7"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/new_job_pickup_btn"
+            android:layout_weight="1"
+            android:padding="@dimen/margin_10"
+            android:background="@drawable/purple_btn"
+            android:text="Pickup"
+            android:button="@null"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/new_job_delivery_btn"
+            android:layout_weight="1"
+            android:padding="@dimen/margin_10"
+            android:background="@drawable/edit_text_bg"
+            android:text="Delivery"
+            android:gravity="center"
+            android:button="@null"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            app:backgroundTint="#F2F2F2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
+
+
+</LinearLayout>
+</RelativeLayout>

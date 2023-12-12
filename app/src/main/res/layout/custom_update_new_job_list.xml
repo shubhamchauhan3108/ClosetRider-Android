@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/custom_pickup_request_show_btn"
+            android:layout_weight="1"
+            android:text="Man"
+            android:insetTop="0dp"
+            app:cornerRadius="@dimen/margin_10"
+            android:insetBottom="0dp"
+            android:layout_gravity="left"
+            android:gravity="left|center"
+            android:drawableRight="@drawable/baseline_arrow_drop_down_24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/custom_pickup_request_rv"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            tools:itemCount="1"
+            tools:listitem="@layout/custom_update_new_job_item"
+            android:layout_height="wrap_content"/>
+        <com.google.android.material.button.MaterialButton
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="Add More Photos"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_20"
+            android:textSize="15sp"
+            android:layout_marginBottom="2dp"
+            app:cornerRadius="@dimen/margin_10"
+            android:layout_gravity="center"
+            app:strokeColor="@color/black"
+            app:backgroundTint="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

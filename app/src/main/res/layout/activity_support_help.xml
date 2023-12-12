@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.SupportHelpActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/nav_customer_care_back_btn"
+                    android:layout_gravity="center"
+                    android:src="@drawable/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_18"
+                    android:text="Customer Care"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:background="#E7E7E7"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <TextView
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:text="How can we help?"
+            android:textSize="18sp"
+            android:fontFamily="@font/robotobold"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@drawable/edit_text_bg"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_weight="20"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:padding="@dimen/padding_10"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Make a call"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_18"
+                    android:textColor="#494949"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/customer_care_phone_number"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:textSize="@dimen/text_size_15"
+                    android:text="8 am to 11 pm"
+                    android:textColor="#A0A0A0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/customer_care_call_btn"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:src="@drawable/phone_call"
+                android:layout_width="@dimen/margin_30"
+                android:layout_height="@dimen/margin_30"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:background="@drawable/edit_text_bg"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_weight="20"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_10"
+                android:padding="@dimen/padding_10"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Email us"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_18"
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/customer_care_email"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:textSize="@dimen/text_size_15"
+                    android:text="8 am to 11 pm"
+                    android:textColor="#A0A0A0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/customer_care_email_btn"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:src="@drawable/support_email"
+                android:layout_width="@dimen/margin_30"
+                android:layout_height="@dimen/margin_30"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
