@@ -7,9 +7,10 @@
 
     <LinearLayout
 
+        android:layout_marginBottom="@dimen/margin_10"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:padding="@dimen/padding_10"
@@ -63,8 +64,6 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="@dimen/padding_30"
                 android:padding="@dimen/padding_10"
-                android:layout_marginStart="@dimen/margin_10"
-                android:layout_marginEnd="@dimen/margin_10"
                 android:background="@drawable/white_bg"
                 android:orientation="horizontal"
                 android:gravity="center"
@@ -86,7 +85,7 @@
                     android:textColor="@color/light_purple"
                     android:textSize="20sp"
                     android:layout_marginStart="@dimen/margin_20"
-                    android:text="New Job"
+                    android:text="New Jobs"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -103,21 +102,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="-45dp"
+            android:layout_marginTop="-40dp"
             android:orientation="horizontal"
-            android:padding="@dimen/padding_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/home_pickup_order_layout"
-                android:layout_marginTop="@dimen/margin_10"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_5"
                 android:orientation="vertical"
                 android:elevation="@dimen/margin_10"
-                android:layout_marginBottom="@dimen/margin_10"
                 android:background="@drawable/white_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -143,8 +139,8 @@
                         android:padding="10dp"
                         android:layout_gravity="right"
                         android:src="@drawable/pickup_order"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"/>
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"/>
 
                 </LinearLayout>
 
@@ -162,10 +158,9 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/home_order_submitted_layout"
-                android:layout_marginTop="@dimen/margin_10"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginStart="@dimen/margin_5"
+                android:layout_marginEnd="@dimen/margin_10"
                 android:orientation="vertical"
                 android:elevation="@dimen/margin_10"
                 android:layout_marginBottom="@dimen/margin_10"
@@ -194,8 +189,8 @@
                         android:padding="10dp"
                         android:layout_gravity="right"
                         android:src="@drawable/order_submited"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"/>
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"/>
 
                 </LinearLayout>
 
@@ -215,19 +210,16 @@
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
-            android:padding="@dimen/padding_10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/home_today_delivery_layout"
-                android:layout_marginTop="@dimen/margin_10"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_5"
                 android:orientation="vertical"
                 android:elevation="@dimen/margin_10"
-                android:layout_marginBottom="@dimen/margin_10"
                 android:background="@drawable/white_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -253,8 +245,8 @@
                         android:padding="10dp"
                         android:layout_gravity="right"
                         android:src="@drawable/today_delivery"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"/>
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"/>
 
                 </LinearLayout>
 
@@ -272,10 +264,9 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/home_total_delivered_layout"
-                android:layout_marginTop="@dimen/margin_10"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginStart="@dimen/margin_5"
+                android:layout_marginEnd="@dimen/margin_10"
                 android:orientation="vertical"
                 android:elevation="@dimen/margin_10"
                 android:layout_marginBottom="@dimen/margin_10"
@@ -304,8 +295,8 @@
                         android:padding="10dp"
                         android:layout_gravity="right"
                         android:src="@drawable/total_delivered"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"/>
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"/>
 
                 </LinearLayout>
 
@@ -325,19 +316,16 @@
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal"
-            android:padding="@dimen/padding_10"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/home_today_earn_layout"
-                android:layout_marginTop="@dimen/margin_10"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_5"
                 android:orientation="vertical"
                 android:elevation="@dimen/margin_10"
-                android:layout_marginBottom="@dimen/margin_10"
                 android:background="@drawable/white_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -363,8 +351,8 @@
                         android:padding="10dp"
                         android:layout_gravity="right"
                         android:src="@drawable/today_earn"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"/>
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"/>
 
                 </LinearLayout>
 
@@ -382,13 +370,11 @@
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/home_total_earn_layout"
-                android:layout_marginTop="@dimen/margin_10"
                 android:layout_weight="1"
-                android:layout_marginStart="@dimen/margin_20"
-                android:layout_marginEnd="@dimen/margin_20"
+                android:layout_marginStart="@dimen/margin_5"
+                android:layout_marginEnd="@dimen/margin_10"
                 android:orientation="vertical"
                 android:elevation="@dimen/margin_10"
-                android:layout_marginBottom="@dimen/margin_10"
                 android:background="@drawable/white_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -413,8 +399,8 @@
                         android:padding="10dp"
                         android:layout_gravity="right"
                         android:src="@drawable/total_earn"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"/>
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"/>
 
                 </LinearLayout>
 

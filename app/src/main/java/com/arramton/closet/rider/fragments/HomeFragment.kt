@@ -15,6 +15,7 @@ import com.arramton.closet.restService.RetrofitBuilder
 import com.arramton.closet.rider.R
 import com.arramton.closet.rider.activity.DeliveredActivity
 import com.arramton.closet.rider.activity.NewJobActivity
+import com.arramton.closet.rider.activity.PickupOrderActivity
 import com.arramton.closet.rider.activity.SubmittedOrderActivity
 import com.arramton.closet.rider.activity.TotalEarnActivity
 import com.arramton.closet.rider.factory.ProfileFactory
@@ -32,7 +33,6 @@ class HomeFragment : Fragment() {
     private lateinit var tvTodayDelivered:TextView
     private lateinit var tvTotalDelivered:TextView
     private lateinit var tvTodayEarn:TextView
-
     private lateinit var layoutNewJob:LinearLayout
     private lateinit var layoutPickupOrder:LinearLayout
     private lateinit var layoutSubmittedOrder:LinearLayout
@@ -96,6 +96,7 @@ class HomeFragment : Fragment() {
         }
 
         layoutPickupOrder.setOnClickListener {
+            startActivity(Intent(requireContext(),PickupOrderActivity::class.java))
 
         }
 

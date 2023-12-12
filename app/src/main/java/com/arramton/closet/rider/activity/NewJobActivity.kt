@@ -19,13 +19,14 @@ class NewJobActivity : AppCompatActivity() {
     }
 
     fun init(){
+
         pickupBtn=findViewById(R.id.new_job_pickup_btn)
+
         deliveryBtn=findViewById(R.id.new_job_delivery_btn)
 
         pickupBtn.setOnClickListener {
             pickupBtn.setBackgroundResource(R.drawable.purple_btn)
             pickupBtn.setTextColor(ContextCompat.getColor(this,R.color.white))
-
             deliveryBtn.setBackgroundResource(R.drawable.edit_text_bg)
             deliveryBtn.setTextColor(ContextCompat.getColor(this,R.color.black))
 
@@ -35,7 +36,6 @@ class NewJobActivity : AppCompatActivity() {
         deliveryBtn.setOnClickListener {
             pickupBtn.setBackgroundResource(R.drawable.edit_text_bg)
             pickupBtn.setTextColor(ContextCompat.getColor(this,R.color.black))
-
             deliveryBtn.setBackgroundResource(R.drawable.purple_btn)
             deliveryBtn.setTextColor(ContextCompat.getColor(this,R.color.white))
         }

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.ClosetRider"
         tools:targetApi="31">
         <activity
+            android:name=".activity.PickupOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.TotalEarnActivity"
             android:exported="false" />
         <activity

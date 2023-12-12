@@ -33,7 +33,7 @@
                     android:layout_marginStart="@dimen/margin_10"
                     android:textStyle="bold"
                     android:textSize="@dimen/text_size_18"
-                    android:text="Profile"
+                    android:text="Order Details"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
