@@ -1,5 +1,6 @@
 package com.arramton.closet.rider.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arramton.closet.restService.RetrofitBuilder
 import com.arramton.closet.rider.R
+import com.arramton.closet.rider.adapter.EditParentOrderDetailsAdapter
 import com.arramton.closet.rider.adapter.OrderDetailsChildCategoryAdapter
 import com.arramton.closet.rider.adapter.OrderDetailsParentCategoryAdapter
 import com.arramton.closet.rider.factory.OrderFactory
@@ -18,6 +20,7 @@ import com.arramton.closet.rider.model.orderDetails.CostumesOrderItem
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.viewModel.OrderViewModel
+import com.google.android.material.button.MaterialButton
 import org.w3c.dom.Text
 
 class OrderDetailsActivity : AppCompatActivity() {
@@ -30,6 +33,8 @@ class OrderDetailsActivity : AppCompatActivity() {
     private lateinit var orderViewModel: OrderViewModel
     private lateinit var rvCostume:RecyclerView
     private lateinit var rvChildCostume:RecyclerView
+    private lateinit var editOrderBtn:MaterialButton
+
     private lateinit var orderDetailsParentCategoryAdapter: OrderDetailsParentCategoryAdapter
     private lateinit var orderDetailsChildCategoryAdapter: OrderDetailsChildCategoryAdapter
 
@@ -49,7 +54,16 @@ class OrderDetailsActivity : AppCompatActivity() {
 
     fun init(){
 
+        editOrderBtn=findViewById(R.id.order_details_edit_btn)
+
+
+
         id=intent.getStringExtra("id").toString()
+
+        editOrderBtn.setOnClickListener {
+
+            startActivity(Intent(this@OrderDetailsActivity,EditNewJobActivity::class.java).putExtra("id",id))
+        }
         tvSubTotal=findViewById(R.id.order_details_subtotal)
         tvStatus=findViewById(R.id.order_details_status)
         tvMode=findViewById(R.id.order_details_mode)

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:padding="@dimen/padding_10"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/custom_photo_open_camera"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:gravity="center"
+        android:background="@drawable/btn"
+        android:padding="@dimen/padding_10"
+        android:text="Open Camera"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_18"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/custom_photo_gallery"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:gravity="center"
+        android:background="@drawable/btn"
+        android:padding="@dimen/padding_10"
+        android:text="Gallery"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_18"
+        android:textColor="@color/white"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/custom_photo_cancel"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:gravity="center"
+        android:background="@drawable/btn"
+        android:padding="@dimen/padding_10"
+        android:text="Cancel"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:textSize="@dimen/text_size_18"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

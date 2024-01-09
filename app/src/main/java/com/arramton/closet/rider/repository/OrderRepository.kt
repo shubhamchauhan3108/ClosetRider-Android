@@ -5,7 +5,9 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
+import com.arramton.closet.rider.model.newOrder.EditNewJobResponse
 import com.arramton.closet.rider.model.newOrder.NewOrderResponse
+import com.arramton.closet.rider.model.newOrder.editNewOrder.EditNewOrderRequest
 import com.arramton.closet.rider.model.order.OrderResponse
 import com.arramton.closet.rider.model.orderDetails.OrderDetailsResponse
 import com.arramton.closet.rider.restService.ApiInterface
@@ -38,6 +40,10 @@ class OrderRepository(val apiInterface: ApiInterface,val context: Context,val ap
     private var orderSubmittedMutableLiveData=MutableLiveData<OrderResponse>()
     val submittedLiveData:LiveData<OrderResponse>
         get() = orderSubmittedMutableLiveData
+
+    private var editNewJobMutableLiveData=MutableLiveData<EditNewJobResponse>()
+    val editJobLiveData:LiveData<EditNewJobResponse>
+        get() = editNewJobMutableLiveData
 
 
 
@@ -244,6 +250,50 @@ class OrderRepository(val apiInterface: ApiInterface,val context: Context,val ap
                 println("error message  = " + t.message)
             }
         })
+    }
+
+    suspend fun editNewJob(editNewOrderRequest: EditNewOrderRequest){
+
+        loginManager= LoginManager(context)
+
+        val call: Call<EditNewJobResponse> =apiInterface.editNewJob(loginManager.gettoken(),editNewOrderRequest)
+        call.enqueue(object : retrofit2.Callback<EditNewJobResponse?> {
+            override fun onResponse(
+                call: Call<EditNewJobResponse?>,
+                response: Response<EditNewJobResponse?>
+
+            ) {               if (response.isSuccessful() && response.body() != null) {
+                editNewJobMutableLiveData.postValue(response.body())
+            }else{
+                val responseBody = response.errorBody()
+                try {
+//                        val response1 = responseBody!!.string()
+//                        val apiError = ApiErrorRestApi(call.request().url.toString(),
+//                            Gson().toJson(call.request().body),
+//                            Gson().toJson(response1), ApiErrorRestApi.getCurrentDateAndTime(), VerifyOTPRespository::class.java.name, application)
+//                        apiError.makeAPICall();
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+
+            }
+            }
+
+            override fun onFailure(call: retrofit2.Call<EditNewJobResponse?>, t: Throwable) {
+
+//                val apiError:ApiErrorRestApi = ApiErrorRestApi(call.request().url.toString(),
+//                    Gson().toJson(call.request().body),
+//                    Gson().toJson(t.message), ApiErrorRestApi.getCurrentDateAndTime(), AddCartRepository::class.java.name, application)
+//                apiError.makeAPICall();
+//                EventTracking.apiFailure(application, "resendEmailOtp", call.request().url().toString(), new Gson().toJson(call.request().body()), t.getMessage(), new LoginManager(context).getnumber(), Tools.getCurrentDateAndTime(), AccountSecurityViewModel.class.getName());
+
+//                val eventTracking:EventTracking=EventTracking
+
+                println("error message  = " + t.message)
+            }
+        })
+
+
     }
 
 

@@ -4,44 +4,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     tools:context=".activity.EditNewJobActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent">
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginStart="@dimen/margin_10"
-            android:paddingVertical="@dimen/margin_10"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/edit_new_job_back_btn"
-                android:src="@drawable/back_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
 
-            <TextView
-                android:fontFamily="@font/robotobold"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size_16"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_marginStart="@dimen/margin_10"
-                android:layout_gravity="center"
-                android:text="New Job"
+                android:paddingVertical="@dimen/margin_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/edit_new_job_back_btn"
+                    android:src="@drawable/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:fontFamily="@font/robotobold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_16"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_gravity="center"
+                    android:text="New Job"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/edit_new_job_parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/edit_new_job_child"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
         </LinearLayout>
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/edit_new_job_parent"
+        <TextView
+            android:text="Update Order"
+            android:id="@+id/edit_new_job_update_order"
+            android:background="@color/light_purple"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_16"
+            android:textColor="@color/white"
+            android:paddingVertical="@dimen/margin_15"
+            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 
 </RelativeLayout>

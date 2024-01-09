@@ -4,15 +4,19 @@ import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.auth.verifyOTP.VerifyOTPResponse
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
 import com.arramton.closet.rider.model.home.HomePageResponse
+import com.arramton.closet.rider.model.newOrder.EditNewJobResponse
 import com.arramton.closet.rider.model.newOrder.NewOrderResponse
+import com.arramton.closet.rider.model.newOrder.editNewOrder.EditNewOrderRequest
 import com.arramton.closet.rider.model.order.OrderResponse
 import com.arramton.closet.rider.model.orderDetails.OrderDetailsResponse
 import com.arramton.closet.rider.model.profile.ProfileResponse
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -47,5 +51,9 @@ interface ApiInterface {
 
     @GET("api/pickup_user/getOrderSubmitted")
     fun submitted(@Header("Authorization") token: String):Call<OrderResponse>
+
+    @POST("api/pickup_user/updateOrder")
+    fun editNewJob(@Header("Authorization") token:String,@Body editNewJobRequest: EditNewOrderRequest
+                   ):Call<EditNewJobResponse>
 
 }
