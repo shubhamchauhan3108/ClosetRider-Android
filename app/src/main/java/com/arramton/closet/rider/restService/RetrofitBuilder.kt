@@ -48,7 +48,7 @@ class RetrofitBuilder(application: Application) {
 
     companion object {
 //                const val BASEURL = "http://13.234.225.218:5505/"
-                const val BASEURL = "https://2ffb-2405-201-4021-9133-a570-fdda-1724-a98.ngrok-free.app/"
+                const val BASEURL = "http://3.6.83.195:2234/"
 //        const val BASEURL = "https://a2ca-2409-4050-e33-ea39-64f2-b06f-cf9a-ba1e.ngrok-free.app/"
         private var mInstance: RetrofitBuilder? = null
 

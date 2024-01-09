@@ -48,9 +48,4 @@ interface ApiInterface {
     @GET("api/pickup_user/getOrderSubmitted")
     fun submitted(@Header("Authorization") token: String):Call<OrderResponse>
 
-
-
-
-
-
 }

@@ -1,5 +1,6 @@
 package com.arramton.closet.rider.activity
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ import com.arramton.closet.rider.R
 import com.arramton.closet.rider.adapter.DeliveredAdapter
 import com.arramton.closet.rider.adapter.NewJobAdapter
 import com.arramton.closet.rider.factory.OrderFactory
+import com.arramton.closet.rider.listener.NewJobListener
 import com.arramton.closet.rider.model.newOrder.Data
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
@@ -58,7 +60,11 @@ class NewJobActivity : AppCompatActivity() {
         viewModel.newJobLiveData.observe(this, Observer {
             if (it != null) {
                 if (it.success) {
-                    newJobAdapter = NewJobAdapter(this@NewJobActivity, it.data)
+                    newJobAdapter = NewJobAdapter(this@NewJobActivity, it.data,object :NewJobListener{
+                        override fun onClick(id: String) {
+                            startActivity(Intent(this@NewJobActivity,OrderDetailsActivity::class.java).putExtra("id",id))
+                        }
+                    })
                     pickupRv.adapter = newJobAdapter
                 }
                 pickupRv.visibility = View.VISIBLE

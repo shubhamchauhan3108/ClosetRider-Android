@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_10"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/show_layout"
+            android:background="@drawable/purple_btn"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/custom_pickup_request_show_btn"
+                android:layout_weight="1"
+                android:text="Man"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_15"
+                android:padding="@dimen/margin_15"
+                android:insetBottom="0dp"
+                android:layout_gravity="left"
+                android:gravity="left|center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/show_qty"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:text="QTY : 20"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_arrow_drop_down_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/hide_layout"
+            android:visibility="gone"
+            android:background="@drawable/purple_btn"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/custom_pickup_request_hide_btn"
+                android:layout_weight="1"
+                android:text="Man"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_15"
+                android:padding="@dimen/margin_15"
+                android:insetBottom="0dp"
+                android:layout_gravity="left"
+                android:gravity="left|center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/hide_qty"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:text="QTY : 20"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_arrow_forward_ios_24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/custom_pickup_request_rv"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_width="match_parent"
+            tools:itemCount="1"
+            android:visibility="gone"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

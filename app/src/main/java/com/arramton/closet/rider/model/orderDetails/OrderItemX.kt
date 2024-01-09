@@ -1,5 +1,6 @@
 package com.arramton.closet.rider.model.orderDetails
 
+import com.arramton.closet.rider.model.newOrder.Costume
 import com.arramton.closet.rider.model.orderDetails.OrderItemStatus
 
 data class OrderItemX(
@@ -13,5 +14,7 @@ data class OrderItemX(
     val qty: Int,
     val status: Int,
     val updated_at: String,
-    val user_id: Int
-)
+    val user_id: Int,
+    val costume: Costume,
+
+    )

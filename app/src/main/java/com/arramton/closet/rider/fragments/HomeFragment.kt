@@ -18,6 +18,7 @@ import com.arramton.closet.rider.activity.NewJobActivity
 import com.arramton.closet.rider.activity.PickupOrderActivity
 import com.arramton.closet.rider.activity.SubmittedOrderActivity
 import com.arramton.closet.rider.activity.TotalEarnActivity
+import com.arramton.closet.rider.activity.TransacationDetailsActivity
 import com.arramton.closet.rider.factory.ProfileFactory
 import com.arramton.closet.rider.repository.ProfileRepository
 import com.arramton.closet.rider.viewModel.ProfileViewModel
@@ -77,7 +78,7 @@ class HomeFragment : Fragment() {
         layoutTotalEarn=view.findViewById(R.id.home_total_earn_layout)
 
         layoutTotalEarn.setOnClickListener {
-            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java))
+            startActivity(Intent(requireContext() ,TransacationDetailsActivity::class.java))
         }
 
 
@@ -85,6 +86,7 @@ class HomeFragment : Fragment() {
         layoutTodayEarn=view.findViewById(R.id.home_today_earn_layout)
 
         layoutTodayEarn.setOnClickListener {
+            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java))
 
         }
 

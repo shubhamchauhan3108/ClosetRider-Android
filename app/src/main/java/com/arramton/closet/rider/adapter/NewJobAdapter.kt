@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arramton.closet.rider.R
+import com.arramton.closet.rider.listener.NewJobListener
 import com.arramton.closet.rider.model.newOrder.Data
 import com.google.android.material.button.MaterialButton
 
-class NewJobAdapter(val context: Context, val list: List<Data>) :RecyclerView.Adapter<NewJobAdapter.ViewHolder>() {
+class NewJobAdapter(val context: Context, val list: List<Data>,val newJobListener: NewJobListener) :RecyclerView.Adapter<NewJobAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
        val view:View=LayoutInflater.from(parent.context).inflate(R.layout.custom_new_job_pickup,parent,false)
@@ -30,6 +31,10 @@ class NewJobAdapter(val context: Context, val list: List<Data>) :RecyclerView.Ad
         holder.tvAddress.text=list.get(position).address.address_line_1+", "+list.get(position).address.landmark+", "+list.get(position).address.state+" , "+list.get(position).address.city+":"+list.get(position).address.pincode
 
 
+
+        holder.deliveredBtn.setOnClickListener {
+            newJobListener.onClick(list.get(position).id.toString())
+        }
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view){

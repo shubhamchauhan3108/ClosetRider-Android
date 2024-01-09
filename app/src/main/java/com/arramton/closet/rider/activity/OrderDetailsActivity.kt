@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arramton.closet.restService.RetrofitBuilder
 import com.arramton.closet.rider.R
+import com.arramton.closet.rider.adapter.OrderDetailsChildCategoryAdapter
 import com.arramton.closet.rider.adapter.OrderDetailsParentCategoryAdapter
 import com.arramton.closet.rider.factory.OrderFactory
 import com.arramton.closet.rider.listener.OrderDetailsListener
@@ -30,11 +31,13 @@ class OrderDetailsActivity : AppCompatActivity() {
     private lateinit var rvCostume:RecyclerView
     private lateinit var rvChildCostume:RecyclerView
     private lateinit var orderDetailsParentCategoryAdapter: OrderDetailsParentCategoryAdapter
+    private lateinit var orderDetailsChildCategoryAdapter: OrderDetailsChildCategoryAdapter
 
     private lateinit var id:String
     private lateinit var tvSubTotal:TextView
     private lateinit var tvStatus:TextView
     private lateinit var tvMode:TextView
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,10 +90,9 @@ class OrderDetailsActivity : AppCompatActivity() {
 
                     orderDetailsParentCategoryAdapter= OrderDetailsParentCategoryAdapter(this,it.data.orderItem,object :OrderDetailsListener{
                         override fun listAdd(list1: List<CostumesOrderItem>) {
-//                            listChild=list
 
-//                            orderDetailsChildCategoryAdapter=OrderDetailsChildCategoryAdapter(list1,this@MyOrderDetailsActivity)
-//                            rvOrderDetailsChildCategory.adapter=orderDetailsChildCategoryAdapter
+                             orderDetailsChildCategoryAdapter=OrderDetailsChildCategoryAdapter(this@OrderDetailsActivity,list1)
+                            rvChildCostume.adapter=orderDetailsChildCategoryAdapter
 
                         }
                     })
