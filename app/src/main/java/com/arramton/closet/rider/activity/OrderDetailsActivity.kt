@@ -3,6 +3,7 @@ package com.arramton.closet.rider.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -26,6 +27,10 @@ import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.viewModel.OrderViewModel
 import com.google.android.material.button.MaterialButton
 import org.w3c.dom.Text
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 class OrderDetailsActivity : AppCompatActivity() {
     private lateinit var imgBackBtn:ImageView
@@ -50,6 +55,8 @@ class OrderDetailsActivity : AppCompatActivity() {
     private lateinit var layoutNewJob:LinearLayout
 
     private lateinit var key:String
+
+    private lateinit var tvDateTime:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order_details)
@@ -58,6 +65,8 @@ class OrderDetailsActivity : AppCompatActivity() {
     }
 
     fun init(){
+
+        tvDateTime=findViewById(R.id.order_details_date_time)
 
 
         layoutNewJob=findViewById(R.id.new_job_layout)
@@ -140,9 +149,11 @@ class OrderDetailsActivity : AppCompatActivity() {
 
                     tvSubTotal.text="₹ "+it.data.order?.sub_total
 
-                    tvStatus.text=""+it.data.order?.payment_status
+                    tvStatus.text= Html.fromHtml(it.data.order?.order_status?.name)
 
                     tvMode.text=""+it.data.order?.payment_mode
+
+                    tvDateTime.text=convertToDate(it.data.order.created_at)
 
                     orderDetailsParentCategoryAdapter= OrderDetailsParentCategoryAdapter(this,it.data.orderItem,object :OrderDetailsListener{
 
@@ -202,4 +213,35 @@ class OrderDetailsActivity : AppCompatActivity() {
         val alertDialog = builder.create()
         alertDialog.show()
     }
+
+    private fun convertToDate(dateString: String): String? {
+
+        var date: Date? = null
+
+        val df = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+
+        df.timeZone = TimeZone.getTimeZone("UTC")
+
+        try {
+
+            date = df.parse(dateString)
+
+        } catch (e: Exception) {
+
+            e.printStackTrace()
+
+        }
+
+        df.timeZone = TimeZone.getDefault()
+
+        val outputFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+        return outputFormat.format(date)
+    }
+
+
+
+
+
+
 }

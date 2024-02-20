@@ -29,6 +29,16 @@ class OrderDetailsParentCategoryAdapter(val context: Context, val list: List<Ord
 
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
 
+
+
+
+        if (list.get(position).costumes_order_item.size<1){
+            holder.tvName.visibility=View.GONE
+        }else{
+            holder.tvName.visibility=View.VISIBLE
+
+
+        }
         holder.tvName.text=list.get(position).name
         holder.tvName.setOnClickListener {
             rowIndex=position
