@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="@drawable/top_right_left_radius"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:elevation="@dimen/margin_5"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_gravity="center"
+            android:background="@color/light_purple"
+            android:layout_width="100dp"
+            android:layout_height="5dp"/>
+
+        <TextView
+            android:fontFamily="@font/robotobold"
+            android:textSize="@dimen/text_size_18"
+            android:textColor="@color/black"
+            android:text="Review"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/custom_remark_et"
+            android:lines="10"
+            android:hint="Enter Remark"
+            android:gravity="top"
+            android:paddingVertical="@dimen/margin_10"
+            android:paddingHorizontal="@dimen/margin_10"
+            android:background="@drawable/edit_text_bg"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginBottom="@dimen/margin_30"
+            android:layout_marginTop="@dimen/margin_30"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/remark_cancel"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:paddingVertical="@dimen/padding_10"
+                android:background="@drawable/black_border_btn"
+                android:text="Cancel"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/remark_save"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:paddingVertical="12dp"
+                android:background="@drawable/purple_btn"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -65,6 +65,7 @@
                 android:textSize="@dimen/text_size_14" />
 
             <EditText
+                android:id="@+id/upload_document_addhar_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_20"
@@ -73,9 +74,13 @@
                 android:background="@drawable/edit_text_bg"
                 android:hint="Fill Aadhar Number"
                 android:padding="@dimen/padding_10"
+                android:inputType="number"
+                android:maxLength="16"
+                android:singleLine="true"
                 android:textSize="@dimen/text_size_15" />
 
             <LinearLayout
+                android:id="@+id/upload_addhar_front_layout"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
@@ -104,6 +109,7 @@
             </LinearLayout>
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/upload_document_addhar_front_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_20"
@@ -112,12 +118,14 @@
                 android:visibility="gone">
 
                 <ImageView
+                    android:id="@+id/upload_document_addhar_front_img"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/profile_banner" />
 
                 <ImageView
+                    android:id="@+id/adhar_front_del"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -125,6 +133,7 @@
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
             <LinearLayout
+                android:id="@+id/upload_addhar_back_layout"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
@@ -148,11 +157,12 @@
                     android:layout_gravity="center"
                     android:textSize="@dimen/text_size_15"
                     android:layout_marginTop="@dimen/margin_10"
-                    android:text="Upload Aadhar Front Picture" />
+                    android:text="Upload Aadhar Back Picture" />
 
             </LinearLayout>
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/upload_document_addhar_back_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_20"
@@ -161,12 +171,14 @@
                 android:visibility="gone">
 
                 <ImageView
+                    android:id="@+id/upload_document_addhar_back_img"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_launcher_background" />
 
                 <ImageView
+                    android:id="@+id/adhar_back_del"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -174,6 +186,7 @@
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
             <EditText
+                android:id="@+id/upload_document_pancard_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_20"
@@ -184,6 +197,7 @@
                 android:padding="@dimen/padding_10" />
 
             <LinearLayout
+                android:id="@+id/upload_addhar_pancard_layout"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
@@ -212,6 +226,7 @@
             </LinearLayout>
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/upload_document_pancard_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_20"
@@ -220,12 +235,14 @@
                 android:visibility="gone">
 
                 <ImageView
+                    android:id="@+id/upload_document_pancard_img"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_launcher_background" />
 
                 <ImageView
+                    android:id="@+id/pancard_del"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -272,7 +289,8 @@
                     android:layout_marginStart="@dimen/margin_10"
                     android:layout_marginEnd="@dimen/margin_10"
                     android:layout_weight="1"
-                    android:background="@drawable/edit_text_bg"
+                    app:background="@drawable/edit_text_bg"
+                    app:backgroundTint="#F2F2F2"
                     android:gravity="center"
                     android:insetTop="0dp"
                     android:insetBottom="0dp"
@@ -282,6 +300,7 @@
                     android:textSize="@dimen/text_size_15" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/upload_document_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

@@ -62,7 +62,7 @@ class NewJobActivity : AppCompatActivity() {
                 if (it.success) {
                     newJobAdapter = NewJobAdapter(this@NewJobActivity, it.data,object :NewJobListener{
                         override fun onClick(id: String) {
-                            startActivity(Intent(this@NewJobActivity,OrderDetailsActivity::class.java).putExtra("id",id))
+                            startActivity(Intent(this@NewJobActivity,OrderDetailsActivity::class.java).putExtra("id",id).putExtra("key","newJob"))
                         }
                     })
                     pickupRv.adapter = newJobAdapter
@@ -97,7 +97,7 @@ class NewJobActivity : AppCompatActivity() {
 //            deliveryBtn.background = ContextCompat.getDrawable(this, R.drawable.purple_btn)
             deliveryBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.light_purple))
             deliveryBtn.setTextColor(ContextCompat.getColor(this,R.color.white))
-            viewModel.orderDelivered()
+            viewModel.orderDelivered("1")
         }
 
         nav_customer_care_back_btn.setOnClickListener{

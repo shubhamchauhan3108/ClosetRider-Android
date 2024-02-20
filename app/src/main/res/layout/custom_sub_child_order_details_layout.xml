@@ -15,6 +15,7 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
+                android:id="@+id/sub_child_rl"
                 android:padding="10dp"
                 android:gravity="center"
                 android:layout_gravity="center"
@@ -23,7 +24,7 @@
                 android:layout_height="150dp">
                 <ImageView
                     android:id="@+id/edit_custom_child_custom_item_img"
-                    android:src="@drawable/large_green_shirt"
+                    android:src="@drawable/baseline_photo_camera_24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 

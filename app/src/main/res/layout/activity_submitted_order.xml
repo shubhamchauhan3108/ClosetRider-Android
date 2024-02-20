@@ -31,7 +31,7 @@
                     android:layout_marginStart="@dimen/margin_10"
                     android:textStyle="bold"
                     android:textSize="@dimen/text_size_18"
-                    android:text="New Job"
+                    android:text="Submitted Order"
                     android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

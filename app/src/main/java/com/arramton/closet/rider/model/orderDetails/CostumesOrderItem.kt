@@ -5,8 +5,8 @@ data class CostumesOrderItem(
     val created_at: String,
     val dry_clean_charge: Int,
     val id: Int,
-    val image_url: String,
-    val item_price: Int,
+    var image_url: String,
+    val item_price: String,
     val name: String,
     val order_item: List<OrderItemX>,
     val updated_at: String

@@ -9,15 +9,18 @@ import com.arramton.closet.rider.model.newOrder.NewOrderResponse
 import com.arramton.closet.rider.model.newOrder.editNewOrder.EditNewOrderRequest
 import com.arramton.closet.rider.model.order.OrderResponse
 import com.arramton.closet.rider.model.orderDetails.OrderDetailsResponse
+import com.arramton.closet.rider.model.pickupOrder.SubmitOrderResponse
+import com.arramton.closet.rider.model.uploadPhoto.UploadResponse
 import com.arramton.closet.rider.repository.OrderRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.MultipartBody
 
 class OrderViewModel(val orderRepository: OrderRepository):ViewModel() {
 
-    fun orderDelivered(){
+    fun orderDelivered(id: String){
         viewModelScope.launch(Dispatchers.IO) {
-            orderRepository.delivered()
+            orderRepository.delivered(id)
         }
     }
 
@@ -62,4 +65,22 @@ class OrderViewModel(val orderRepository: OrderRepository):ViewModel() {
 
     val editNewJobObserver:LiveData<EditNewJobResponse>
         get() = orderRepository.editJobLiveData
+
+    fun uploadObservable(image: MultipartBody.Part){
+        viewModelScope.launch(Dispatchers.IO){
+            orderRepository.uploadPhoto(image)
+        }
+    }
+
+    val uploadObserver:LiveData<UploadResponse>
+        get() = orderRepository.uploadPhotoLivaData
+
+    fun submitPickupOrderObservable(id:String){
+        viewModelScope.launch(Dispatchers.IO){
+            orderRepository.pickupOrderSubmit(id)
+        }
+    }
+
+    val submitPickupOrderObserver:LiveData<SubmitOrderResponse>
+        get() = orderRepository.submitPickupLiveData
 }

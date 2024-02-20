@@ -19,7 +19,6 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
                 <TextView
                     android:layout_weight="1"
                     android:textColor="@color/light_purple"
@@ -63,6 +62,7 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:id="@+id/register_name"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_10"
@@ -74,6 +74,7 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:id="@+id/register_mobile"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_10"
@@ -81,10 +82,13 @@
                 android:padding="@dimen/padding_10"
                 android:textSize="@dimen/text_size_15"
                 android:hint="Mobile"
+                android:inputType="phone"
+                android:maxLength="10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:id="@+id/register_email"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_10"
@@ -96,6 +100,7 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:id="@+id/register_gender"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_10"
@@ -117,6 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <EditText
+                android:id="@+id/register_address"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_10"
@@ -127,6 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <EditText
+                android:id="@+id/register_landmark"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_10"
@@ -137,57 +144,49 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+            <TextView
+                android:id="@+id/register_state_name"
                 android:background="@drawable/edit_text_bg"
-                android:layout_marginBottom="10dp"
+                android:hint="Select State"
+                android:drawableRight="@drawable/blue_drop_down"
+                android:paddingHorizontal="@dimen/padding_10"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:paddingVertical="@dimen/padding_10"
+                android:layout_marginTop="@dimen/margin_10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <Spinner
-                    android:padding="10dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"/>
 
-
-
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
+            <TextView
+                android:id="@+id/register_city_name"
                 android:background="@drawable/edit_text_bg"
-                android:layout_marginBottom="10dp"
+                android:hint="Select City"
+                android:drawableRight="@drawable/blue_drop_down"
+                android:paddingHorizontal="@dimen/padding_10"
+                android:layout_marginStart="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:paddingVertical="@dimen/padding_10"
+                android:layout_marginTop="@dimen/margin_10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <Spinner
-                    android:padding="10dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-
-
-            </RelativeLayout>
+                android:layout_height="wrap_content"/>
 
 
             <EditText
+                android:id="@+id/register_pincode"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_10"
                 android:background="@drawable/edit_text_bg"
                 android:padding="@dimen/padding_10"
                 android:hint="Pincode"
+                android:maxLength="6"
+                android:inputType="number"
                 android:textSize="15sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/verify_otp_btn"
+                android:id="@+id/register_btn"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_size_15"
                 android:gravity="center"

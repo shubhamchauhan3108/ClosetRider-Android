@@ -27,6 +27,7 @@ import com.arramton.closet.rider.adapter.RightNavigationAdapter
 import com.arramton.closet.rider.databinding.ActivityHomePageBinding
 import com.arramton.closet.rider.listener.RightNavigationListener
 import com.arramton.closet.rider.model.RightNavigationModel
+import com.arramton.closet.rider.utils.LoginManager
 
 class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener,
     RightNavigationListener {
@@ -36,6 +37,7 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
     private lateinit var navList: ArrayList<RightNavigationModel>
     private lateinit var rightNavigationAdapter: RightNavigationAdapter
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var loginManager: LoginManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,7 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_home_page)
 
+        loginManager=LoginManager(this@HomePageActivity)
 
         binding.appBarHomePage.toolbar.navigationIcon = ContextCompat.getDrawable(this, R.drawable.left_navigation)
         navView.setNavigationItemSelectedListener(this)
@@ -123,7 +126,7 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
         builder.setCancelable(false)
         builder.setPositiveButton("Yes") {
                 dialog, which ->
-//            loginManager.removeSharedPreference()
+            loginManager.removeSharedPreference()
             startActivity(Intent(this@HomePageActivity, LoginActivity::class.java))
             finishAffinity()
         }

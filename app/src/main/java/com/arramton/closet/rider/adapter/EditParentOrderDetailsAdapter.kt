@@ -19,6 +19,10 @@ class EditParentOrderDetailsAdapter(val context: Context, val list: List<OrderIt
         return ViewHolder(view)
     }
 
+
+    fun updateImage(imgUrl:String,pos: Int){
+//        list.get(pos).
+    }
     override fun onBindViewHolder(holder: EditParentOrderDetailsAdapter.ViewHolder, position: Int) {
         holder.tvName.text=list.get(position).name
         holder.tvName.setOnClickListener {

@@ -64,6 +64,7 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:id="@+id/bank_details_bank_name"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_10"
@@ -76,6 +77,7 @@
 
 
             <EditText
+                android:id="@+id/bank_details_bank_holder_name"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_20"
@@ -87,6 +89,7 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:id="@+id/bank_details_account_number"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_20"
@@ -98,6 +101,7 @@
                 android:layout_height="wrap_content"/>
 
             <EditText
+                android:id="@+id/bank_details_ifsc_code"
                 android:layout_marginStart="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_20"
@@ -114,7 +118,6 @@
 
             <LinearLayout
 
-                android:id="@+id/verify_otp_resend_layout"
                 android:visibility="gone"
                 android:layout_marginTop="@dimen/text_size_20"
                 android:layout_marginBottom="@dimen/margin_20"
@@ -154,6 +157,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/bank_details_back_btn"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_15"
             android:layout_marginBottom="2dp"
@@ -171,6 +175,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/bank_details_register_btn"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_15"
             android:layout_weight="1"

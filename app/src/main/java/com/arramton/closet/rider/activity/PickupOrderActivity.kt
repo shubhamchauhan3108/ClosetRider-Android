@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,7 +55,10 @@ class PickupOrderActivity : AppCompatActivity() {
                 if (it.success){
                     pickupOrderAdapter= PickupOrderAdapter(this,it.data,object:PickupListener{
                         override fun onClick(id: String) {
-                            startActivity(Intent(this@PickupOrderActivity,OrderDetailsActivity::class.java).putExtra("id",id))
+                            startActivity(Intent(this@PickupOrderActivity,OrderDetailsActivity::class.java).putExtra("id",id).putExtra("key","pickupJob"))
+                        }
+                        override fun submitPickupOrder(id: String) {
+                            pickupOrderSubmit(id)
                         }
                     })
                     rvOrderPickup.adapter=pickupOrderAdapter
@@ -62,5 +67,37 @@ class PickupOrderActivity : AppCompatActivity() {
             }
         })
         orderViewModel.pickupOrder()
+
+        orderViewModel.submitPickupOrderObserver.observe(this, Observer {
+            if (it!=null){
+                Toast.makeText(this,it.message, Toast.LENGTH_SHORT).show()
+                onBackPressed()
+            }
+        })
+
     }
+
+    fun pickupOrderSubmit(id:String){
+        val builder = AlertDialog.Builder(this)
+
+        builder.setMessage("Do you want to Submit ")
+        builder.setTitle("Closet Rider")
+
+        builder.setCancelable(false)
+
+        builder.setPositiveButton("Yes") {
+                dialog, which -> finish()
+
+            orderViewModel.submitPickupOrderObservable(id)
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("No") {
+                dialog, which -> dialog.cancel()
+        }
+
+        val alertDialog = builder.create()
+        alertDialog.show()
+    }
+
 }

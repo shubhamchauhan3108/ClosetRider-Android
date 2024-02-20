@@ -25,14 +25,29 @@ class PickupOrderAdapter(val context: Context,val list: List<Data>,val pickupLis
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         holder.tvOrderNumber.text="Order #"+list.get(position).id
+
         holder.tvOrderPrice.text="₹ "+list.get(position).total.toString()
+
         holder.tvOrderDate.text=""+list.get(position).pickup_date
+
         holder.tvOrderTime.text=""+list.get(position).pickup_time
+
         holder.tvOrderAddress.text=""+list.get(position).address.address_line_1+", "+list.get(position).address.landmark+", "+list.get(position).address.state+" , "+list.get(position).address.city+":"+list.get(position).address.pincode
-        holder.viewDetailsBtn.setOnClickListener {
-            pickupListener.onClick(list.get(position).id.toString())
+
+        holder.submitBtn.setOnClickListener {
+
+            pickupListener.submitPickupOrder(list.get(position).id.toString())
+
         }
+
+        holder.viewDetailsBtn.setOnClickListener {
+
+            pickupListener.onClick(list.get(position).id.toString())
+
+        }
+
     }
 
     class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
@@ -43,5 +58,6 @@ class PickupOrderAdapter(val context: Context,val list: List<Data>,val pickupLis
         val tvOrderTime=view.findViewById<TextView>(R.id.custom_pickup_order_time)
         val tvOrderAddress=view.findViewById<TextView>(R.id.custom_pickup_order_address)
         val viewDetailsBtn=view.findViewById<MaterialButton>(R.id.pickup_details_view_details)
+        val submitBtn=view.findViewById<MaterialButton>(R.id.custom_pickup_order_submit)
     }
 }

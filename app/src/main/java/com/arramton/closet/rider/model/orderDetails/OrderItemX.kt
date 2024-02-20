@@ -16,5 +16,6 @@ data class OrderItemX(
     val updated_at: String,
     val user_id: Int,
     val costume: Costume,
+    var updateImge:String
 
     )

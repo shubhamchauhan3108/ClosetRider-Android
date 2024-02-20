@@ -14,6 +14,8 @@ import com.arramton.closet.rider.model.orderDetails.CostumesOrderItem
 import com.arramton.closet.rider.model.orderDetails.OrderItemX
 
 class EditChildOrderDetailsAdapter(val context: Context, val childList:List<CostumesOrderItem>,val editSubChildListener: EditSubChildListener) : RecyclerView.Adapter<EditChildOrderDetailsAdapter.ViewHolder>(){
+
+    private lateinit var orderDetailsSubChlidAdapter:EditSubChildOrderDetailsAdapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EditChildOrderDetailsAdapter.ViewHolder {
       val view :View=LayoutInflater.from(parent.context).inflate(R.layout.custom_order_details_child_layout,parent,false)
         return ViewHolder(view)
@@ -51,10 +53,10 @@ class EditChildOrderDetailsAdapter(val context: Context, val childList:List<Cost
             holder.showLayout.visibility=View.GONE
             holder.rvChildCategory.visibility=View.VISIBLE
 
-            val orderDetailsSubChlidAdapter:EditSubChildOrderDetailsAdapter= EditSubChildOrderDetailsAdapter(context,childList.get(position).order_item,object :EditSubChildListener{
-                override fun onClickOpenCamera(imgeId: Int) {
+             orderDetailsSubChlidAdapter= EditSubChildOrderDetailsAdapter(context,childList.get(position).order_item,object :EditSubChildListener{
+                override fun onClickOpenCamera(imgeId: Int,position: Int) {
 
-                    editSubChildListener.onClickOpenCamera(imgeId)
+                    editSubChildListener.onClickOpenCamera(imgeId,position)
                 }
 
                 override fun onClick(
@@ -66,11 +68,28 @@ class EditChildOrderDetailsAdapter(val context: Context, val childList:List<Cost
 
                     editSubChildListener.onClick(remark,costume_id,order_item_id,image)
                 }
-            })
+
+                 override fun onClickRemark(id: String) {
+                     editSubChildListener.onClickRemark(id)
+                 }
+             })
+
+//            orderDetailsSubChlidAdapter.updateImage(childList.get(position).image_url,position)
 
             holder.rvChildCategory.adapter=orderDetailsSubChlidAdapter
 
         }
+    }
+
+    fun updateImage(imgUrl:String,pos: Int){
+
+//        childList.get(pos).image_url=imgUrl
+//        notifyItemChanged(pos)
+
+        orderDetailsSubChlidAdapter.updateImage(imgUrl,pos)
+
+
+
     }
 
     override fun getItemCount(): Int {

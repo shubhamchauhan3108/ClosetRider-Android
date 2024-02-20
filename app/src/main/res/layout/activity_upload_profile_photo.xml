@@ -30,6 +30,7 @@
             android:text="That you want show to user" />
 
         <LinearLayout
+            android:id="@+id/upload_profile_photo_layout"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginStart="@dimen/margin_20"
@@ -41,10 +42,10 @@
             android:padding="@dimen/padding_10">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50sp"
+                android:layout_height="50sp"
                 android:layout_gravity="center"
-                android:src="@drawable/upload" />
+                android:src="@drawable/baseline_photo_camera_24" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,11 +53,12 @@
                 android:layout_gravity="center"
                 android:textSize="15sp"
                 android:layout_marginTop="@dimen/margin_10"
-                android:text="Upload Aadhar Front Picture" />
+                android:text="Upload profile Picture" />
 
         </LinearLayout>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/upload_profile_photo_cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_20"
@@ -65,6 +67,7 @@
             android:visibility="gone">
 
             <ImageView
+                android:id="@+id/profile_img"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:scaleType="fitXY"
@@ -79,7 +82,7 @@
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/verify_otp_btn"
+            android:id="@+id/profile_register_btn"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_15"
             android:gravity="center"

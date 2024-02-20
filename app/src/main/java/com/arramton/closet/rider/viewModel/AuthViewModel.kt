@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arramton.closet.rider.model.auth.LoginResponse
+import com.arramton.closet.rider.model.auth.RegisterResponse
 import com.arramton.closet.rider.model.auth.verifyOTP.VerifyOTPResponse
 
 class AuthViewModel(val authRepository: AuthRepository): ViewModel() {
@@ -32,6 +33,17 @@ class AuthViewModel(val authRepository: AuthRepository): ViewModel() {
     val verifyOTPObservable:LiveData<VerifyOTPResponse>
         get() = authRepository.verifyOTPResponse
 
+
+    fun registerObserver(name:String,mobileNumber:String,email:String,gender:String,addressLine:String,lanMark:String,state:String,city:String,pincode:String,aadharNumber:String,adharFront:String,adharBack:String,panNumber:String,panPicture:String,bankName:String,holderName:String,accountNumber:String,bankIFSC:String,profilePick:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            authRepository.registerObserver(name,mobileNumber,email,gender,addressLine,lanMark,state,city,pincode,aadharNumber,adharFront,adharBack,panNumber,panPicture,bankName,holderName,accountNumber,bankIFSC,profilePick)
+
+        }
+    }
+
+
+    val registerObservable:LiveData<RegisterResponse>
+        get() = authRepository.registerResponse
 
 
 }

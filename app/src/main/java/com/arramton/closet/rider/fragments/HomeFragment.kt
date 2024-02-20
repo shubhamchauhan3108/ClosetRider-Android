@@ -17,6 +17,7 @@ import com.arramton.closet.rider.activity.DeliveredActivity
 import com.arramton.closet.rider.activity.NewJobActivity
 import com.arramton.closet.rider.activity.PickupOrderActivity
 import com.arramton.closet.rider.activity.SubmittedOrderActivity
+import com.arramton.closet.rider.activity.TotalDeliveryActivity
 import com.arramton.closet.rider.activity.TotalEarnActivity
 import com.arramton.closet.rider.activity.TransacationDetailsActivity
 import com.arramton.closet.rider.factory.ProfileFactory
@@ -76,6 +77,11 @@ class HomeFragment : Fragment() {
         tvTotalDelivered=view.findViewById(R.id.home_total_delivered)
 
         layoutTotalEarn=view.findViewById(R.id.home_total_earn_layout)
+
+        layoutTodayDelivered.setOnClickListener {
+            startActivity(Intent(requireContext() ,TotalDeliveryActivity::class.java))
+
+        }
 
         layoutTotalEarn.setOnClickListener {
             startActivity(Intent(requireContext() ,TransacationDetailsActivity::class.java))
@@ -142,6 +148,11 @@ class HomeFragment : Fragment() {
         profileViewModel.profileHomePage()
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        profileViewModel.profileHomePage()
     }
 
 }

@@ -1,15 +1,16 @@
 package com.arramton.closet.rider.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,19 +26,15 @@ import com.arramton.closet.rider.listener.OrderDetailsListener
 import com.arramton.closet.rider.model.newOrder.editNewOrder.EditNewOrderRequest
 import com.arramton.closet.rider.model.newOrder.editNewOrder.Item
 import com.arramton.closet.rider.model.orderDetails.CostumesOrderItem
-import com.arramton.closet.rider.model.orderDetails.Order
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.viewModel.OrderViewModel
-import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.button.MaterialButton
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.ByteArrayOutputStream
-import kotlin.math.cos
 
 class EditNewJobActivity : AppCompatActivity() {
     private lateinit var imgBackBtn:ImageView
@@ -58,6 +55,10 @@ class EditNewJobActivity : AppCompatActivity() {
     private  var uid:String=""
     private var url:String=""
     private var imageUri: Uri? = null
+    private  var position:Int=0
+
+    private var remark:String?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,8 +98,12 @@ class EditNewJobActivity : AppCompatActivity() {
 
                     editParentOrderDetailsAdapter= EditParentOrderDetailsAdapter(this,it.data.orderItem,object :
                         OrderDetailsListener { override fun listAdd(list1: List<CostumesOrderItem>) {
+
+
+
                             orderDetailsChildCategoryAdapter= EditChildOrderDetailsAdapter(this@EditNewJobActivity,list1,object :EditSubChildListener{
-                                override fun onClickOpenCamera(imgeId: Int) {
+                                override fun onClickOpenCamera(imgeId: Int,pos:Int) {
+                                    position=pos
                                     openCameraBottomSheet()
                                 }
 
@@ -113,10 +118,17 @@ class EditNewJobActivity : AppCompatActivity() {
                                     OrderItemIdValue=order_item_id.toString()
                                     imageValue=image
 
-
-
                                 }
+
+                                override fun onClickRemark(id: String) {
+                                    remarkBottomSheet()
+                                }
+
+
                             })
+
+
+
                             rvChild.adapter=orderDetailsChildCategoryAdapter
 
                         }
@@ -144,16 +156,30 @@ class EditNewJobActivity : AppCompatActivity() {
     }
 
     fun uploadOrder(){
-        val item=Item(coustumeIdValue,imageValue,OrderItemIdValue,remarkValue)
+        if (remark!=null){
+            val item=Item(coustumeIdValue,url,OrderItemIdValue, remark.toString())
+            itemList.add(item)
 
-        itemList.add(item)
-        val editNewOrderRequest:EditNewOrderRequest=EditNewOrderRequest(itemList,Integer.parseInt(id))
 
-        orderViewModel.editNewOrderObservable(editNewOrderRequest)
+        }else{
+            val item=Item(coustumeIdValue,url,OrderItemIdValue, null)
+            itemList.add(item)
+
+
+        }
+
+
+        if (!itemList.isEmpty()){
+            val editNewOrderRequest:EditNewOrderRequest=EditNewOrderRequest(itemList,Integer.parseInt(id))
+            orderViewModel.editNewOrderObservable(editNewOrderRequest)
+        }else{
+            val editNewOrderRequest:EditNewOrderRequest=EditNewOrderRequest(itemList,Integer.parseInt(id))
+            orderViewModel.editNewOrderObservable(editNewOrderRequest)
+        }
+
     }
 
     companion object {
-        // Define the pic id
         private const val pic_id = 123
         private val pickImage = 100
 
@@ -164,78 +190,39 @@ class EditNewJobActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == pic_id) {
             val photo = data!!.extras!!["data"] as Bitmap?
-
             val bytes = ByteArrayOutputStream()
             photo?.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
             val path: String = MediaStore.Images.Media.insertImage(this@EditNewJobActivity.getContentResolver(), photo, "Title", null)
-
             val file = UriToFile(this@EditNewJobActivity).getImageBody(Uri.parse(path))
             val requestFile: RequestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-            val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
-//
-//            cakeLayout.visibility= View.VISIBLE
-//            tvProfilePick.visibility= View.GONE
-//            imgProfileBtn.setImageBitmap(photo)
+            val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+            orderViewModel.uploadObserver.observe(this@EditNewJobActivity, Observer {
+                if (it!=null){
+                    Toast.makeText(this@EditNewJobActivity,it.message,Toast.LENGTH_SHORT).show()
+                    url=it.data
+                    orderDetailsChildCategoryAdapter.updateImage(url,position)
 
-//            Glide.with(this@ProductDetailsActivity).load(photo).load(imgProfileBtn)
+                }else{
 
-
-//            productDetailsViewModel.photoCakeLiveData(body)
-//            productDetailsViewModel.photoCakeSave.observe(this, Observer {
-//                if (it!=null){
-//                    Toast.makeText(this@ProductDetailsActivity,it.message,Toast.LENGTH_SHORT).show()
-//                    Glide.with(this@ProductDetailsActivity).load(it.data.url).load(imgProfileBtn)
-//
-//                    uid=it.data.uid
-//                    url=it.data.url
-//
-//                }
-//            })
+                }
+            })
+            orderViewModel.uploadObservable(body)
         }else if (resultCode == RESULT_OK && requestCode == pickImage) {
-//            cakeLayout.visibility= View.VISIBLE
-//            tvProfilePick.visibility= View.GONE
-//            imageUri = data?.data
-//            imgProfileBtn.setImageURI(imageUri)
-
-
             val file = UriToFile(this@EditNewJobActivity).getImageBody(imageUri)
             val requestFile: RequestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-            val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
+            val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
+            orderViewModel.uploadObserver.observe(this@EditNewJobActivity, Observer {
+                if (it!=null){
+                    Toast.makeText(this@EditNewJobActivity,it.message,Toast.LENGTH_SHORT).show()
+                    url=it.data
+                    orderDetailsChildCategoryAdapter.updateImage(url,position)
 
-//
-//            val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-//
-////            builder.addFormDataPart("first_name", firstName) // whatever data you will pass to the the request body
-//                .addFormDataPart("profile_photo", file.name, requestFile) // the profile photo
-//            // make sure the name (ie profile_photo), matches your api, that is name of the key.
-//
-//
-//            val requestBody: RequestBody = builder.build()
 
-//            val file = File(Environment.getExternalStorageDirectory(), imageUri.toString())
-//            val uri = Uri.fromFile(file)
-//            val auxFile = File(uri.toString())
+                }else{
 
-//            val file: File =
-//                File(ProductDetailsActivity.getRealPathFromUri(this@ProductDetailsActivity, data!!.data))
-//
-//             RequestBody requestBody=RequestBody.create(MediaType.parse("image/jpg"),getRealPathFromUri(context, data.getData()));
-//
-//             RequestBody requestBody=RequestBody.create(MediaType.parse("image/jpg"),getRealPathFromUri(context, data.getData()));
-//            val requestBody = RequestBody.create(Media.parse("image/jpeg"), file)
-//            multiBody = createFormData.createFormData("file", file.name, requestBody)
-//
-//            productDetailsViewModel.photoCakeLiveData(body)
-//            productDetailsViewModel.photoCakeSave.observe(this, Observer {
-//                if (it!=null){
-//                    Toast.makeText(this@ProductDetailsActivity,it.message,Toast.LENGTH_SHORT).show()
-//                    Glide.with(this@ProductDetailsActivity).load(it.data.url).load(imgProfileBtn)
-//                    uid=it.data.uid
-//                    url=it.data.url
-//                }else{
-//
-//                }
-//            })
+                }
+            })
+            orderViewModel.uploadObservable(body)
         }
     }
 
@@ -268,6 +255,32 @@ class EditNewJobActivity : AppCompatActivity() {
         openCancel.setOnClickListener {
             dialog.dismiss()
         }
+
+        dialog.setCancelable(true)
+
+        dialog.setContentView(view)
+
+        dialog.show()
+
+    }
+    @SuppressLint("MissingInflatedId")
+    fun remarkBottomSheet(){
+        var dialog = BottomSheetDialog(this)
+
+        val view = layoutInflater.inflate(R.layout.custom_remark, null)
+        val etRemark=view.findViewById<EditText>(R.id.custom_remark_et)
+        val tvCancel=view.findViewById<TextView>(R.id.remark_cancel)
+        val tvSave=view.findViewById<TextView>(R.id.remark_save)
+
+        tvSave.setOnClickListener {
+            remark=etRemark.text.toString()
+        }
+
+
+       tvCancel.setOnClickListener {
+
+           dialog.dismiss()
+       }
 
         dialog.setCancelable(true)
 

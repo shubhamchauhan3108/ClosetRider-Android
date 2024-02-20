@@ -74,7 +74,7 @@ class DeliveredActivity : AppCompatActivity() {
                 }
             }
         })
-        orderViewModel.orderDelivered()
+        orderViewModel.orderDelivered("3")
 
     }
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var apiInterface: ApiInterface
     private lateinit var authRepository: AuthRepository
     private lateinit var authViewModel: AuthViewModel
+    private lateinit var tvSignUp:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,6 +64,11 @@ class LoginActivity : AppCompatActivity() {
             }
 
             loginAuth()
+        }
+
+        tvSignUp=findViewById(R.id.login_signup_btn)
+        tvSignUp.setOnClickListener {
+            startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
         }
 
 
