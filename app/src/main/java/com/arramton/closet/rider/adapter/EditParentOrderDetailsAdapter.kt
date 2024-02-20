@@ -24,6 +24,14 @@ class EditParentOrderDetailsAdapter(val context: Context, val list: List<OrderIt
 //        list.get(pos).
     }
     override fun onBindViewHolder(holder: EditParentOrderDetailsAdapter.ViewHolder, position: Int) {
+
+        if (list.get(position).costumes_order_item.size<1){
+            holder.tvName.visibility=View.GONE
+
+        }else{
+            holder.tvName.visibility=View.VISIBLE
+
+        }
         holder.tvName.text=list.get(position).name
         holder.tvName.setOnClickListener {
             rowIndex=position

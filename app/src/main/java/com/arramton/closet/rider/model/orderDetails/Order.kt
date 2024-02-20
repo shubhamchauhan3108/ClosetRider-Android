@@ -20,10 +20,10 @@ data class Order(
     val order_status_id: Int,
     val payment_status: Int,
     val pickup_date: String,
-    val pickup_earn: Int,
+    val pickup_earn: String,
     val pickup_time: String,
-    val sub_total: Int,
-    val total: Int,
+    val sub_total: String,
+    val total: String,
     val updated_at: String,
     val user_id: Int,
     val payment_mode:String

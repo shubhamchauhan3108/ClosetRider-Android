@@ -77,7 +77,7 @@ class EditNewJobActivity : AppCompatActivity() {
 
         rvChild=findViewById(R.id.edit_new_job_child)
         rvChild.setHasFixedSize(false)
-        rvChild.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        rvChild.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
 
 
         id=intent.getStringExtra("id").toString()
@@ -157,13 +157,28 @@ class EditNewJobActivity : AppCompatActivity() {
 
     fun uploadOrder(){
         if (remark!=null){
+
             val item=Item(coustumeIdValue,url,OrderItemIdValue, remark.toString())
-            itemList.add(item)
+//            itemList.add(item)
+            for (i in itemList){
+             itemList.add(i)
+                println("List"+itemList)
+
+            }
+
+
 
 
         }else{
-            val item=Item(coustumeIdValue,url,OrderItemIdValue, null)
-            itemList.add(item)
+            for (i in itemList){
+                val item=Item(coustumeIdValue,url,OrderItemIdValue, null)
+                itemList.add(i)
+                println("List"+item)
+            }
+
+//            itemList.add(item)
+
+//            println("List"+itemList)
 
 
         }
