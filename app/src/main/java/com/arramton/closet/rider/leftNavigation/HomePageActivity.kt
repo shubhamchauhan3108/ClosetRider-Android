@@ -1,22 +1,22 @@
 package com.arramton.closet.rider.leftNavigation
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.navigation.NavigationView
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.arramton.closet.rider.R
 import com.arramton.closet.rider.activity.AppSettingActivity
@@ -28,6 +28,9 @@ import com.arramton.closet.rider.databinding.ActivityHomePageBinding
 import com.arramton.closet.rider.listener.RightNavigationListener
 import com.arramton.closet.rider.model.RightNavigationModel
 import com.arramton.closet.rider.utils.LoginManager
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 
 class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSelectedListener,
     RightNavigationListener {
@@ -71,10 +74,52 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
             LinearLayoutManager.VERTICAL,false)
         binding.homePageRightNavRv.adapter=rightNavigationAdapter
 
+
+        if (intent != null && intent.hasExtra("notificationCall")) {
+            val notificationCall = intent.extras?.getString("notificationCall")//.getStringExtra("notificationCall")
+            if (notificationCall == "call") {
+              openBottomSheet()
+            }
+        }
+
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mHandler, IntentFilter("com.arramton.closet.rider"))
+        if (intent.extras!=null){
+            for (i in intent?.extras?.keySet()!!){
+                if (i.equals("title")){
+                    Toast.makeText(this@HomePageActivity, ""+title, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // Get the FCM registration token
+                val token = task.result
+                // Use the token as needed (e.g., send it to your server)
+                Log.d("TAG", "FCM Token: $token")
+
+                // Now you can send this token to your server or perform any other action
+            } else {
+                // Handle the error gracefully
+                Log.e("TAG", "Fetching FCM token failed: ${task.exception}")
+            }
+        }
+
+        val data = intent?.getStringExtra("data")
+
+        if (data != null) {
+            if (data == "1")
+                openBottomSheet()
+        }
+
+
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//         Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.home_page, menu)
         return true
     }
@@ -155,9 +200,31 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
         alertDialog.show()
     }
 
-
     override fun onBackPressed() {
         closedApp()
+    }
+
+    fun openBottomSheet() {
+        val dialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.custom_delivery_notification, null)
+        dialog.setContentView(view)
+
+        dialog.setCancelable(true)
+
+        dialog.show()
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mHandler)
+    }
+
+   private val mHandler = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            println("intent = "+intent?.extras)
+            Toast.makeText(this@HomePageActivity, "Title is: \n"+intent?.getStringExtra("title"), Toast.LENGTH_SHORT).show()
+        }
     }
 
 

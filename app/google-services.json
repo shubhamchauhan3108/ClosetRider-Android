@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "317884905782",
+    "project_id": "closet-rider-notification",
+    "storage_bucket": "closet-rider-notification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317884905782:android:530e296070e4f9381f1b97",
+        "android_client_info": {
+          "package_name": "com.arramton.closet.rider"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFkzROcn9vkatv-eNLS7lULZvYQ6Q_dSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

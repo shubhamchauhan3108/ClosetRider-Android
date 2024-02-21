@@ -22,17 +22,13 @@ class MainActivity : AppCompatActivity() {
         loginManager= LoginManager(this)
         handler=Handler()
         handler.postDelayed(Runnable {
-
-
             if (loginManager.gettoken()==null || loginManager.gettoken().toString().isEmpty()){
                 val intent= Intent(this@MainActivity, ChooseAccountActivity::class.java)
                 startActivity(intent)
                 finish()
             }else{
-
                 startActivity(Intent(this@MainActivity,HomePageActivity::class.java))
                 finish()
-
             }
 
         },2000)
