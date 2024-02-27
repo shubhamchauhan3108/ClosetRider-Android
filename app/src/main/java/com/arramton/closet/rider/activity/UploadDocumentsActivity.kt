@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.arramton.cakingom.utils.UriToFile
@@ -35,9 +36,13 @@ class UploadDocumentsActivity : AppCompatActivity() {
     private lateinit var uploadBtnRegisterBtn:MaterialButton
     private lateinit var etAddharNumber:EditText
     private lateinit var etPanNumber:EditText
+    private lateinit var backBtn : MaterialButton
     private lateinit var layoutAddharFront:LinearLayout;
     private lateinit var layoutAddharBack:LinearLayout
     private lateinit var layoutPanCard:LinearLayout
+    private var aadharFrontVar = false
+    private var aadharBackVar = false
+    private var panFrontVar = false
     private lateinit var name:String
     private lateinit var mobile:String
     private lateinit var email:String
@@ -103,6 +108,7 @@ class UploadDocumentsActivity : AppCompatActivity() {
 
         pincode=intent.getStringExtra("pincode").toString()
 
+
         uplaodAddharFrontCL=findViewById(R.id.upload_document_addhar_front_layout)
 
         uplaodAddharBackCL=findViewById(R.id.upload_document_addhar_back_layout)
@@ -116,6 +122,8 @@ class UploadDocumentsActivity : AppCompatActivity() {
         imgPancard=findViewById(R.id.upload_document_pancard_img)
 
         etAddharNumber=findViewById(R.id.upload_document_addhar_number)
+
+        backBtn = findViewById(R.id.backBtn)
 
 
 
@@ -138,6 +146,10 @@ class UploadDocumentsActivity : AppCompatActivity() {
         layoutPanCard.setOnClickListener {
             imageType="pancard"
             openCameraBottomSheet()
+        }
+
+        backBtn.setOnClickListener {
+            onBackPressed()
         }
 
         etPanNumber=findViewById(R.id.upload_document_pancard_number)
@@ -168,22 +180,42 @@ class UploadDocumentsActivity : AppCompatActivity() {
 
         uploadBtnRegisterBtn.setOnClickListener {
 
-            val intent:Intent=Intent(this@UploadDocumentsActivity,BankDetailsActivity::class.java)
-            intent.putExtra("name",name)
-            intent.putExtra("mobile",mobile)
-            intent.putExtra("email",email)
-            intent.putExtra("gender",gender)
-            intent.putExtra("address",address)
-            intent.putExtra("landMark",landMark)
-            intent.putExtra("state",state)
-            intent.putExtra("city",city)
-            intent.putExtra("pincode",pincode)
-            intent.putExtra("front",adharCardFront)
-            intent.putExtra("back",adharCardBack)
-            intent.putExtra("pancard",pancard)
-            intent.putExtra("addharNumber",etAddharNumber.text.toString())
-            intent.putExtra("pancardNumber",etPanNumber.text.toString())
-            startActivity(intent)
+            if (etAddharNumber.text.isEmpty()){
+                toast("Please select Aadhar number")
+                return@setOnClickListener
+            }else if(layoutAddharFront.isVisible){
+                toast("Please select front Aadhar picture")
+                return@setOnClickListener
+            }else if(layoutAddharBack.isVisible){
+                toast("Please select back Aadhar picture")
+                return@setOnClickListener
+            }else if(etPanNumber.text.isEmpty()){
+                toast("Please select Pan number")
+                return@setOnClickListener
+            }else if(layoutPanCard.isVisible){
+                toast("Please select pan card picture")
+                return@setOnClickListener
+            }
+
+            else {
+                val intent: Intent =
+                    Intent(this@UploadDocumentsActivity, BankDetailsActivity::class.java)
+                intent.putExtra("name", name)
+                intent.putExtra("mobile", mobile)
+                intent.putExtra("email", email)
+                intent.putExtra("gender", gender)
+                intent.putExtra("address", address)
+                intent.putExtra("landMark", landMark)
+                intent.putExtra("state", state)
+                intent.putExtra("city", city)
+                intent.putExtra("pincode", pincode)
+                intent.putExtra("front", adharCardFront)
+                intent.putExtra("back", adharCardBack)
+                intent.putExtra("pancard", pancard)
+                intent.putExtra("addharNumber", etAddharNumber.text.toString())
+                intent.putExtra("pancardNumber", etPanNumber.text.toString())
+                startActivity(intent)
+            }
 
         }
     }
@@ -287,6 +319,7 @@ class UploadDocumentsActivity : AppCompatActivity() {
                     layoutAddharFront.visibility=View.GONE
                     uplaodAddharFrontCL.visibility=View.VISIBLE
                     imgAdharFront.setImageURI(imageUri)
+                    aadharFrontVar = true
 
                     orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
 
@@ -314,6 +347,7 @@ class UploadDocumentsActivity : AppCompatActivity() {
                     layoutAddharBack.visibility=View.GONE
                     uplaodAddharBackCL.visibility=View.VISIBLE
                     imgAdharBack.setImageURI(imageUri)
+                    aadharBackVar = true
                     orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
 
                         if(it!=null){
@@ -338,6 +372,7 @@ class UploadDocumentsActivity : AppCompatActivity() {
                     layoutPanCard.visibility=View.GONE
                     uplaodPancardCL.visibility=View.VISIBLE
                     imgPancard.setImageURI(imageUri)
+                    panFrontVar = true
 
                     orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
 
@@ -389,5 +424,9 @@ class UploadDocumentsActivity : AppCompatActivity() {
 
         dialog.show()
 
+    }
+
+    private fun toast(msg: String){
+        Toast.makeText(this@UploadDocumentsActivity, msg, Toast.LENGTH_SHORT).show()
     }
 }

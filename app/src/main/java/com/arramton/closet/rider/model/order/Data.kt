@@ -20,8 +20,8 @@ data class Data(
     val pickup_date: String,
     val pickup_earn: Int,
     val pickup_time: String,
-    val sub_total: Int,
-    val total: Int,
+    val sub_total: String,
+    val total: String,
     val updated_at: String,
     val user_id: Int
 )

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.arramton.closet.rider.R
 import com.google.android.material.button.MaterialButton
 
@@ -78,26 +79,43 @@ class BankDetailsActivity : AppCompatActivity() {
         bankDetailsBackBtn=findViewById(R.id.bank_details_back_btn)
 
         bankDetailsNextBtn.setOnClickListener {
-            val intent:Intent=Intent(this@BankDetailsActivity,UploadProfilePhotoActivity::class.java)
-            intent.putExtra("name",name)
-            intent.putExtra("mobile",mobile)
-            intent.putExtra("email",email)
-            intent.putExtra("gender",gender)
-            intent.putExtra("address",address)
-            intent.putExtra("landMark",landMark)
-            intent.putExtra("state",state)
-            intent.putExtra("city",city)
-            intent.putExtra("pincode",pincode)
-            intent.putExtra("front",front)
-            intent.putExtra("back",back)
-            intent.putExtra("pancard",pancard)
-            intent.putExtra("addharNumber",adharNumber)
-            intent.putExtra("pancardNumber",panNumber)
-            intent.putExtra("bankName",etBankName.text.toString())
-            intent.putExtra("holderName",etAccountHolderName.text.toString())
-            intent.putExtra("accountNumber",etAccountNumber.text.toString())
-            intent.putExtra("ifscCode",etIFSCCode.text.toString())
-            startActivity(intent)
+
+            if (etBankName.text.isEmpty()){
+                Toast.makeText(this@BankDetailsActivity, "Please select bank name", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }else if(etAccountHolderName.text.isEmpty()){
+                Toast.makeText(this@BankDetailsActivity, "Please select account holder name", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }else if (etAccountNumber.text.isEmpty()){
+                Toast.makeText(this@BankDetailsActivity, "Please select account number", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }else if(etIFSCCode.text.isEmpty()){
+                Toast.makeText(this@BankDetailsActivity, "Please select IFSC number", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            else {
+                val intent: Intent =
+                    Intent(this@BankDetailsActivity, UploadProfilePhotoActivity::class.java)
+                intent.putExtra("name", name)
+                intent.putExtra("mobile", mobile)
+                intent.putExtra("email", email)
+                intent.putExtra("gender", gender)
+                intent.putExtra("address", address)
+                intent.putExtra("landMark", landMark)
+                intent.putExtra("state", state)
+                intent.putExtra("city", city)
+                intent.putExtra("pincode", pincode)
+                intent.putExtra("front", front)
+                intent.putExtra("back", back)
+                intent.putExtra("pancard", pancard)
+                intent.putExtra("addharNumber", adharNumber)
+                intent.putExtra("pancardNumber", panNumber)
+                intent.putExtra("bankName", etBankName.text.toString())
+                intent.putExtra("holderName", etAccountHolderName.text.toString())
+                intent.putExtra("accountNumber", etAccountNumber.text.toString())
+                intent.putExtra("ifscCode", etIFSCCode.text.toString())
+                startActivity(intent)
+            }
         }
 
         bankDetailsBackBtn.setOnClickListener {

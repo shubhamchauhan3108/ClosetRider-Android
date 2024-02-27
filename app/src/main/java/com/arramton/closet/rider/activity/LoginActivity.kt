@@ -43,7 +43,6 @@ class LoginActivity : AppCompatActivity() {
             if (it!=null){
                 if (it.success){
                     startActivity(Intent(this@LoginActivity,VerifyOTPActivity::class.java).putExtra("mobile",etMobileNumber.text.toString()))
-
                 }else{
                     Toast.makeText(this,it.message,Toast.LENGTH_SHORT).show()
                 }
@@ -53,17 +52,14 @@ class LoginActivity : AppCompatActivity() {
         btnSendOTP.setOnClickListener {
 
             if(etMobileNumber.text.toString().trim().isEmpty()){
-
-                Toast.makeText(this@LoginActivity,"Please Enter Valid Mobile Number",Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-
-            }
-            if (!isValid(etMobileNumber.text.toString())){
                 Toast.makeText(this@LoginActivity,"Please Enter Valid Mobile Number",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-            loginAuth()
+            else if (!isValid(etMobileNumber.text.toString())){
+                Toast.makeText(this@LoginActivity,"Please Enter Valid Mobile Number",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }else
+               loginAuth()
         }
 
         tvSignUp=findViewById(R.id.login_signup_btn)

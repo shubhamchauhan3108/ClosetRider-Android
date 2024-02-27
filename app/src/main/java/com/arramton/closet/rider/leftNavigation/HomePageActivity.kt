@@ -60,12 +60,12 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
         navView.setNavigationItemSelectedListener(this)
 
         navList= ArrayList()
-        navList.add(RightNavigationModel(R.drawable.my_profile,"My Profile"));
-        navList.add(RightNavigationModel(R.drawable.support_help,"Support & Help"));
-        navList.add(RightNavigationModel(R.drawable.about_app,"About App"));
-        navList.add(RightNavigationModel(R.drawable.privacy_policy,"Privacy Policy"));
-        navList.add(RightNavigationModel(R.drawable.term_condition,"Term and Condition"));
-        navList.add(RightNavigationModel(R.drawable.logout,"Log Out"));
+        navList.add(RightNavigationModel(R.drawable.my_profile,"My Profile"))
+        navList.add(RightNavigationModel(R.drawable.support_help,"Support & Help"))
+        navList.add(RightNavigationModel(R.drawable.about_app,"About App"))
+        navList.add(RightNavigationModel(R.drawable.privacy_policy,"Privacy Policy"))
+        navList.add(RightNavigationModel(R.drawable.term_condition,"Term and Condition"))
+        navList.add(RightNavigationModel(R.drawable.logout,"Log Out"))
 
         rightNavigationAdapter= RightNavigationAdapter(navList,this@HomePageActivity,this)
 
@@ -95,20 +95,14 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                // Get the FCM registration token
                 val token = task.result
-                // Use the token as needed (e.g., send it to your server)
                 Log.d("TAG", "FCM Token: $token")
-
-                // Now you can send this token to your server or perform any other action
             } else {
-                // Handle the error gracefully
                 Log.e("TAG", "Fetching FCM token failed: ${task.exception}")
             }
         }
 
         val data = intent?.getStringExtra("data")
-
         if (data != null) {
             if (data == "1")
                 openBottomSheet()
@@ -127,10 +121,11 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_settings) {
 //            startActivity(Intent(this, Ho::class.java))
-            Toast.makeText(this@HomePageActivity,"Notofication clicked",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@HomePageActivity,"Notification clicked",Toast.LENGTH_SHORT).show()
 
         } else if (item.itemId == android.R.id.home) {
             binding.drawerLayout.openDrawer(GravityCompat.START)
+
         }
         return super.onOptionsItemSelected(item)
     }
@@ -138,7 +133,6 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
         if (item.itemId == R.id.action_settings) {
 //            startActivity(Intent(this, Ho::class.java))
             Toast.makeText(this@HomePageActivity,"Notofication clicked",Toast.LENGTH_SHORT).show()
-
         } else if (item.itemId == android.R.id.home) {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
@@ -149,7 +143,6 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
         if (className =="Log Out" ) {
             logoutDialog()
         }
-
 
         when(className){
 

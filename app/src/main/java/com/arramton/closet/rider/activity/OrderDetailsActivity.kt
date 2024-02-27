@@ -147,7 +147,7 @@ class OrderDetailsActivity : AppCompatActivity() {
 
                     tvOrderTime.text=it.data.order.pickup_time
 
-                    tvSubTotal.text="₹ "+it.data.order?.sub_total
+                    tvSubTotal.text="₹ "+it.data.order?.total
 
                     tvStatus.text= Html.fromHtml(it.data.order?.order_status?.name)
 

@@ -7,9 +7,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.RegisterActivity">
-    <androidx.core.widget.NestedScrollView
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -68,7 +70,9 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:background="@drawable/edit_text_bg"
                 android:padding="@dimen/padding_10"
+                android:inputType="textPersonName"
                 android:textSize="15sp"
+                android:imeOptions="actionDone"
                 android:hint="Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -81,6 +85,7 @@
                 android:background="@drawable/edit_text_bg"
                 android:padding="@dimen/padding_10"
                 android:textSize="@dimen/text_size_15"
+                android:imeOptions="actionDone"
                 android:hint="Mobile"
                 android:inputType="phone"
                 android:maxLength="10"
@@ -95,6 +100,8 @@
                 android:background="@drawable/edit_text_bg"
                 android:padding="@dimen/padding_10"
                 android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionDone"
                 android:textSize="15sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -107,6 +114,8 @@
                 android:background="@drawable/edit_text_bg"
                 android:padding="@dimen/padding_10"
                 android:hint="Gender"
+                android:inputType="textPersonName"
+                android:imeOptions="actionDone"
                 android:textSize="15sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -117,10 +126,10 @@
                 android:textSize="@dimen/text_size_14"
                 android:fontFamily="@font/robotobold"
                 android:textColor="@color/black"
-
                 android:text="Pickup and Delivery Address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
             <EditText
                 android:id="@+id/register_address"
                 android:layout_marginStart="@dimen/margin_20"
@@ -128,6 +137,8 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:background="@drawable/edit_text_bg"
                 android:padding="@dimen/padding_10"
+                android:inputType="text"
+                android:imeOptions="actionDone"
                 android:hint="Address"
                 android:textSize="15sp"
                 android:layout_width="match_parent"
@@ -139,6 +150,8 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:background="@drawable/edit_text_bg"
                 android:padding="@dimen/padding_10"
+                android:inputType="text"
+                android:imeOptions="actionDone"
                 android:textSize="15sp"
                 android:hint="Nearest Landmark"
                 android:layout_width="match_parent"
@@ -179,6 +192,7 @@
                 android:background="@drawable/edit_text_bg"
                 android:padding="@dimen/padding_10"
                 android:hint="Pincode"
+                android:imeOptions="actionDone"
                 android:maxLength="6"
                 android:inputType="number"
                 android:textSize="15sp"
@@ -204,7 +218,6 @@
 
             <LinearLayout
                 android:id="@+id/verify_otp_resend_layout"
-                android:visibility="visible"
                 android:layout_marginTop="@dimen/text_size_20"
                 android:layout_marginBottom="@dimen/margin_20"
                 android:orientation="horizontal"
@@ -220,7 +233,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
                 <TextView
-                    android:id="@+id/resend_otp"
+                    android:id="@+id/login_btn"
                     android:textSize="@dimen/text_size_18"
                     android:textStyle="bold"
                     android:layout_marginStart="@dimen/margin_5"
@@ -230,8 +243,9 @@
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
+
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 </LinearLayout>

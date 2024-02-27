@@ -288,7 +288,13 @@ class EditNewJobActivity : AppCompatActivity() {
         val tvSave=view.findViewById<TextView>(R.id.remark_save)
 
         tvSave.setOnClickListener {
-            remark=etRemark.text.toString()
+            if (etRemark?.text?.toString()?.isEmpty() == true)
+            Toast.makeText(this@EditNewJobActivity, "Please enter remark", Toast.LENGTH_SHORT).show()
+            else {
+                Toast.makeText(this@EditNewJobActivity, "${etRemark.text.toString()}", Toast.LENGTH_SHORT).show()
+                dialog.dismiss()
+                remark=etRemark.text.toString()
+            }
         }
 
 
