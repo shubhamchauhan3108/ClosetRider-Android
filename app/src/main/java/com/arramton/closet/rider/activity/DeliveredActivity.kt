@@ -2,6 +2,7 @@ package com.arramton.closet.rider.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.get
@@ -31,6 +32,8 @@ class DeliveredActivity : AppCompatActivity() {
     private lateinit var list: List<Data>
     private lateinit var deliveredAdapter: DeliveredAdapter
 
+    private lateinit var backBtn : ImageView
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +46,7 @@ class DeliveredActivity : AppCompatActivity() {
         listTime= arrayListOf()
 
         rvTime=findViewById(R.id.delivered_rv_time)
+        backBtn = findViewById(R.id.nav_customer_care_back_btn)
         rvTime.setHasFixedSize(false)
         rvTime.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
         listTime.add(TimeSlotModel("Today"))
@@ -55,6 +59,10 @@ class DeliveredActivity : AppCompatActivity() {
             }
         })
         rvTime.adapter=timeSlotAdapter
+
+        backBtn.setOnClickListener {
+            onBackPressed()
+        }
 
         rvDelivered=findViewById(R.id.delivered_rv)
         rvDelivered.setHasFixedSize(false)

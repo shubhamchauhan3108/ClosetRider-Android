@@ -19,7 +19,6 @@ class EditParentOrderDetailsAdapter(val context: Context, val list: List<OrderIt
         return ViewHolder(view)
     }
 
-
     fun updateImage(imgUrl:String,pos: Int){
 //        list.get(pos).
     }
@@ -27,11 +26,10 @@ class EditParentOrderDetailsAdapter(val context: Context, val list: List<OrderIt
 
         if (list.get(position).costumes_order_item.size<1){
             holder.tvName.visibility=View.GONE
-
         }else{
             holder.tvName.visibility=View.VISIBLE
-
         }
+
         holder.tvName.text=list.get(position).name
         holder.tvName.setOnClickListener {
             rowIndex=position
@@ -42,7 +40,6 @@ class EditParentOrderDetailsAdapter(val context: Context, val list: List<OrderIt
             holder.tvName.setBackgroundResource(R.drawable.purple_btn)
             holder.tvName.setTextColor(ContextCompat.getColor(context,R.color.white))
             childOrderDetails.listAdd(list.get(position).costumes_order_item)
-
         }else{
             holder.tvName.setBackgroundResource(R.drawable.edit_text_bg)
             holder.tvName.setTextColor(ContextCompat.getColor(context,R.color.black))

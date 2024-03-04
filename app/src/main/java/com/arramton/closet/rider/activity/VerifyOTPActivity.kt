@@ -3,6 +3,7 @@ package com.arramton.closet.rider.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -13,6 +14,7 @@ import com.arramton.closet.restService.RetrofitBuilder
 import com.arramton.closet.rider.R
 import com.arramton.closet.rider.factory.AuthFactory
 import com.arramton.closet.rider.leftNavigation.HomePageActivity
+import com.arramton.closet.rider.localStorage.navigation_header_profile
 import com.arramton.closet.rider.repository.AuthRepository
 import com.arramton.closet.rider.utils.LoginManager
 import com.arramton.closet.rider.viewModel.AuthViewModel
@@ -27,6 +29,7 @@ class VerifyOTPActivity : AppCompatActivity() {
     var mobile:String=""
     private lateinit var loginManager: LoginManager
     private lateinit var tvMsg:TextView
+    private lateinit var resendOtp  : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,9 +41,9 @@ class VerifyOTPActivity : AppCompatActivity() {
         pinView=findViewById(R.id.firstPinView)
         sendOTPBtn=findViewById(R.id.verify_otp_btn)
         tvMsg=findViewById(R.id.verify_otp_msg)
-
         loginManager= LoginManager(this)
 
+        resendOtp = findViewById(R.id.tv_resend_otp)
         mobile=intent.getStringExtra("mobile").toString()
         tvMsg.text="Please check your mobile number "+mobile+" continue to reset your password"
         apiInterface= RetrofitBuilder.getInstance(application)!!.api
@@ -51,6 +54,7 @@ class VerifyOTPActivity : AppCompatActivity() {
             if (it!=null){
                 if (it.success){
                     loginManager.settoken("Bearer "+it.data.token)
+                    navigation_header_profile(this@VerifyOTPActivity).saveData(it.data.userInfo.name,it.data.userInfo.mobile_no.toString(),"")
                     startActivity(Intent(this@VerifyOTPActivity,HomePageActivity::class.java))
                     finish()
                 }else{
@@ -59,6 +63,11 @@ class VerifyOTPActivity : AppCompatActivity() {
             }
         })
 
+        resendOtp.setOnClickListener {
+            Toast.makeText(this@VerifyOTPActivity,"Resent OTP",Toast.LENGTH_SHORT).show()
+            authViewModel.loginAuth(mobile.toString())
+        }
+
         sendOTPBtn.setOnClickListener {
             if (pinView.text.toString().trim().isEmpty()){
                 Toast.makeText(this@VerifyOTPActivity,"Please Enter Valid OTP",Toast.LENGTH_SHORT).show()
@@ -66,6 +75,9 @@ class VerifyOTPActivity : AppCompatActivity() {
             }
 
             verifyOTP(pinView.text.toString())
+
+
+
 
 
 
