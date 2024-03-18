@@ -135,14 +135,12 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             } else {
                 if (etMobile.text.toString().length < 10 || etMobile.text.toString().length > 10) {
+
                     Toast.makeText(
                         this@RegisterActivity,
                         "Mobile number should be equal to 10",
                         Toast.LENGTH_SHORT
                     ).show()
-                    return@setOnClickListener
-                } else if (mobileNumber == null) {
-                    Toast.makeText(this@RegisterActivity, mobileNumber, Toast.LENGTH_SHORT).show()
                     return@setOnClickListener
                 } else {
                     val intent =
@@ -182,12 +180,12 @@ class RegisterActivity : AppCompatActivity() {
 
             }
         }
+
     }
 
     fun showState() {
 
         println("abc" + readJsonFile(this@RegisterActivity, "india_states.json"))
-
 
         val dialog = BottomSheetDialog(this@RegisterActivity)
 
@@ -202,8 +200,6 @@ class RegisterActivity : AppCompatActivity() {
         rvState.setHasFixedSize(false)
 
         rvState.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-
-//        stateList=
 
         val gson = Gson()
         val state: StateModelResponse = gson.fromJson(

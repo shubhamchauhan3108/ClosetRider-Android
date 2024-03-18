@@ -78,6 +78,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         val shared = navigation_header_profile(this@HomePageActivity)
 
         navHeaderHomePageBinding = NavHeaderHomePageBinding.bind(binding.navView.getHeaderView(0))
+
         if (shared.getImage().equals("null") || shared.getImage() != null)
         //        Toast.makeText(this, "null image found", Toast.LENGTH_SHORT).show()
         //   Glide.with(this@HomePageActivity).load(shared.getImage()).into(navHeaderHomePageBinding.drawerProfile)

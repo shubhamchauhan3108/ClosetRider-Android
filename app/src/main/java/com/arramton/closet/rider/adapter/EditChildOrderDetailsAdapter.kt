@@ -50,7 +50,6 @@ class EditChildOrderDetailsAdapter(
         val gridLayout = GridLayoutManager(context, 2)
         holder.rvChildCategory.layoutManager = gridLayout
 
-
         holder.childHideName.setOnClickListener {
             holder.rvChildCategory.visibility = View.GONE
             holder.childHideName.visibility = View.GONE
