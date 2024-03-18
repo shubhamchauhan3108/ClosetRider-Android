@@ -1,28 +1,16 @@
 package com.arramton.closet.rider.activity
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.icu.text.MessagePattern
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
-import android.util.Log
-import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,16 +29,12 @@ import com.arramton.closet.rider.model.orderDetails.CostumesOrderItem
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.viewModel.OrderViewModel
-import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -106,6 +90,8 @@ class EditNewJobActivity : AppCompatActivity() {
         imgBackBtn.setOnClickListener {
             onBackPressed()
         }
+
+
 
         apiInterface = RetrofitBuilder.getInstance(application)!!.api
         orderRepository = OrderRepository(apiInterface, this, application)
@@ -229,7 +215,7 @@ class EditNewJobActivity : AppCompatActivity() {
         private val pickImage = 100
     }
 
-       override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == pic_id) {
             val photo = data!!.extras!!["data"] as Bitmap?
@@ -290,8 +276,6 @@ class EditNewJobActivity : AppCompatActivity() {
 
         }
     }
-
-
 
     fun openCameraBottomSheet() {
         var dialog = BottomSheetDialog(this)
@@ -375,6 +359,8 @@ class EditNewJobActivity : AppCompatActivity() {
         dialog.show()
 
     }
+
+
 
 
 

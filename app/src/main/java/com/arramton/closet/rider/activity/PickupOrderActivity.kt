@@ -14,6 +14,7 @@ import com.arramton.closet.restService.RetrofitBuilder
 import com.arramton.closet.rider.R
 import com.arramton.closet.rider.adapter.PickupOrderAdapter
 import com.arramton.closet.rider.factory.OrderFactory
+import com.arramton.closet.rider.leftNavigation.HomePageActivity
 import com.arramton.closet.rider.listener.PickupListener
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
@@ -89,6 +90,7 @@ class PickupOrderActivity : AppCompatActivity() {
                 dialog, which -> finish()
 
             orderViewModel.submitPickupOrderObservable(id)
+          startActivity(Intent(this@PickupOrderActivity, HomePageActivity::class.java))
             dialog.dismiss()
         }
 

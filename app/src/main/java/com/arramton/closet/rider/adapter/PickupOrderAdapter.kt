@@ -2,15 +2,20 @@ package com.arramton.closet.rider.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arramton.closet.rider.R
+import com.arramton.closet.rider.leftNavigation.HomePageActivity
 import com.arramton.closet.rider.listener.PickupListener
 import com.arramton.closet.rider.model.order.Data
 import com.google.android.material.button.MaterialButton
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.TimeZone
 
 
 class PickupOrderAdapter(val context: Context,val list: List<Data>,val pickupListener: PickupListener):RecyclerView.Adapter<PickupOrderAdapter.ViewHolder>() {
@@ -28,6 +33,18 @@ class PickupOrderAdapter(val context: Context,val list: List<Data>,val pickupLis
 
         holder.tvOrderNumber.text="Order #"+list.get(position).id
 
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'")
+        val date: Date = sdf.parse(list[position].created_at)
+        val dateFormat = SimpleDateFormat("MMM dd, yyyy")
+        val timeFormat = SimpleDateFormat("hh:mm a")
+        dateFormat.timeZone = TimeZone.getDefault()
+        timeFormat.timeZone = TimeZone.getDefault()
+
+        val formattedDate: String = dateFormat.format(date)
+        val formattedTime: String = timeFormat.format(date)
+
+        holder.timeText.text = "Time: $formattedTime | $formattedDate"
+
         holder.tvOrderPrice.text="₹ "+list.get(position).total.toString()
 
         holder.tvOrderDate.text=""+list.get(position).pickup_date
@@ -37,6 +54,7 @@ class PickupOrderAdapter(val context: Context,val list: List<Data>,val pickupLis
         holder.tvOrderAddress.text=""+list.get(position).address.address_line_1+", "+list.get(position).address.landmark+", "+list.get(position).address.state+" , "+list.get(position).address.city+":"+list.get(position).address.pincode
 
         holder.submitBtn.setOnClickListener {
+
 
             pickupListener.submitPickupOrder(list.get(position).id.toString())
 
@@ -59,5 +77,6 @@ class PickupOrderAdapter(val context: Context,val list: List<Data>,val pickupLis
         val tvOrderAddress=view.findViewById<TextView>(R.id.custom_pickup_order_address)
         val viewDetailsBtn=view.findViewById<MaterialButton>(R.id.pickup_details_view_details)
         val submitBtn=view.findViewById<MaterialButton>(R.id.custom_pickup_order_submit)
+        val timeText = view.findViewById<TextView>(R.id.time_tv)
     }
 }

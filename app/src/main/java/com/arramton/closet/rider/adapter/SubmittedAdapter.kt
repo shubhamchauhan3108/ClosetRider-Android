@@ -10,6 +10,9 @@ import com.arramton.closet.rider.R
 import com.arramton.closet.rider.listener.SubmittedListener
 import com.arramton.closet.rider.model.order.Data
 import com.google.android.material.button.MaterialButton
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.TimeZone
 
 
 class SubmittedAdapter(val context: Context, val list: List<Data>, val submittedListener: SubmittedListener) : RecyclerView.Adapter<SubmittedAdapter.ViewHolder>() {
@@ -25,6 +28,19 @@ class SubmittedAdapter(val context: Context, val list: List<Data>, val submitted
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'")
+        val date: Date = sdf.parse(list[position].created_at)
+        val dateFormat = SimpleDateFormat("MMM dd, yyyy")
+        val timeFormat = SimpleDateFormat("hh:mm a")
+        dateFormat.timeZone = TimeZone.getDefault()
+        timeFormat.timeZone = TimeZone.getDefault()
+
+        val formattedDate: String = dateFormat.format(date)
+        val formattedTime: String = timeFormat.format(date)
+
+        holder.timeText.text = "Time: $formattedTime | $formattedDate"
+
        holder.tvOrderNo.text="Order #"+list.get(position).id
         holder.tvOrderPrice.text="₹ "+list.get(position).total
         holder.tvPickUpDate.text=""+list.get(position).pickup_date
@@ -43,6 +59,7 @@ class SubmittedAdapter(val context: Context, val list: List<Data>, val submitted
         val tvPickupTime=view.findViewById<TextView>(R.id.custom_submitted_order_time)
         val tvAddress=view.findViewById<TextView>(R.id.custom_submitted_order_address)
         val tvViewDetails=view.findViewById<MaterialButton>(R.id.custom_submitted_order_view_details)
+        val timeText = view.findViewById<TextView>(R.id.time_tv)
 
     }
 
