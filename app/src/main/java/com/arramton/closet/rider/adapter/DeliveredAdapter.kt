@@ -34,7 +34,11 @@ class DeliveredAdapter(val context: Context,val list: List<Data>) :RecyclerView.
         } else if (list[position].delivery_order_status_id == 2){
             holder.dropBtn.visibility = View.VISIBLE
             holder.deliveredBtn.visibility = View.GONE
+        } else {
+            holder.dropBtn.visibility = View.VISIBLE
+            holder.deliveredBtn.visibility = View.GONE
         }
+//        holder.dropBtn.setOnClickListener {  }
 
     }
 
