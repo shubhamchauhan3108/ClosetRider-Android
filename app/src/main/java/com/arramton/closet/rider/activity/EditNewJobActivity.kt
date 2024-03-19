@@ -170,32 +170,44 @@ class EditNewJobActivity : AppCompatActivity() {
         tvUploadOrder.setOnClickListener {
             uploadOrder()
         }
+        orderViewModel.uploadObserver.observe(this@EditNewJobActivity, Observer {
+            if (it!=null){
+                Toast.makeText(this@EditNewJobActivity, it.message, Toast.LENGTH_SHORT).show()
+                if (it.success) {
+                    url = it.data
+                    orderDetailsChildCategoryAdapter.updateImage(url, position, parentpos)
+                    val item = Item(coustumeIdValue, url, OrderItemIdValue, null)
+                    itemList.add(item)
+                    println("itemList = "+itemList)
+                }
+            }
+        })
     }
 
     fun uploadOrder() {
-        if (remark != null) {
-
-            val item = Item(coustumeIdValue, url, OrderItemIdValue, remark.toString())
-//            itemList.add(item)
-            for (i in itemList) {
-                itemList.add(i)
-                println("List" + itemList)
-
-            }
-
-        } else {
-//            for (i in itemList){
-            val item = Item(coustumeIdValue, url, OrderItemIdValue, null)
-            itemList.add(item)
-            println("List" + item)
-
-
-//            itemList.add(item)
-
-//            println("List"+itemList)
-
-
-        }
+//        if (remark != null) {
+//
+//            val item = Item(coustumeIdValue, url, OrderItemIdValue, remark.toString())
+////            itemList.add(item)
+//            for (i in itemList) {
+//                itemList.add(i)
+//                println("List" + itemList)
+//
+//            }
+//
+//        } else {
+////            for (i in itemList){
+////            val item = Item(coustumeIdValue, url, OrderItemIdValue, null)
+////            itemList.add(item)
+//            println("List" + itemList)
+//
+//
+////            itemList.add(item)
+//
+////            println("List"+itemList)
+//
+//
+//        }
 
 
         if (!itemList.isEmpty()) {
@@ -203,9 +215,11 @@ class EditNewJobActivity : AppCompatActivity() {
                 EditNewOrderRequest(itemList, Integer.parseInt(id))
             orderViewModel.editNewOrderObservable(editNewOrderRequest)
         } else {
-            val editNewOrderRequest: EditNewOrderRequest =
-                EditNewOrderRequest(itemList, Integer.parseInt(id))
-            orderViewModel.editNewOrderObservable(editNewOrderRequest)
+            Toast.makeText(this, "Please select image", Toast.LENGTH_SHORT).show()
+//
+//            val editNewOrderRequest: EditNewOrderRequest =
+//                EditNewOrderRequest(itemList, Integer.parseInt(id))
+//            orderViewModel.editNewOrderObservable(editNewOrderRequest)
         }
 
     }
@@ -227,16 +241,7 @@ class EditNewJobActivity : AppCompatActivity() {
             val file = UriToFile(this@EditNewJobActivity).getImageBody(Uri.parse(path))
             val requestFile: RequestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
             val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-            orderViewModel.uploadObserver.observe(this@EditNewJobActivity, Observer {
-                if (it!=null){
-                    Toast.makeText(this@EditNewJobActivity,it.message,Toast.LENGTH_SHORT).show()
-                    url=it.data
-                    orderDetailsChildCategoryAdapter.updateImage(url,position,parentpos)
 
-                }else{
-
-                }
-            })
             orderViewModel.uploadObservable(body)
         }else if (resultCode == RESULT_OK && requestCode == pickImage) {
            /* val file = UriToFile(this@EditNewJobActivity).getImageBody(imageUri)
@@ -261,17 +266,17 @@ class EditNewJobActivity : AppCompatActivity() {
             val file = UriToFile(this@EditNewJobActivity).getImageBody(selectedImageUri)
             val requestFile: RequestBody = file.asRequestBody("multipart/form-data".toMediaTypeOrNull())
             val body = MultipartBody.Part.createFormData("image", file.name, requestFile)
-            orderViewModel.uploadObserver.observe(this@EditNewJobActivity, Observer {
-                if (it!=null){
-                    Toast.makeText(this@EditNewJobActivity,it.message,Toast.LENGTH_SHORT).show()
-                    url=it.data
-                    orderDetailsChildCategoryAdapter.updateImage(url,position,parentpos)
-
-
-                }else{
-
-                }
-            })
+//            orderViewModel.uploadObserver.observe(this@EditNewJobActivity, Observer {
+//                if (it!=null){
+//                    Toast.makeText(this@EditNewJobActivity,it.message,Toast.LENGTH_SHORT).show()
+//                    url=it.data
+//                    orderDetailsChildCategoryAdapter.updateImage(url,position,parentpos)
+//
+//
+//                }else{
+//
+//                }
+//            })
             orderViewModel.uploadObservable(body)
 
         }

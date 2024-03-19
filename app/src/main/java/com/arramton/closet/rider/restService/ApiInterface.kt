@@ -58,6 +58,8 @@ interface ApiInterface {
 
     @GET("api/pickup_user/getOrderSubmitted/")
     fun submitted(@Header("Authorization") token: String):Call<OrderResponse>
+    @GET("api/pickup_user/acceptJob/{id}")
+    fun acceptJob(@Header("Authorization") token: String):Call<LoginResponse>
 
     @POST("api/pickup_user/updateOrder")
     fun editNewJob(@Header("Authorization") token:String,@Body editNewJobRequest: EditNewOrderRequest):Call<EditNewJobResponse>
