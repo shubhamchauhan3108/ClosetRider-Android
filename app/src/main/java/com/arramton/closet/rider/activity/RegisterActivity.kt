@@ -236,7 +236,6 @@ class RegisterActivity : AppCompatActivity() {
 
         val gson = Gson()
 
-//        val city:StateModelResponse = gson.fromJson(readJsonFile(this@RegisterActivity,"india_states.json"), StateModelResponse::class.java)
         for (i in 0..stateList.size - 1) {
 
             if (id == stateList[i].id) {
