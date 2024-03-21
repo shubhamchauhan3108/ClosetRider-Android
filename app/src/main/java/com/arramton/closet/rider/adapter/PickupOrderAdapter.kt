@@ -45,7 +45,7 @@ class PickupOrderAdapter(val context: Context,val list: List<Data>,val pickupLis
 
         holder.timeText.text = "Time: $formattedTime | $formattedDate"
 
-        holder.tvOrderPrice.text="₹ "+list.get(position).total.toString()
+        holder.tvOrderPrice.text="₹ "+list.get(position).pickup_earn
 
         holder.tvOrderDate.text=""+list.get(position).pickup_date
 

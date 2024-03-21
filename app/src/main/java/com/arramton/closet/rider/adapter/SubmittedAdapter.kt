@@ -42,7 +42,7 @@ class SubmittedAdapter(val context: Context, val list: List<Data>, val submitted
         holder.timeText.text = "Time: $formattedTime | $formattedDate"
 
        holder.tvOrderNo.text="Order #"+list.get(position).id
-        holder.tvOrderPrice.text="₹ "+list.get(position).total
+        holder.tvOrderPrice.text="₹ "+list.get(position).pickup_earn
         holder.tvPickUpDate.text=""+list.get(position).pickup_date
         holder.tvPickupTime.text=""+list.get(position).pickup_time
         holder.tvAddress.text=""+list.get(position).address.address_line_1+", "+list.get(position).address.landmark+", "+list.get(position).address.state+" , "+list.get(position).address.city+":"+list.get(position).address.pincode
