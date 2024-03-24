@@ -59,7 +59,7 @@ interface ApiInterface {
     @GET("api/pickup_user/getOrderSubmitted/")
     fun submitted(@Header("Authorization") token: String):Call<OrderResponse>
     @GET("api/pickup_user/acceptJob/{id}")
-    fun acceptJob(@Header("Authorization") token: String):Call<LoginResponse>
+    fun acceptJob(@Header("Authorization") token: String,@Path("id") id: String):Call<LoginResponse>
 
     @POST("api/pickup_user/updateOrder")
     fun editNewJob(@Header("Authorization") token:String,@Body editNewJobRequest: EditNewOrderRequest):Call<EditNewJobResponse>
@@ -92,6 +92,15 @@ interface ApiInterface {
                  @Field("bank_account_no") bankAccountNo:String,
                  @Field("bank_ifsc") bankIFSC:String,
                  @Field("profile_pic") profilePick:String):Call<RegisterResponse>
+
+
+    @FormUrlEncoded
+    @POST("api/pickup_user/sendOtpForDelivery")
+    fun pickupSendOTP(@Field("mobile_no") phone:String):Call<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("api/pickup_user/verifyOtpForDelivery")
+    fun pickupOrderVerifyOTP(@Field("mobile_no") phone: String,@Field("otp") otp:String):Call<VerifyOTPResponse>
 
 
 

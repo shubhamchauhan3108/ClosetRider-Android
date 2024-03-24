@@ -5,6 +5,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
 import com.arramton.closet.rider.model.newOrder.EditNewJobResponse
 import com.arramton.closet.rider.model.newOrder.NewOrderResponse
@@ -29,6 +30,9 @@ class OrderRepository(
 
     private var deliveredMutableLiveData = MutableLiveData<DeliveryResponse>()
     private var newJobMutableLiveData = MutableLiveData<NewOrderResponse>()
+    private var acceptJobMutableLiveData=MutableLiveData<LoginResponse>()
+    val acceptjobLiveData:LiveData<LoginResponse>
+        get() = acceptJobMutableLiveData
 
     val deliveredLiveData: LiveData<DeliveryResponse>
         get() = deliveredMutableLiveData
@@ -396,6 +400,50 @@ class OrderRepository(
             }
 
             override fun onFailure(call: retrofit2.Call<SubmitOrderResponse?>, t: Throwable) {
+
+//                val apiError:ApiErrorRestApi = ApiErrorRestApi(call.request().url.toString(),
+//                    Gson().toJson(call.request().body),
+//                    Gson().toJson(t.message), ApiErrorRestApi.getCurrentDateAndTime(), AddCartRepository::class.java.name, application)
+//                apiError.makeAPICall();
+//                EventTracking.apiFailure(application, "resendEmailOtp", call.request().url().toString(), new Gson().toJson(call.request().body()), t.getMessage(), new LoginManager(context).getnumber(), Tools.getCurrentDateAndTime(), AccountSecurityViewModel.class.getName());
+
+//                val eventTracking:EventTracking=EventTracking
+
+                println("error message  = " + t.message)
+            }
+        })
+
+
+    }
+    suspend fun acceptOrder(id: String) {
+
+        loginManager = LoginManager(context)
+
+        val call: Call<LoginResponse> = apiInterface.acceptJob(loginManager.gettoken(), id)
+        call.enqueue(object : retrofit2.Callback<LoginResponse?> {
+            override fun onResponse(
+                call: Call<LoginResponse?>,
+                response: Response<LoginResponse?>
+
+            ) {
+                if (response.isSuccessful() && response.body() != null) {
+                    acceptJobMutableLiveData.postValue(response.body())
+                } else {
+                    val responseBody = response.errorBody()
+                    try {
+//                        val response1 = responseBody!!.string()
+//                        val apiError = ApiErrorRestApi(call.request().url.toString(),
+//                            Gson().toJson(call.request().body),
+//                            Gson().toJson(response1), ApiErrorRestApi.getCurrentDateAndTime(), VerifyOTPRespository::class.java.name, application)
+//                        apiError.makeAPICall();
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<LoginResponse?>, t: Throwable) {
 
 //                val apiError:ApiErrorRestApi = ApiErrorRestApi(call.request().url.toString(),
 //                    Gson().toJson(call.request().body),

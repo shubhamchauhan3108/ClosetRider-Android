@@ -46,4 +46,28 @@ class AuthViewModel(val authRepository: AuthRepository): ViewModel() {
         get() = authRepository.registerResponse
 
 
+
+
+
+    fun pickupOrderLoginAuth(mobile:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            authRepository.pickupOrderLogin(mobile)
+        }
+    }
+
+    val pickupOrderLoginObservable:LiveData<LoginResponse>
+        get() = authRepository.pickupOrderLoginResponse
+
+
+    fun pickupOrderVerifyOTP(mobile:String,otp:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            authRepository.pickupOrderVerifyOTP(mobile,otp)
+        }
+    }
+
+
+    val pickupOrderVerifyOTPObservable:LiveData<VerifyOTPResponse>
+        get() = authRepository.pickupOrderVerifyOTPResponse
+
+
 }

@@ -3,6 +3,7 @@ package com.arramton.closet.rider.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
 import com.arramton.closet.rider.model.newOrder.EditNewJobResponse
 import com.arramton.closet.rider.model.newOrder.NewOrderResponse
@@ -83,4 +84,14 @@ class OrderViewModel(val orderRepository: OrderRepository):ViewModel() {
 
     val submitPickupOrderObserver:LiveData<SubmitOrderResponse>
         get() = orderRepository.submitPickupLiveData
+
+
+    fun acceptOrderObservable(id:String){
+        viewModelScope.launch(Dispatchers.IO){
+            orderRepository.acceptOrder(id)
+        }
+    }
+
+    val acceptOrderObserver:LiveData<LoginResponse>
+        get() = orderRepository.acceptjobLiveData
 }
