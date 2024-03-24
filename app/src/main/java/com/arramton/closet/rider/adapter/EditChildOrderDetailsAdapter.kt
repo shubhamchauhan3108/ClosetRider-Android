@@ -1,6 +1,8 @@
 package com.arramton.closet.rider.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,84 +13,120 @@ import androidx.recyclerview.widget.RecyclerView
 import com.arramton.closet.rider.R
 import com.arramton.closet.rider.listener.EditSubChildListener
 import com.arramton.closet.rider.model.orderDetails.CostumesOrderItem
-import com.arramton.closet.rider.model.orderDetails.OrderItemX
 
-class EditChildOrderDetailsAdapter(val context: Context, val childList:List<CostumesOrderItem>,val editSubChildListener: EditSubChildListener) : RecyclerView.Adapter<EditChildOrderDetailsAdapter.ViewHolder>(){
+class EditChildOrderDetailsAdapter(
+    val context: Context,
+    val childList: List<CostumesOrderItem>,
+    val editSubChildListener: EditSubChildListener
+) : RecyclerView.Adapter<EditChildOrderDetailsAdapter.ViewHolder>() {
 
-    private lateinit var orderDetailsSubChlidAdapter:EditSubChildOrderDetailsAdapter
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EditChildOrderDetailsAdapter.ViewHolder {
-      val view :View=LayoutInflater.from(parent.context).inflate(R.layout.custom_order_details_child_layout,parent,false)
+    private lateinit var orderDetailsSubChlidAdapter: EditSubChildOrderDetailsAdapter
+    var parentpos = 0
+
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): EditChildOrderDetailsAdapter.ViewHolder {
+        val view: View = LayoutInflater.from(parent.context)
+            .inflate(R.layout.custom_order_details_child_layout, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: EditChildOrderDetailsAdapter.ViewHolder, position: Int) {
-        holder.childName.text=childList.get(position).name
-        holder.childHideName.text=childList.get(position).name
-        holder.tvHideQTY.text="QTY : "+childList.get(position).order_item.size.toString()
-        holder.tvShowQtY.text="QTY : "+childList.get(position).order_item.size.toString()
-        if (childList.get(position).order_item.size < 1) {
+    override fun onBindViewHolder(
+        holder: EditChildOrderDetailsAdapter.ViewHolder,
+        @SuppressLint("RecyclerView") Parentposition: Int
+    ) {
+        holder.childName.text = childList.get(Parentposition).name
+        holder.childHideName.text = childList.get(Parentposition).name
+        holder.tvHideQTY.text = "QTY : " + childList.get(Parentposition).order_item.size.toString()
+        holder.tvShowQtY.text = "QTY : " + childList.get(Parentposition).order_item.size.toString()
+        if (childList.get(Parentposition).order_item.size < 1) {
             holder.itemView.visibility = View.GONE
         } else {
             holder.itemView.visibility = View.VISIBLE
         }
 
         holder.rvChildCategory.setHasFixedSize(false)
-        val gridLayout= GridLayoutManager(context,2)
-        holder.rvChildCategory.layoutManager=gridLayout
-
-
+        val gridLayout = GridLayoutManager(context, 2)
+        holder.rvChildCategory.layoutManager = gridLayout
 
         holder.childHideName.setOnClickListener {
-            holder.rvChildCategory.visibility=View.GONE
-            holder.childHideName.visibility=View.GONE
-            holder.childName.visibility=View.VISIBLE
-            holder.showLayout.visibility=View.VISIBLE
-            holder.hideLayout.visibility=View.GONE
+            holder.rvChildCategory.visibility = View.GONE
+            holder.childHideName.visibility = View.GONE
+            holder.childName.visibility = View.VISIBLE
+            holder.showLayout.visibility = View.VISIBLE
+            holder.hideLayout.visibility = View.GONE
         }
+
+
         holder.showLayout.setOnClickListener {
+            holder.hideLayout.visibility = View.VISIBLE
+            holder.childHideName.visibility = View.VISIBLE
+            holder.childName.visibility = View.GONE
+            holder.showLayout.visibility = View.GONE
+            holder.rvChildCategory.visibility = View.VISIBLE
 
-            holder.hideLayout.visibility=View.VISIBLE
-            holder.childHideName.visibility=View.VISIBLE
-            holder.childName.visibility=View.GONE
-            holder.showLayout.visibility=View.GONE
-            holder.rvChildCategory.visibility=View.VISIBLE
+            parentpos = Parentposition
 
-             orderDetailsSubChlidAdapter= EditSubChildOrderDetailsAdapter(context,childList.get(position).order_item,object :EditSubChildListener{
-                override fun onClickOpenCamera(imgeId: Int,position: Int) {
+            orderDetailsSubChlidAdapter = EditSubChildOrderDetailsAdapter(
+                context,
+                childList.get(Parentposition).order_item,
+                object : EditSubChildListener {
+                    override fun onClickOpenCamera(imgeId: Int, position: Int,parentPosition:Int) {
+                        editSubChildListener.onClickOpenCamera(imgeId, position,parentPosition)
+                    }
 
-                    editSubChildListener.onClickOpenCamera(imgeId,position)
-                }
+                    override fun onClick(
+                        remark: String,
+                        costume_id: Int,
+                        order_item_id: Int,
+                        image: String
+                    ) {
 
-                override fun onClick(
-                    remark: String,
-                    costume_id: Int,
-                    order_item_id: Int,
-                    image: String
-                ) {
+                        editSubChildListener.onClick(
+                            remark,
+                            costume_id,
+                            order_item_id,
+                            image,
+                        )
+                    }
 
-                    editSubChildListener.onClick(remark,costume_id,order_item_id,image)
-                }
-
-                 override fun onClickRemark(id: String) {
-                     editSubChildListener.onClickRemark(id)
-                 }
-             })
+                    override fun onClickRemark(id: String) {
+                        editSubChildListener.onClickRemark(id)
+                    }
+                },
+                Parentposition)
 
 //            orderDetailsSubChlidAdapter.updateImage(childList.get(position).image_url,position)
 
-            holder.rvChildCategory.adapter=orderDetailsSubChlidAdapter
+            holder.rvChildCategory.adapter = orderDetailsSubChlidAdapter
 
         }
+
+
+
     }
 
-    fun updateImage(imgUrl:String,pos: Int){
+    fun updateImage(imgUrl: String, pos: Int,parentPosition:Int) {
 
 //        childList.get(pos).image_url=imgUrl
 //        notifyItemChanged(pos)
 
-        orderDetailsSubChlidAdapter.updateImage(imgUrl,pos)
+        try {
+            orderDetailsSubChlidAdapter.updateImage(imgUrl, pos,parentPosition)
+        }
+        catch (e:Exception){
+            Log.e("null",e.message.toString())
+            println(e.message)
+        }
 
 
+
+    }
+
+    fun childPositionFun(pos: Int) {
+        Log.e("null", "Parent position from EditChildOrderDetailAdapter: $parentpos")
+        Log.e("null", "Child position from EditChildOrderDetailAdapter: $pos")
 
     }
 
@@ -96,15 +134,16 @@ class EditChildOrderDetailsAdapter(val context: Context, val childList:List<Cost
         return childList.size
     }
 
-    class ViewHolder(view : View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        val childName=view.findViewById<TextView>(R.id.custom_pickup_request_show_btn)
-        val childHideName=view.findViewById<TextView>(R.id.custom_pickup_request_hide_btn)
-        val rvChildCategory=view.findViewById<RecyclerView>(R.id.custom_pickup_request_rv)
-        val hideLayout=view.findViewById<LinearLayout>(R.id.hide_layout)
-        val showLayout=view.findViewById<LinearLayout>(R.id.show_layout)
-        val tvHideQTY=view.findViewById<TextView>(R.id.hide_qty)
-        val tvShowQtY=view.findViewById<TextView>(R.id.show_qty)
+        val childName = view.findViewById<TextView>(R.id.custom_pickup_request_show_btn)
+        val childHideName = view.findViewById<TextView>(R.id.custom_pickup_request_hide_btn)
+        val rvChildCategory = view.findViewById<RecyclerView>(R.id.custom_pickup_request_rv)
+        val hideLayout = view.findViewById<LinearLayout>(R.id.hide_layout)
+        val showLayout = view.findViewById<LinearLayout>(R.id.show_layout)
+        val tvHideQTY = view.findViewById<TextView>(R.id.hide_qty)
+        val tvShowQtY = view.findViewById<TextView>(R.id.show_qty)
 
     }
+
 }

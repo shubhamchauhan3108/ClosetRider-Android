@@ -93,6 +93,7 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/temptext"
                 android:textSize="@dimen/text_size_18"
                 android:textStyle="bold"
                 android:textColor="#7C7D7E"
@@ -100,12 +101,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
             <TextView
-                android:id="@+id/resend_otp"
+                android:id="@+id/tv_resend_otp"
                 android:textSize="@dimen/text_size_18"
                 android:textStyle="bold"
                 android:layout_marginStart="@dimen/margin_5"
                 android:textColor="@color/light_yellow"
-                android:text="Click Here"
+                android:text="Resent OTP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 

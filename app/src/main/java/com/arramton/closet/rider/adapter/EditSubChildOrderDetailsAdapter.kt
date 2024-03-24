@@ -1,12 +1,14 @@
 package com.arramton.closet.rider.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.arramton.closet.rider.R
 import com.arramton.closet.rider.listener.EditSubChildListener
@@ -14,7 +16,7 @@ import com.arramton.closet.rider.model.newOrder.editNewOrder.Item
 import com.arramton.closet.rider.model.orderDetails.OrderItemX
 import com.bumptech.glide.Glide
 
-class EditSubChildOrderDetailsAdapter(val context: Context, val list: List<OrderItemX>,val editSubChildListener: EditSubChildListener): RecyclerView.Adapter<EditSubChildOrderDetailsAdapter.ViewHolder>() {
+class EditSubChildOrderDetailsAdapter(val context: Context, val list: List<OrderItemX>,val editSubChildListener: EditSubChildListener,val Parentposition : Int): RecyclerView.Adapter<EditSubChildOrderDetailsAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,10 +28,27 @@ class EditSubChildOrderDetailsAdapter(val context: Context, val list: List<Order
        return list.size
     }
 
-    fun updateImage(imgUrl:String,pos: Int){
-        list.get(pos).updateImge=imgUrl
-        notifyItemChanged(pos)
-    }
+        fun updateImage(imgUrl: String, pos: Int, parentPosition: Int) {
+            if (parentPosition == Parentposition) {
+                list.get(pos).updateImge = imgUrl
+                notifyItemChanged(pos)
+            } else {
+                Toast.makeText(
+                    context,
+                    "position not match\n updateImage position: $parentPosition\nAdapter Constructor position: $Parentposition",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.e(
+                    "null", "position not match\n" +
+                            " updateImage position: $parentPosition\n" +
+                            "Adapter Constructor position: $Parentposition"
+                )
+            }
+
+        }
+
+
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
@@ -40,7 +59,9 @@ class EditSubChildOrderDetailsAdapter(val context: Context, val list: List<Order
         }
 
         holder.cameraOpen.setOnClickListener {
-            editSubChildListener.onClickOpenCamera(list.get(position).id,position)
+            Log.e("null","Child position from EditSubChildOrderDetailAdapter: $position")
+            Log.e("null","Parent position from EditSubChildOrderDetailAdapter: $Parentposition")
+            editSubChildListener.onClickOpenCamera(list.get(position).id,position,Parentposition)
         }
 
         editSubChildListener.onClick("",list.get(position).costume_id,list.get(position).id,list.get(position).costume.image_url)
