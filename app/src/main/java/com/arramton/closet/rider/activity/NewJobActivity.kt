@@ -155,7 +155,6 @@ class NewJobActivity : AppCompatActivity() {
             if (it!=null){
                 if(it.success){
                     viewModel.orderDelivered("1")
-
                     dialog.dismiss()
 
                 }

@@ -4,6 +4,7 @@ import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.auth.RegisterResponse
 import com.arramton.closet.rider.model.auth.verifyOTP.VerifyOTPResponse
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
+import com.arramton.closet.rider.model.earning.EarningResponse
 import com.arramton.closet.rider.model.home.HomePageResponse
 import com.arramton.closet.rider.model.newOrder.EditNewJobResponse
 import com.arramton.closet.rider.model.newOrder.NewOrderResponse
@@ -102,6 +103,9 @@ interface ApiInterface {
     @POST("api/pickup_user/verifyOtpForDelivery")
     fun pickupOrderVerifyOTP(@Header("Authorization") token:String,@Field("order_id") phone: String,@Field("otp") otp:String):Call<VerifyOTPResponse>
 
+
+    @GET("api/pickup_user/getEarning")
+    fun riderEarning(@Header("Authorization") tokenString: String,@Query("status") status:String):Call<EarningResponse>
 
 
 }

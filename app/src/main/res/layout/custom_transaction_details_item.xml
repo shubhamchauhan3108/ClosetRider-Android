@@ -26,6 +26,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:id="@+id/custom_transaction_details_item_order_number"
                 android:layout_marginTop="2dp"
                 android:textColor="@color/black"
                 android:textSize="14sp"
@@ -50,6 +51,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
+                android:id="@+id/custom_transaction_details_item_order_amt"
                 android:layout_marginTop="2dp"
                 android:textColor="@color/black"
                 android:textSize="14sp"

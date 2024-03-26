@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
+import com.arramton.closet.rider.model.earning.EarningResponse
 import com.arramton.closet.rider.model.newOrder.EditNewJobResponse
 import com.arramton.closet.rider.model.newOrder.NewOrderResponse
 import com.arramton.closet.rider.model.newOrder.editNewOrder.EditNewOrderRequest
@@ -66,6 +67,9 @@ class OrderRepository(
         get() = submitPickupMutableLiveData
 
 
+    private var eraningMutableLiveData=MutableLiveData<EarningResponse>()
+    val earningLiveData:LiveData<EarningResponse>
+        get() = eraningMutableLiveData;
     suspend fun delivered(id: String) {
         loginManager = LoginManager(context)
 
@@ -374,8 +378,7 @@ class OrderRepository(
 
         loginManager = LoginManager(context)
 
-        val call: Call<SubmitOrderResponse> =
-            apiInterface.submitPickupOrder(loginManager.gettoken(), id)
+        val call: Call<SubmitOrderResponse> = apiInterface.submitPickupOrder(loginManager.gettoken(), id)
         call.enqueue(object : retrofit2.Callback<SubmitOrderResponse?> {
             override fun onResponse(
                 call: Call<SubmitOrderResponse?>,
@@ -444,6 +447,50 @@ class OrderRepository(
             }
 
             override fun onFailure(call: retrofit2.Call<LoginResponse?>, t: Throwable) {
+
+//                val apiError:ApiErrorRestApi = ApiErrorRestApi(call.request().url.toString(),
+//                    Gson().toJson(call.request().body),
+//                    Gson().toJson(t.message), ApiErrorRestApi.getCurrentDateAndTime(), AddCartRepository::class.java.name, application)
+//                apiError.makeAPICall();
+//                EventTracking.apiFailure(application, "resendEmailOtp", call.request().url().toString(), new Gson().toJson(call.request().body()), t.getMessage(), new LoginManager(context).getnumber(), Tools.getCurrentDateAndTime(), AccountSecurityViewModel.class.getName());
+
+//                val eventTracking:EventTracking=EventTracking
+
+                println("error message  = " + t.message)
+            }
+        })
+
+
+    }
+    suspend fun earningOrder(id: String) {
+
+        loginManager = LoginManager(context)
+
+        val call: Call<EarningResponse> = apiInterface.riderEarning(loginManager.gettoken(), id)
+        call.enqueue(object : retrofit2.Callback<EarningResponse?> {
+            override fun onResponse(
+                call: Call<EarningResponse?>,
+                response: Response<EarningResponse?>
+
+            ) {
+                if (response.isSuccessful() && response.body() != null) {
+                    eraningMutableLiveData.postValue(response.body())
+                } else {
+                    val responseBody = response.errorBody()
+                    try {
+//                        val response1 = responseBody!!.string()
+//                        val apiError = ApiErrorRestApi(call.request().url.toString(),
+//                            Gson().toJson(call.request().body),
+//                            Gson().toJson(response1), ApiErrorRestApi.getCurrentDateAndTime(), VerifyOTPRespository::class.java.name, application)
+//                        apiError.makeAPICall();
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<EarningResponse?>, t: Throwable) {
 
 //                val apiError:ApiErrorRestApi = ApiErrorRestApi(call.request().url.toString(),
 //                    Gson().toJson(call.request().body),

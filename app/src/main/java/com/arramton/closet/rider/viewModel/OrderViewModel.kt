@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
+import com.arramton.closet.rider.model.earning.EarningResponse
 import com.arramton.closet.rider.model.newOrder.EditNewJobResponse
 import com.arramton.closet.rider.model.newOrder.NewOrderResponse
 import com.arramton.closet.rider.model.newOrder.editNewOrder.EditNewOrderRequest
@@ -94,4 +95,18 @@ class OrderViewModel(val orderRepository: OrderRepository):ViewModel() {
 
     val acceptOrderObserver:LiveData<LoginResponse>
         get() = orderRepository.acceptjobLiveData
+
+
+    fun earningObservable(id: String){
+        viewModelScope.launch(Dispatchers.IO){
+            orderRepository.earningOrder(id)
+        }
+    }
+
+    val earningObserver:LiveData<EarningResponse>
+        get() = orderRepository.earningLiveData
+
+
+
+
 }

@@ -53,7 +53,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/total_earn_rv"
+            android:id="@+id/total_earn_time_rv"
             tools:listitem="@layout/custom_time_slot"
             tools:itemCount="1"
             android:layout_width="match_parent"
@@ -102,6 +102,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/total_earn_rv"
             android:layout_marginTop="@dimen/margin_10"
             tools:listitem="@layout/custom_transaction_details_item"
             android:layout_width="match_parent"
