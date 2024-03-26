@@ -13,12 +13,14 @@ import com.arramton.closet.rider.R
 import com.arramton.closet.rider.adapter.DeliveredAdapter
 import com.arramton.closet.rider.adapter.TimeSlotAdapter
 import com.arramton.closet.rider.factory.OrderFactory
+import com.arramton.closet.rider.listener.DeliveryListener
 import com.arramton.closet.rider.listener.TimeSlotListener
 import com.arramton.closet.rider.model.TimeSlotModel
 import com.arramton.closet.rider.model.deliveried.Data
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.viewModel.OrderViewModel
+import java.util.Objects
 
 class DeliveredActivity : AppCompatActivity() {
     private lateinit var rvTime:RecyclerView
@@ -76,7 +78,12 @@ class DeliveredActivity : AppCompatActivity() {
                 if (it.success){
                     list=it.data
                     if (!list.isEmpty()){
-                        deliveredAdapter=DeliveredAdapter(this@DeliveredActivity,list)
+                        deliveredAdapter=DeliveredAdapter(this@DeliveredActivity,list,object :DeliveryListener{
+                            override fun onClick(id: Int) {
+
+                            }
+
+                        })
                         rvDelivered.adapter=deliveredAdapter
                     }
                 }

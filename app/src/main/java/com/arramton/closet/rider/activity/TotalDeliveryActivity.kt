@@ -11,6 +11,7 @@ import com.arramton.closet.restService.RetrofitBuilder
 import com.arramton.closet.rider.R
 import com.arramton.closet.rider.adapter.DeliveredAdapter
 import com.arramton.closet.rider.factory.OrderFactory
+import com.arramton.closet.rider.listener.DeliveryListener
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.viewModel.OrderViewModel
@@ -44,7 +45,12 @@ class TotalDeliveryActivity : AppCompatActivity() {
         viewModel.orderDeliveredLiveData.observe(this) {
             if (it != null) {
                 if (it.success) {
-                    val adapter = DeliveredAdapter(this@TotalDeliveryActivity, it.data)
+                    val adapter = DeliveredAdapter(this@TotalDeliveryActivity, it.data,object : DeliveryListener{
+                        override fun onClick(id: Int) {
+                            TODO("Not yet implemented")
+                        }
+
+                    })
                     rvDelivery.adapter = adapter
                 }
             }

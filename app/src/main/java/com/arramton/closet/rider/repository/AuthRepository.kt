@@ -8,11 +8,14 @@ import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.auth.RegisterResponse
 import com.arramton.closet.rider.model.auth.verifyOTP.VerifyOTPResponse
+import com.arramton.closet.rider.utils.LoginManager
 import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
 
 class AuthRepository(val context: Context, val apiInterface: ApiInterface, val  application: Application) {
+
+    private lateinit var loginManager: LoginManager
 
     private val loginMutableLiveData=MutableLiveData<LoginResponse>()
     private val registerMutableLiveData=MutableLiveData<RegisterResponse>()
@@ -33,14 +36,14 @@ class AuthRepository(val context: Context, val apiInterface: ApiInterface, val  
 
     private val pickupOrderLoginMutableLiveData=MutableLiveData<LoginResponse>()
     val pickupOrderLoginResponse:LiveData<LoginResponse>
-        get() = loginMutableLiveData
+        get() = pickupOrderLoginMutableLiveData
 
 
 
     private val pickupOrderVerifyOTPMutableLiveData=MutableLiveData<VerifyOTPResponse>()
 
     val pickupOrderVerifyOTPResponse:LiveData<VerifyOTPResponse>
-        get() =verifyOTPMutableLiveData
+        get() =pickupOrderVerifyOTPMutableLiveData
 
 
 
@@ -87,7 +90,9 @@ class AuthRepository(val context: Context, val apiInterface: ApiInterface, val  
         })
     }
     suspend fun pickupOrderLogin(mobile:String){
-        val call: Call<LoginResponse> =apiInterface.pickupSendOTP(mobile)
+        loginManager = LoginManager(context)
+
+        val call: Call<LoginResponse> =apiInterface.pickupSendOTP(loginManager.gettoken(),mobile)
         call.enqueue(object : retrofit2.Callback<LoginResponse?> {
             override fun onResponse(
                 call: Call<LoginResponse?>,
@@ -171,7 +176,9 @@ class AuthRepository(val context: Context, val apiInterface: ApiInterface, val  
 
     }
     suspend fun pickupOrderVerifyOTP(mobile:String,otp:String){
-        val call: Call<VerifyOTPResponse> =apiInterface.pickupOrderVerifyOTP(mobile,otp)
+        loginManager = LoginManager(context)
+
+        val call: Call<VerifyOTPResponse> =apiInterface.pickupOrderVerifyOTP(loginManager.gettoken(),mobile,otp)
         call.enqueue(object : retrofit2.Callback<VerifyOTPResponse?> {
             override fun onResponse(
                 call: Call<VerifyOTPResponse?>,
@@ -181,7 +188,7 @@ class AuthRepository(val context: Context, val apiInterface: ApiInterface, val  
                 println("cart request "+call.request())
                 println("cart response "+response)
                 if (response.isSuccessful() && response.body() != null) {
-                    verifyOTPMutableLiveData.postValue(response.body())
+                    pickupOrderVerifyOTPMutableLiveData.postValue(response.body())
                 }else{
                     val responseBody = response.errorBody()
                     try {

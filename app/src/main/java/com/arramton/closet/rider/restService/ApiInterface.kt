@@ -96,11 +96,11 @@ interface ApiInterface {
 
     @FormUrlEncoded
     @POST("api/pickup_user/sendOtpForDelivery")
-    fun pickupSendOTP(@Field("mobile_no") phone:String):Call<LoginResponse>
+    fun pickupSendOTP(@Header("Authorization") token:String,@Field("order_id") phone:String):Call<LoginResponse>
 
     @FormUrlEncoded
     @POST("api/pickup_user/verifyOtpForDelivery")
-    fun pickupOrderVerifyOTP(@Field("mobile_no") phone: String,@Field("otp") otp:String):Call<VerifyOTPResponse>
+    fun pickupOrderVerifyOTP(@Header("Authorization") token:String,@Field("order_id") phone: String,@Field("otp") otp:String):Call<VerifyOTPResponse>
 
 
 
