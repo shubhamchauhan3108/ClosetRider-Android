@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.arramton.closet.rider.model.appSetting.AppSettingResponse
 import com.arramton.closet.rider.restService.ApiInterface
 import com.arramton.closet.rider.model.home.HomePageResponse
 import com.arramton.closet.rider.model.profile.ProfileResponse
@@ -23,6 +24,10 @@ class ProfileRepository(val context: Context, val apiInterface: ApiInterface, va
     val homePageResponse:LiveData<HomePageResponse>
         get() = homePageProfileMutableLiveData
 
+
+    private val appSettingMutableLiveData=MutableLiveData<AppSettingResponse>()
+    val appSettingLiveData:LiveData<AppSettingResponse>
+        get() = appSettingMutableLiveData
 
     suspend fun profileResponse(){
         loginManager=LoginManager(context)
@@ -95,6 +100,48 @@ class ProfileRepository(val context: Context, val apiInterface: ApiInterface, va
             }
 
             override fun onFailure(call: retrofit2.Call<HomePageResponse?>, t: Throwable) {
+
+//                val apiError:ApiErrorRestApi = ApiErrorRestApi(call.request().url.toString(),
+//                    Gson().toJson(call.request().body),
+//                    Gson().toJson(t.message), ApiErrorRestApi.getCurrentDateAndTime(), AddCartRepository::class.java.name, application)
+//                apiError.makeAPICall();
+//                EventTracking.apiFailure(application, "resendEmailOtp", call.request().url().toString(), new Gson().toJson(call.request().body()), t.getMessage(), new LoginManager(context).getnumber(), Tools.getCurrentDateAndTime(), AccountSecurityViewModel.class.getName());
+
+//                val eventTracking:EventTracking=EventTracking
+
+                println("error message  = " + t.message)
+            }
+        })
+    }
+    suspend fun appSetting(path:String){
+        loginManager=LoginManager(context)
+        val call: Call<AppSettingResponse> =apiInterface.appSetting(loginManager.gettoken(),path)
+        call.enqueue(object : retrofit2.Callback<AppSettingResponse?> {
+            override fun onResponse(
+                call: Call<AppSettingResponse?>,
+                response: Response<AppSettingResponse?>
+
+            ) {
+                println("cart request "+call.request())
+                println("cart response "+response)
+                if (response.isSuccessful() && response.body() != null) {
+                    appSettingMutableLiveData.postValue(response.body())
+                }else{
+                    val responseBody = response.errorBody()
+                    try {
+//                        val response1 = responseBody!!.string()
+//                        val apiError = ApiErrorRestApi(call.request().url.toString(),
+//                            Gson().toJson(call.request().body),
+//                            Gson().toJson(response1), ApiErrorRestApi.getCurrentDateAndTime(), VerifyOTPRespository::class.java.name, application)
+//                        apiError.makeAPICall();
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<AppSettingResponse?>, t: Throwable) {
 
 //                val apiError:ApiErrorRestApi = ApiErrorRestApi(call.request().url.toString(),
 //                    Gson().toJson(call.request().body),

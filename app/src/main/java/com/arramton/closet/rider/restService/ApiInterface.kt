@@ -1,5 +1,6 @@
 package com.arramton.closet.rider.restService
 
+import com.arramton.closet.rider.model.appSetting.AppSettingResponse
 import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.auth.RegisterResponse
 import com.arramton.closet.rider.model.auth.verifyOTP.VerifyOTPResponse
@@ -107,5 +108,8 @@ interface ApiInterface {
     @GET("api/pickup_user/getEarning")
     fun riderEarning(@Header("Authorization") tokenString: String,@Query("status") status:String):Call<EarningResponse>
 
+
+    @GET("api/support/{path}")
+    fun appSetting(@Header("Authorization") token: String,@Path("path") path:String):Call<AppSettingResponse>
 
 }

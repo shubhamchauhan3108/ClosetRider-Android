@@ -92,7 +92,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
         navList = ArrayList()
         navList.add(RightNavigationModel(R.drawable.my_profile, "My Profile"))
-        navList.add(RightNavigationModel(R.drawable.support_help, "Support & Help"))
+//        navList.add(RightNavigationModel(R.drawable.support_help, "Support & Help"))
         navList.add(RightNavigationModel(R.drawable.about_app, "About App"))
         navList.add(RightNavigationModel(R.drawable.privacy_policy, "Privacy Policy"))
         navList.add(RightNavigationModel(R.drawable.term_condition, "Term and Condition"))
@@ -186,14 +186,16 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 startActivity(Intent(this, UserProfileActivity::class.java))
             }
 
-            "Support & Help" -> {
-                startActivity(Intent(this@HomePageActivity, SupportHelpActivity::class.java))
-            }
+//            "Support & Help" -> {
+//                startActivity(Intent(this@HomePageActivity, SupportHelpActivity::class.java))
+//            }
 
             "About App" -> {
                 startActivity(
                     Intent(this@HomePageActivity, AppSettingActivity::class.java)
                         .putExtra("value", "About App")
+                        .putExtra("title", "About Us").putExtra("url", "aboutUs")
+
                 )
             }
 
@@ -201,6 +203,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 startActivity(
                     Intent(this@HomePageActivity, AppSettingActivity::class.java)
                         .putExtra("value", "Privacy Policy")
+                        .putExtra("title", "Privacy Policy").putExtra("url", "privacyPolicy")
                 )
             }
 
@@ -208,6 +211,8 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 startActivity(
                     Intent(this@HomePageActivity, AppSettingActivity::class.java)
                         .putExtra("value", "Term and Condition")
+                        .putExtra("title", "Term and Condition")
+                        .putExtra("url", "termsAndCondition")
                 )
             }
 //            "App Feedback" ->{startActivity(Intent(this@HomePageActivityActivity,ReviewActivity::class.java))}
