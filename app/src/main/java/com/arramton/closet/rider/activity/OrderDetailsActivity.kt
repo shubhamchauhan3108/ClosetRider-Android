@@ -144,7 +144,7 @@ class OrderDetailsActivity : AppCompatActivity() {
 
                 if(it.success){
 
-                    tvOrderNumber.text="Order #"+it.data.order.id
+                    tvOrderNumber.text="Order #"+it.data.order.order_reference_no
 
                     tvOrderDate.text=it.data.order.pickup_date
 

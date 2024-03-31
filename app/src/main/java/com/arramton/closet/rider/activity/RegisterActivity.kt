@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.EditText
 import android.widget.Spinner
@@ -142,7 +143,7 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                     return@setOnClickListener
-                } else {
+                }else {
                     val intent =
                         Intent(this@RegisterActivity, UploadDocumentsActivity::class.java)
                     intent.putExtra("name", etName.text.toString())
@@ -214,13 +215,15 @@ class RegisterActivity : AppCompatActivity() {
                 override fun stateName(id: Int, name: String) {
                     tvState.text = name
                     stateId = id
+                    cityId = 0
+                    tvCity.text =  "Select City"
                     dialog.dismiss()
                 }
             })
 
         rvState.adapter = stateAdapter
 
-        dialog.setCancelable(false)
+        dialog.setCancelable(true)
 
         dialog.setContentView(view)
 

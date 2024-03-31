@@ -31,7 +31,7 @@ class PickupOrderAdapter(val context: Context,val list: List<Data>,val pickupLis
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.tvOrderNumber.text="Order #"+list.get(position).id
+        holder.tvOrderNumber.text="Order #"+list.get(position).order_reference_no
 
         val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'")
         val date: Date = sdf.parse(list[position].created_at)

@@ -10,6 +10,9 @@ import com.arramton.closet.rider.R
 import com.arramton.closet.rider.listener.NewJobListener
 import com.arramton.closet.rider.model.newOrder.Data
 import com.google.android.material.button.MaterialButton
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.TimeZone
 
 class NewJobAdapter(val context: Context, val list: List<Data>,val newJobListener: NewJobListener) :RecyclerView.Adapter<NewJobAdapter.ViewHolder>() {
 
@@ -23,6 +26,18 @@ class NewJobAdapter(val context: Context, val list: List<Data>,val newJobListene
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'")
+        val date: Date = sdf.parse(list[position].created_at)
+        val dateFormat = SimpleDateFormat("MMM dd, yyyy")
+        val timeFormat = SimpleDateFormat("hh:mm a")
+        dateFormat.timeZone = TimeZone.getDefault()
+        timeFormat.timeZone = TimeZone.getDefault()
+
+        val formattedDate: String = dateFormat.format(date)
+        val formattedTime: String = timeFormat.format(date)
+
+        holder.timeText.text =  "Time: ${formattedTime} | ${formattedDate}"
 
         holder.tvOrderNo.text="Order #"+list.get(position).order_reference_no
         holder.tvOrderPrice.text="₹ "+list.get(position).pickup_earn
@@ -38,6 +53,7 @@ class NewJobAdapter(val context: Context, val list: List<Data>,val newJobListene
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view){
+        val timeText = view.findViewById<TextView>(R.id.timeText);
         val tvOrderNo=view.findViewById<TextView>(R.id.custom_delivered_order_no)
         val tvOrderPrice=view.findViewById<TextView>(R.id.custom_delivered_order_price)
         val tvTime=view.findViewById<TextView>(R.id.custom_delivered_order_time)
