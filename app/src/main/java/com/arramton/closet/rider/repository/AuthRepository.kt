@@ -30,8 +30,8 @@ class AuthRepository(val context: Context, val apiInterface: ApiInterface, val  
     val verifyOTPResponse:LiveData<VerifyOTPResponse>
         get() =verifyOTPMutableLiveData
 
-    suspend fun login(mobile:String){
-        val call: Call<LoginResponse> =apiInterface.login(mobile)
+    suspend fun login(mobile:String,token: String){
+        val call: Call<LoginResponse> =apiInterface.login(mobile,token)
         call.enqueue(object : retrofit2.Callback<LoginResponse?> {
             override fun onResponse(
                 call: Call<LoginResponse?>,

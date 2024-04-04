@@ -13,9 +13,9 @@ import com.arramton.closet.rider.model.auth.verifyOTP.VerifyOTPResponse
 class AuthViewModel(val authRepository: AuthRepository): ViewModel() {
 
 
-    fun loginAuth(mobile:String){
+    fun loginAuth(mobile:String,token: String){
         viewModelScope.launch(Dispatchers.IO) {
-            authRepository.login(mobile)
+            authRepository.login(mobile,token)
         }
     }
 

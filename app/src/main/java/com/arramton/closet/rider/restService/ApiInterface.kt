@@ -32,7 +32,7 @@ interface ApiInterface {
 
     @FormUrlEncoded
     @POST("api/pickup_auth/login")
-    fun login(@Field("mobile_no") phone:String):Call<LoginResponse>
+    fun login(@Field("mobile_no") phone:String,@Field("fcm_token") token: String):Call<LoginResponse>
 
     @FormUrlEncoded
     @POST("api/pickup_auth/verifyOtp")

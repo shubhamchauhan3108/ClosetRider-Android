@@ -93,14 +93,7 @@ class HomePageActivity : AppCompatActivity(),NavigationView.OnNavigationItemSele
         }
 
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                val token = task.result
-                Log.d("TAG", "FCM Token: $token")
-            } else {
-                Log.e("TAG", "Fetching FCM token failed: ${task.exception}")
-            }
-        }
+
 
         val data = intent?.getStringExtra("data")
         if (data != null) {
