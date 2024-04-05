@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -91,7 +92,7 @@ class NewJobActivity : AppCompatActivity() {
                 if (it.success) {
                     newJobAdapter = NewJobAdapter(this@NewJobActivity, it.data,object :NewJobListener{
                         override fun onClick(id: String) {
-                            startActivity(Intent(this@NewJobActivity,OrderDetailsActivity::class.java).putExtra("id",id).putExtra("key","newJob"))
+                            accpetOrderSubmit(id)
                         }
                     })
                     pickupRv.adapter = newJobAdapter
@@ -142,7 +143,40 @@ class NewJobActivity : AppCompatActivity() {
         nav_customer_care_back_btn.setOnClickListener{
             onBackPressed()
         }
+        viewModel.acceptOrderObserver.observe(this@NewJobActivity, Observer {
+            if (it!=null){
+                if (it.success){
+                    Toast.makeText(this,it.message, Toast.LENGTH_SHORT).show()
 
+                }
+            }
+        })
+
+
+
+    }
+    fun accpetOrderSubmit(id:String){
+        val builder = AlertDialog.Builder(this)
+
+        builder.setMessage("Do you want to Accept This Job ")
+        builder.setTitle("Closet Rider")
+
+        builder.setCancelable(false)
+
+        builder.setPositiveButton("Yes") {
+                dialog, which -> finish()
+
+            viewModel.acceptOrderObservable(id)
+            startActivity(Intent(this@NewJobActivity,OrderDetailsActivity::class.java).putExtra("id",id).putExtra("key","newJob"))
+            dialog.dismiss()
+        }
+
+        builder.setNegativeButton("No") {
+                dialog, which -> dialog.cancel()
+        }
+
+        val alertDialog = builder.create()
+        alertDialog.show()
     }
 
     fun verifyOTPBottomSheet(){

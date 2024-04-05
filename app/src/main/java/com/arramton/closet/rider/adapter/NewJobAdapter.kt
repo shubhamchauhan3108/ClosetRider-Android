@@ -1,12 +1,14 @@
 package com.arramton.closet.rider.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arramton.closet.rider.R
+import com.arramton.closet.rider.activity.OrderDetailsActivity
 import com.arramton.closet.rider.listener.NewJobListener
 import com.arramton.closet.rider.model.newOrder.Data
 import com.google.android.material.button.MaterialButton
@@ -28,6 +30,18 @@ class NewJobAdapter(val context: Context, val list: List<Data>,val newJobListene
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+
+//        println("Status"+)
+        if (list.get(position).delivery_user_status==2){
+            holder.deliveredBtn.visibility=View.GONE
+            holder.btnOrderDetails.visibility=View.VISIBLE
+        }else{
+            holder.deliveredBtn.visibility=View.VISIBLE
+            holder.btnOrderDetails.visibility=View.GONE
+
+
+        }
+
         holder.tvOrderNo.text="Order #"+list.get(position).order_reference_no
         holder.tvOrderPrice.text="₹ "+list.get(position).pickup_earn
         holder.tvTime.text=list.get(position).pickup_time
@@ -39,6 +53,11 @@ class NewJobAdapter(val context: Context, val list: List<Data>,val newJobListene
         holder.deliveredBtn.setOnClickListener {
             newJobListener.onClick(list.get(position).id.toString())
         }
+
+        holder.btnOrderDetails.setOnClickListener {
+            context.startActivity(Intent(context, OrderDetailsActivity::class.java).putExtra("id",list.get(position).id.toString()).putExtra("key","newJob"))
+
+        }
     }
 
     class ViewHolder (view: View) : RecyclerView.ViewHolder(view){
@@ -49,6 +68,7 @@ class NewJobAdapter(val context: Context, val list: List<Data>,val newJobListene
         val tvAddress=view.findViewById<TextView>(R.id.custom_delivered_order_location)
         val deliveredBtn=view.findViewById<MaterialButton>(R.id.custom_delivered_btn)
         val  tvDateTime=view.findViewById<TextView>(R.id.new_job_pickup_date_time)
+        val  btnOrderDetails=view.findViewById<MaterialButton>(R.id.custom_new_job_view_details)
     }
 
     private fun convertToDate(dateString: String): String? {

@@ -154,6 +154,14 @@ class UploadProfilePhotoActivity : AppCompatActivity() {
             openCameraBottomSheet()
         }
 
+        orderViewModel.uploadObserver.observe(this@UploadProfilePhotoActivity, Observer {
+
+            if (it != null) {
+                profileUrl = it.data
+
+            }
+        })
+
         authViewModel.registerObservable.observe(this, Observer {
             if (it != null) {
                 if (it.success) {
@@ -194,13 +202,6 @@ class UploadProfilePhotoActivity : AppCompatActivity() {
                 uploadPhotoLayout.visibility = View.GONE
                 profileCL.visibility = View.VISIBLE
                 imgProfile.setImageBitmap(photo)
-                orderViewModel.uploadObserver.observe(this@UploadProfilePhotoActivity, Observer {
-
-                    if (it != null) {
-                        profileUrl = it.data
-
-                    }
-                })
                 orderViewModel.uploadObservable(profileMultipart)
 
             } else {
@@ -218,12 +219,12 @@ class UploadProfilePhotoActivity : AppCompatActivity() {
                 uploadPhotoLayout.visibility = View.GONE
                 profileCL.visibility = View.VISIBLE
                 imgProfile.setImageURI(imageUri)
-                orderViewModel.uploadObserver.observe(this@UploadProfilePhotoActivity, Observer {
-
-                    if (it != null) {
-                        profileUrl = it.data
-                    }
-                })
+//                orderViewModel.uploadObserver.observe(this@UploadProfilePhotoActivity, Observer {
+//
+//                    if (it != null) {
+//                        profileUrl = it.data
+//                    }
+//                })
                 orderViewModel.uploadObservable(profileMultipart)
             } else {
 
