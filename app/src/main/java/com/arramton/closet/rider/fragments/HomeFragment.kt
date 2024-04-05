@@ -85,7 +85,7 @@ class HomeFragment : Fragment() {
 
         layoutTotalEarn.setOnClickListener {
 //            startActivity(Intent(requireContext() ,TransacationDetailsActivity::class.java))
-            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java).putExtra("total","status"))
+            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java).putExtra("status","total"))
 
         }
 
@@ -94,7 +94,7 @@ class HomeFragment : Fragment() {
         layoutTodayEarn=view.findViewById(R.id.home_today_earn_layout)
 
         layoutTodayEarn.setOnClickListener {
-            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java).putExtra("today","status"))
+            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java).putExtra("status","today"))
 
         }
 

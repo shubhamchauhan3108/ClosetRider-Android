@@ -75,6 +75,9 @@ class TotalEarnActivity : AppCompatActivity() {
 
         if(status.equals("today")){
             rvTime.visibility=View.GONE
+
+            orderViewModel.earningObservable("1")
+
         }else{
             rvTime.visibility=View.VISIBLE
 
@@ -84,17 +87,22 @@ class TotalEarnActivity : AppCompatActivity() {
             override fun onClickTime(name: String) {
 
                 if (name.equals("Today")){
-
+                    listEarning.clear()
                     orderViewModel.earningObservable("1")
+
                 }else if (name.equals("Weekly")){
+                    listEarning.clear()
 
                     orderViewModel.earningObservable("2")
 
                 }else if (name.equals("Monthly")){
+                    listEarning.clear()
 
                     orderViewModel.earningObservable("3")
 
                 } else if (name.equals("Yearly")){
+                    listEarning.clear()
+
                     orderViewModel.earningObservable("4")
 
                 }

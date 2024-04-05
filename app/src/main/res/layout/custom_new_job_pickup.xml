@@ -189,6 +189,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/custom_new_job_view_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -214,6 +215,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="2dp"
+                android:visibility="gone"
                 android:layout_weight="1"
                 android:background="@drawable/purple_btn"
                 android:gravity="center"

@@ -72,9 +72,9 @@ class UploadDocumentsActivity : AppCompatActivity() {
     private lateinit var imgFrontDel:ImageView
     private lateinit var imgBackDel:ImageView
     private lateinit var imgPancardDel:ImageView
-    private lateinit var adharCardFront:String
-    private lateinit var adharCardBack:String
-    private lateinit var pancard:String
+    private  var adharCardFront:String=""
+    private  var adharCardBack:String=""
+    private  var pancard:String=""
     private lateinit var orderRepository: OrderRepository
     private lateinit var orderViewModel: OrderViewModel
     private lateinit var apiInterface: ApiInterface
@@ -178,6 +178,21 @@ class UploadDocumentsActivity : AppCompatActivity() {
         }
 
 
+        orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
+
+            if(it!=null){
+                if(imageType.equals("pancard")){
+                    pancard=it.data
+
+                }else if(imageType.equals("front")){
+                    adharCardFront=it.data
+                }else if (imageType.equals("back")){
+                    adharCardBack=it.data
+                }
+            }
+        })
+
+
         uploadBtnRegisterBtn.setOnClickListener {
 
             if (etAddharNumber.text.isEmpty()){
@@ -240,12 +255,12 @@ class UploadDocumentsActivity : AppCompatActivity() {
                     uplaodAddharFrontCL.visibility=View.VISIBLE
                     imgAdharFront.setImageBitmap(photo)
 
-                    orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
-
-                        if(it!=null){
-                           adharCardFront=it.data
-                        }
-                    })
+//                    orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
+//
+//                        if(it!=null){
+//                           adharCardFront=it.data
+//                        }
+//                    })
                     orderViewModel.uploadObservable(frontMultipart)
 
 //                    Glide.with(this@UploadDocumentsActivity).load(photo).into(imgAdharBack)
@@ -268,12 +283,12 @@ class UploadDocumentsActivity : AppCompatActivity() {
                     uplaodAddharBackCL.visibility=View.VISIBLE
                     imgAdharBack.setImageBitmap(photo)
 
-                    orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
-
-                        if(it!=null){
-                            adharCardBack=it.data
-                        }
-                    })
+//                    orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
+//
+//                        if(it!=null){
+//                            adharCardBack=it.data
+//                        }
+//                    })
                     orderViewModel.uploadObservable(backMultiPart)
 //                    Glide.with(this@UploadDocumentsActivity).load(file).into(imgAdharBack)
                 }
@@ -290,12 +305,6 @@ class UploadDocumentsActivity : AppCompatActivity() {
                     uplaodPancardCL.visibility=View.VISIBLE
                     imgPancard.setImageBitmap(photo)
 
-                    orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
-
-                        if(it!=null){
-                            pancard=it.data
-                        }
-                    })
                     orderViewModel.uploadObservable(pancardMultipart)
 
 
@@ -321,12 +330,12 @@ class UploadDocumentsActivity : AppCompatActivity() {
                     imgAdharFront.setImageURI(imageUri)
                     aadharFrontVar = true
 
-                    orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
-
-                        if(it!=null){
-                            adharCardFront=it.data
-                        }
-                    })
+//                    orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
+//
+//                        if(it!=null){
+//                            adharCardFront=it.data
+//                        }
+//                    })
                     orderViewModel.uploadObservable(frontMultipart)
 
 
@@ -348,12 +357,12 @@ class UploadDocumentsActivity : AppCompatActivity() {
                     uplaodAddharBackCL.visibility=View.VISIBLE
                     imgAdharBack.setImageURI(imageUri)
                     aadharBackVar = true
-                    orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
-
-                        if(it!=null){
-                            adharCardBack=it.data
-                        }
-                    })
+//                    orderViewModel.uploadObserver.observe(this@UploadDocumentsActivity, Observer {
+//
+//                        if(it!=null){
+//                            adharCardBack=it.data
+//                        }
+//                    })
                     orderViewModel.uploadObservable(backMultiPart)
 
 

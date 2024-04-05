@@ -19,7 +19,7 @@ class OrderDetailsSubChlidAdapter(val context: Context,val list: List<OrderItemX
     }
 
     override fun onBindViewHolder(holder: OrderDetailsSubChlidAdapter.ViewHolder, position: Int) {
-        holder.orderName.text=list.get(position).costume.name+" #"+list.get(position).id
+        holder.orderName.text=list.get(position).costume.name+" #"+list.get(position).costume_reference_no
         Glide.with(context).load(list.get(position).costume.image_url).into(holder.img)
     }
 

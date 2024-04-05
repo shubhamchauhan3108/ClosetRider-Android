@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arramton.closet.rider.R
 import com.arramton.closet.rider.listener.OrderDetailsListener
@@ -21,11 +20,10 @@ class OrderDetailsParentCategoryAdapter(
     val childOrderDetails: OrderDetailsListener
 ) : RecyclerView.Adapter<OrderDetailsParentCategoryAdapter.ViewHolder>() {
 
-    var rowIndex = 0;
+    var  rowIndex = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view: View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.custom_parent_category_item, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.custom_parent_category_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -33,6 +31,7 @@ class OrderDetailsParentCategoryAdapter(
         return list.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: ViewHolder, @SuppressLint("RecyclerView") position: Int) {
 
 
@@ -49,6 +48,7 @@ class OrderDetailsParentCategoryAdapter(
         holder.tvName.setOnClickListener {
             rowIndex=position
             notifyDataSetChanged()
+//            notifyItemChanged(position)
         }
 
         if (rowIndex==position){
