@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:layout_marginTop="@dimen/padding_20"
+            android:layout_gravity="center"
+            android:background="@drawable/btn"
+            android:layout_width="100dp"
+            android:layout_height="2dp"/>
+
+        <TextView
+            android:layout_marginTop="@dimen/padding_20"
+            android:layout_marginStart="@dimen/padding_10"
+            android:layout_marginEnd="@dimen/padding_10"
+            android:fontFamily="@font/robotobold"
+            android:textColor="@color/black"
+            android:text="Enter OTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <com.chaos.view.PinView
+            style="@style/PinWidget.PinView"
+            android:visibility="visible"
+            android:id="@+id/pickup_verify_otp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:hint="****"
+            android:inputType="number"
+            android:layout_marginTop="@dimen/margin_20"
+            android:itemBackground="@drawable/otp_box"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_gravity="center"
+            app:cursorColor="@color/black"
+            app:cursorWidth="2dp"
+            app:hideLineWhenFilled="false"
+            app:itemCount="4"
+            app:itemHeight="@dimen/margin_60"
+            app:itemRadius="@dimen/margin_15"
+            app:itemSpacing="15dp"
+            app:itemWidth="@dimen/margin_60"
+            app:lineWidth="0dp"
+            app:lineColor="@android:color/transparent"
+            app:viewType="rectangle" />
+        <Button
+            android:id="@+id/pickup_verify_otp_btn"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_20"
+            android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_gravity="center"
+            android:background="@drawable/purple_btn"
+            android:layout_marginTop="@dimen/margin_25"
+            android:layout_marginStart="@dimen/margin_60"
+            android:layout_marginEnd="@dimen/margin_60"
+            android:padding="@dimen/margin_15"
+            android:text="Verify"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,7 +1,6 @@
 package com.arramton.closet.rider.model.deliveried
 
 data class Data(
-    val address: Address,
     val address_id: Int,
     val costume: Any,
     val coupon: Any,
@@ -11,10 +10,10 @@ data class Data(
     val delivery_otp: Any,
     val delivery_otp_time: Any,
     val delivery_user_id: Int,
-    val drop_date: String,
+    val drop_off_date: String,
     val drop_time: String,
     val id: Int,
-    val order_items: List<OrderItem>,
+    val order: OrderItem,
     val order_reference_no: String,
     val order_status: OrderStatus,
     val updated_at: String,

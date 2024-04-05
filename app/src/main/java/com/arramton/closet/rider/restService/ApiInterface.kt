@@ -1,9 +1,11 @@
 package com.arramton.closet.rider.restService
 
+import com.arramton.closet.rider.model.appSetting.AppSettingResponse
 import com.arramton.closet.rider.model.auth.LoginResponse
 import com.arramton.closet.rider.model.auth.RegisterResponse
 import com.arramton.closet.rider.model.auth.verifyOTP.VerifyOTPResponse
 import com.arramton.closet.rider.model.deliveried.DeliveryResponse
+import com.arramton.closet.rider.model.earning.EarningResponse
 import com.arramton.closet.rider.model.home.HomePageResponse
 import com.arramton.closet.rider.model.newOrder.EditNewJobResponse
 import com.arramton.closet.rider.model.newOrder.NewOrderResponse
@@ -58,6 +60,8 @@ interface ApiInterface {
 
     @GET("api/pickup_user/getOrderSubmitted/")
     fun submitted(@Header("Authorization") token: String):Call<OrderResponse>
+    @GET("api/pickup_user/acceptJob/{id}")
+    fun acceptJob(@Header("Authorization") token: String,@Path("id") id: String):Call<LoginResponse>
 
     @POST("api/pickup_user/updateOrder")
     fun editNewJob(@Header("Authorization") token:String,@Body editNewJobRequest: EditNewOrderRequest):Call<EditNewJobResponse>
@@ -92,5 +96,20 @@ interface ApiInterface {
                  @Field("profile_pic") profilePick:String):Call<RegisterResponse>
 
 
+    @FormUrlEncoded
+    @POST("api/pickup_user/sendOtpForDelivery")
+    fun pickupSendOTP(@Header("Authorization") token:String,@Field("order_id") phone:String):Call<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("api/pickup_user/verifyOtpForDelivery")
+    fun pickupOrderVerifyOTP(@Header("Authorization") token:String,@Field("order_id") phone: String,@Field("otp") otp:String):Call<VerifyOTPResponse>
+
+
+    @GET("api/pickup_user/getEarning")
+    fun riderEarning(@Header("Authorization") tokenString: String,@Query("status") status:String):Call<EarningResponse>
+
+
+    @GET("api/support/{path}")
+    fun appSetting(@Header("Authorization") token: String,@Path("path") path:String):Call<AppSettingResponse>
 
 }

@@ -48,7 +48,8 @@ class OrderDetailsActivity : AppCompatActivity() {
     private lateinit var orderDetailsChildCategoryAdapter: OrderDetailsChildCategoryAdapter
 
     private lateinit var id:String
-    private lateinit var tvSubTotal:TextView
+    private lateinit var tvTotal:TextView
+    private lateinit var tvSubTotalAmount:TextView
     private lateinit var tvStatus:TextView
     private lateinit var tvMode:TextView
     private lateinit var pickupOrderBtn:TextView
@@ -93,7 +94,9 @@ class OrderDetailsActivity : AppCompatActivity() {
 
         }
 
-        tvSubTotal=findViewById(R.id.order_details_subtotal)
+        tvSubTotalAmount=findViewById(R.id.order_details_subtotal)
+
+        tvTotal=findViewById(R.id.total_amount)
 
         tvStatus=findViewById(R.id.order_details_status)
 
@@ -141,13 +144,15 @@ class OrderDetailsActivity : AppCompatActivity() {
 
                 if(it.success){
 
-                    tvOrderNumber.text="Order #"+it.data.order.id
+                    tvOrderNumber.text="Order # "+it.data.order.order_reference_no
 
                     tvOrderDate.text=it.data.order.pickup_date
 
                     tvOrderTime.text=it.data.order.pickup_time
 
-                    tvSubTotal.text="₹ "+it.data.order?.total
+                    tvTotal.text="₹ "+it.data.order?.total
+
+                    tvSubTotalAmount.text ="₹ "+it.data.order?.sub_total
 
                     tvStatus.text= Html.fromHtml(it.data.order?.order_status?.name)
 

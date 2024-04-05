@@ -13,6 +13,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <LinearLayout
+        android:id="@+id/header_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -48,7 +49,7 @@
             android:id="@+id/drawer_editBtn"
             android:layout_marginStart="@dimen/margin_10"
             android:paddingTop="@dimen/nav_header_vertical_spacing"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/header_edit" />

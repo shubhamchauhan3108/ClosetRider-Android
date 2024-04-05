@@ -15,7 +15,7 @@ data class Order(
     val discount: Int,
     val gst: Int,
     val id: Int,
-    val order_reference_no: Int,
+    val order_reference_no: String,
     val order_status: OrderStatus,
     val order_status_id: Int,
     val payment_status: Int,

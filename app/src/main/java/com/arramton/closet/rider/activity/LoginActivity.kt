@@ -138,8 +138,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-
-
     fun loginAuth(token: String){
         authViewModel.loginAuth(etMobileNumber.text.toString(),token)
     }
