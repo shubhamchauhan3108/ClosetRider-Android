@@ -19,6 +19,7 @@ import com.arramton.closet.rider.repository.AuthRepository
 import com.arramton.closet.rider.utils.LoginManager
 import com.arramton.closet.rider.viewModel.AuthViewModel
 import com.chaos.view.PinView
+import com.google.firebase.messaging.FirebaseMessaging
 
 class VerifyOTPActivity : AppCompatActivity() {
     private lateinit var pinView: PinView
@@ -64,8 +65,16 @@ class VerifyOTPActivity : AppCompatActivity() {
         })
 
         resendOtp.setOnClickListener {
-            Toast.makeText(this@VerifyOTPActivity,"Resent OTP",Toast.LENGTH_SHORT).show()
-            authViewModel.loginAuth(mobile.toString())
+            FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val token = task.result
+                    Toast.makeText(this@VerifyOTPActivity,"Resent OTP",Toast.LENGTH_SHORT).show()
+                    authViewModel.loginAuth(mobile.toString(),token)
+                    Log.d("TAG", "FCM Token: $token")
+                } else {
+                    Log.e("TAG", "Fetching FCM token failed: ${task.exception}")
+                }
+            }
         }
 
         sendOTPBtn.setOnClickListener {

@@ -1,13 +1,32 @@
 {
   "project_info": {
-    "project_number": "317884905782",
-    "project_id": "closet-rider-notification",
-    "storage_bucket": "closet-rider-notification.appspot.com"
+    "project_number": "760020546705",
+    "project_id": "closet-fc2cf",
+    "storage_bucket": "closet-fc2cf.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:317884905782:android:530e296070e4f9381f1b97",
+        "mobilesdk_app_id": "1:760020546705:android:96c313ce669da87cea7b30",
+        "android_client_info": {
+          "package_name": "com.arramton.closet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIepojhi-7jiFvr3SKfzAd1iDrKvpTDiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:760020546705:android:30ef0e1c5e321e93ea7b30",
         "android_client_info": {
           "package_name": "com.arramton.closet.rider"
         }
@@ -15,7 +34,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCFkzROcn9vkatv-eNLS7lULZvYQ6Q_dSM"
+          "current_key": "AIzaSyBIepojhi-7jiFvr3SKfzAd1iDrKvpTDiI"
         }
       ],
       "services": {
