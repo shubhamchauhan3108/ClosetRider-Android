@@ -28,9 +28,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.arramton.closet.rider" />
-                  <option name="mobileSdkAppId" value="1:317884905782:android:530e296070e4f9381f1b97" />
-                  <option name="projectId" value="closet-rider-notification" />
-                  <option name="projectNumber" value="317884905782" />
+                  <option name="mobileSdkAppId" value="1:760020546705:android:30ef0e1c5e321e93ea7b30" />
+                  <option name="projectId" value="closet-fc2cf" />
+                  <option name="projectNumber" value="760020546705" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -5,7 +5,7 @@ data class Data(
     val costume: Any,
     val coupon: Any,
     val created_at: String,
-    val delivery_boy_earning: Int,
+    val delivery_boy_earning: String,
     val delivery_order_status_id: Int,
     val delivery_otp: Any,
     val delivery_otp_time: Any,

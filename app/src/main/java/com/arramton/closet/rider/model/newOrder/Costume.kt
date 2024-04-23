@@ -6,7 +6,7 @@ data class Costume(
     val dry_clean_charge: Int,
     val id: Int,
     var image_url: String,
-    val item_price: Int,
+    val item_price: String,
     val name: String,
     val updated_at: String,
     val updateImge:String
