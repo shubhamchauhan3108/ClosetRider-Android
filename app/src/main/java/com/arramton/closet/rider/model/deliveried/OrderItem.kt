@@ -9,5 +9,7 @@ data class OrderItem(
     val order_id: Int,
     val qty: String,
     val updated_at: String,
-    val user_id: Int
+    val user_id: Int,
+    val drop_time: String,
+    val drop_date: String
 )

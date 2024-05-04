@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +29,7 @@ class TotalEarnActivity : AppCompatActivity() {
     private lateinit var listTime: ArrayList<TimeSlotModel>
 
     private lateinit var backBtn: ImageView
+    private lateinit var toolbarText : TextView
 
     private lateinit var orderRepository: OrderRepository
     private lateinit var orderViewModel: OrderViewModel
@@ -45,6 +47,7 @@ class TotalEarnActivity : AppCompatActivity() {
     fun init(){
 
         status=intent.getStringExtra("status").toString()
+        toolbarText = findViewById(R.id.titleTv)
         apiInterface= RetrofitBuilder.getInstance(application)!!.api
         orderRepository=OrderRepository(apiInterface,this,application)
         orderViewModel= ViewModelProvider(this, OrderFactory(orderRepository)).get(OrderViewModel::class.java)
@@ -55,10 +58,17 @@ class TotalEarnActivity : AppCompatActivity() {
         rvTime.setHasFixedSize(false)
         rvTime.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
 
+        val title = intent.getStringExtra("today")
+
+        if (title != null){
+            toolbarText.text = title
+        }
+
 
 
         rvTotalEarn=findViewById(R.id.total_earn_rv)
         backBtn = findViewById(R.id.nav_customer_care_back_btn)
+
         rvTotalEarn.setHasFixedSize(false)
         rvTotalEarn.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
 
@@ -88,20 +98,28 @@ class TotalEarnActivity : AppCompatActivity() {
 
                 if (name.equals("Today")){
                     listEarning.clear()
+                    val earningAdapter:EarningAdapter= EarningAdapter(listEarning, this@TotalEarnActivity)
+                    rvTotalEarn.adapter=earningAdapter;
                     orderViewModel.earningObservable("1")
 
                 }else if (name.equals("Weekly")){
                     listEarning.clear()
 
+                    val earningAdapter:EarningAdapter= EarningAdapter(listEarning, this@TotalEarnActivity)
+                    rvTotalEarn.adapter=earningAdapter;
                     orderViewModel.earningObservable("2")
 
                 }else if (name.equals("Monthly")){
                     listEarning.clear()
+                    val earningAdapter:EarningAdapter= EarningAdapter(listEarning, this@TotalEarnActivity)
+                    rvTotalEarn.adapter=earningAdapter;
 
                     orderViewModel.earningObservable("3")
 
                 } else if (name.equals("Yearly")){
                     listEarning.clear()
+                    val earningAdapter:EarningAdapter= EarningAdapter(listEarning, this@TotalEarnActivity)
+                    rvTotalEarn.adapter=earningAdapter;
 
                     orderViewModel.earningObservable("4")
 
@@ -109,6 +127,7 @@ class TotalEarnActivity : AppCompatActivity() {
             }
         })
         rvTime.adapter=timeSlotAdapter
+
         orderViewModel.earningObserver.observe(this@TotalEarnActivity, Observer {
             if(it!=null){
                 if (it.success){

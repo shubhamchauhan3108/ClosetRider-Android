@@ -30,8 +30,8 @@ class DeliveredAdapter(val context: Context,val list: List<Data>,val deliveryLis
 
         holder.tvOrderNo.text="Order #"+list.get(position).order.order_reference_no
         holder.tvOrderPrice.text="₹ "+list.get(position).delivery_boy_earning
-        holder.tvTime.text=list.get(position).drop_time
-        holder.tvDate.text=list.get(position).drop_off_date
+        holder.tvTime.text=list.get(position).order.drop_time
+        holder.tvDate.text=list.get(position).order.drop_date
         holder.tvDateTime.text=convertToDate(list.get(position).order.created_at)
         holder.tvAddress.text=list.get(position).order.address.address_line_1+", "+list.get(position).order.address.landmark+", "+list.get(position).order.address.state+" , "+list.get(position).order.address.city+":"+list.get(position).order.address.pincode
         if (list[position].delivery_order_status_id == 3) {

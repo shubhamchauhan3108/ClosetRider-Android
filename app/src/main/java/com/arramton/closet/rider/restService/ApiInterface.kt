@@ -47,7 +47,7 @@ interface ApiInterface {
     fun profile(@Header("Authorization") token:String):Call<ProfileResponse>
 
     @GET("api/pickup_user/getDeliveryOrders")
-    fun deliveryOrders(@Header("Authorization") token:String,@Query("status") status:String):Call<DeliveryResponse>
+    fun deliveryOrders(@Header("Authorization") token:String,@Query("status") status:String,@Query("type") id :String ):Call<DeliveryResponse>
 
     @GET("api/pickup_user/getNewJobs")
     fun getNewJob(@Header("Authorization") token:String): Call<NewOrderResponse>

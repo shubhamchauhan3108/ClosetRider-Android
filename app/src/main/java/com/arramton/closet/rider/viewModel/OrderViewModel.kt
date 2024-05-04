@@ -20,9 +20,9 @@ import okhttp3.MultipartBody
 
 class OrderViewModel(val orderRepository: OrderRepository):ViewModel() {
 
-    fun orderDelivered(id: String){
+    fun orderDelivered(id: String, type: String?){
         viewModelScope.launch(Dispatchers.IO) {
-            orderRepository.delivered(id)
+            orderRepository.delivered(id,type!!)
         }
     }
 

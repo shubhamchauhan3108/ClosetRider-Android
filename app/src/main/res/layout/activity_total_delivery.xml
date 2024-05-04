@@ -25,10 +25,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:id="@+id/textTv"
                 android:textColor="@color/black"
                 android:fontFamily="@font/robotobold"
                 android:layout_marginStart="@dimen/margin_10"
-                android:text="Total Delivery"
+                android:text="Today Delivery"
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>

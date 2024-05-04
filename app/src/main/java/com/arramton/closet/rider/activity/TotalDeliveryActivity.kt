@@ -2,8 +2,8 @@ package com.arramton.closet.rider.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +19,7 @@ import com.arramton.closet.rider.viewModel.OrderViewModel
 class TotalDeliveryActivity : AppCompatActivity() {
     private lateinit var backBtn:ImageView
     private lateinit var rvDelivery:RecyclerView
+    private lateinit var textTv : TextView
 
     private lateinit var viewModel: OrderViewModel
     private lateinit var orderRepository: OrderRepository
@@ -36,6 +37,14 @@ class TotalDeliveryActivity : AppCompatActivity() {
         }
 
         rvDelivery=findViewById(R.id.total_delivery_rv)
+        textTv = findViewById(R.id.textTv)
+
+        val title = intent.getStringExtra("delivery")
+
+        if (title != null){
+            textTv.text = title
+        }
+
         rvDelivery.setHasFixedSize(false)
         rvDelivery.layoutManager=LinearLayoutManager(this@TotalDeliveryActivity,LinearLayoutManager.VERTICAL,false)
         apiInterface= RetrofitBuilder.getInstance(application)!!.api
@@ -55,7 +64,7 @@ class TotalDeliveryActivity : AppCompatActivity() {
                 }
             }
         }
-        viewModel.orderDelivered("1")
+        viewModel.orderDelivered("3","1")
 
 
     }

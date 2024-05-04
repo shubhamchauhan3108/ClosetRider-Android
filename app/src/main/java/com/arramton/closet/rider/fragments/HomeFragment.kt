@@ -79,13 +79,18 @@ class HomeFragment : Fragment() {
         layoutTotalEarn=view.findViewById(R.id.home_total_earn_layout)
 
         layoutTodayDelivered.setOnClickListener {
-            startActivity(Intent(requireContext() ,TotalDeliveryActivity::class.java))
+            startActivity(Intent(requireContext() ,TotalDeliveryActivity::class.java)
+                .putExtra("delivery","Today Delivery")
+            )
 
         }
 
         layoutTotalEarn.setOnClickListener {
 //            startActivity(Intent(requireContext() ,TransacationDetailsActivity::class.java))
-            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java).putExtra("status","total"))
+            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java)
+                .putExtra("status","total")
+                .putExtra("today","Total Earn")
+            )
 
         }
 
@@ -94,7 +99,10 @@ class HomeFragment : Fragment() {
         layoutTodayEarn=view.findViewById(R.id.home_today_earn_layout)
 
         layoutTodayEarn.setOnClickListener {
-            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java).putExtra("status","today"))
+            startActivity(Intent(requireContext() ,TotalEarnActivity::class.java)
+                .putExtra("status","today")
+                .putExtra("today","Today Earn")
+            )
 
         }
 
@@ -114,7 +122,9 @@ class HomeFragment : Fragment() {
         }
 
         layoutTotalDelivered.setOnClickListener {
-            startActivity(Intent(requireContext(),DeliveredActivity::class.java))
+            startActivity(Intent(requireContext(),DeliveredActivity::class.java)
+                .putExtra("delivery","Total Delivered")
+            )
 
         }
 

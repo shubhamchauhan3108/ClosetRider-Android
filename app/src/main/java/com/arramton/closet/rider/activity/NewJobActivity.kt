@@ -1,6 +1,5 @@
 package com.arramton.closet.rider.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -9,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -26,7 +24,6 @@ import com.arramton.closet.rider.factory.AuthFactory
 import com.arramton.closet.rider.factory.OrderFactory
 import com.arramton.closet.rider.listener.DeliveryListener
 import com.arramton.closet.rider.listener.NewJobListener
-import com.arramton.closet.rider.model.newOrder.Data
 import com.arramton.closet.rider.repository.AuthRepository
 import com.arramton.closet.rider.repository.OrderRepository
 import com.arramton.closet.rider.restService.ApiInterface
@@ -34,9 +31,6 @@ import com.arramton.closet.rider.viewModel.AuthViewModel
 import com.arramton.closet.rider.viewModel.OrderViewModel
 import com.chaos.view.PinView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.button.MaterialButton
-import org.w3c.dom.Text
-import java.util.Objects
 
 class NewJobActivity : AppCompatActivity() {
     private lateinit var pickupBtn:TextView
@@ -137,7 +131,7 @@ class NewJobActivity : AppCompatActivity() {
 //            deliveryBtn.background = ContextCompat.getDrawable(this, R.drawable.purple_btn)
             deliveryBtn.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.light_purple))
             deliveryBtn.setTextColor(ContextCompat.getColor(this,R.color.white))
-            viewModel.orderDelivered("1")
+            viewModel.orderDelivered("1","5")
         }
 
         nav_customer_care_back_btn.setOnClickListener{
@@ -188,7 +182,7 @@ class NewJobActivity : AppCompatActivity() {
         authViewModel.pickupOrderVerifyOTPObservable.observe(this, Observer {
             if (it!=null){
                 if(it.success){
-                    viewModel.orderDelivered("1")
+                    viewModel.orderDelivered("1",null)
                     dialog.dismiss()
 
                 }

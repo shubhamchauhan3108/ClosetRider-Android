@@ -70,10 +70,10 @@ class OrderRepository(
     private var eraningMutableLiveData=MutableLiveData<EarningResponse>()
     val earningLiveData:LiveData<EarningResponse>
         get() = eraningMutableLiveData;
-    suspend fun delivered(id: String) {
+    suspend fun delivered(id: String,type:String) {
         loginManager = LoginManager(context)
 
-        val call: Call<DeliveryResponse> = apiInterface.deliveryOrders(loginManager.gettoken(), id)
+        val call: Call<DeliveryResponse> = apiInterface.deliveryOrders(loginManager.gettoken(), id,type)
         call.enqueue(object : retrofit2.Callback<DeliveryResponse?> {
             override fun onResponse(
                 call: Call<DeliveryResponse?>,
