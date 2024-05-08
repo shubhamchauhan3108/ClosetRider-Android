@@ -2,6 +2,7 @@ package com.arramton.closet.rider.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -103,15 +104,21 @@ class DeliveredActivity : AppCompatActivity() {
             if (it!=null){
                 if (it.success){
                     list=it.data
-                    if (!list.isEmpty()){
-                        deliveredAdapter=DeliveredAdapter(this@DeliveredActivity,list,object :DeliveryListener{
+                    if (it.data != null){
+                        deliveredAdapter=DeliveredAdapter(this@DeliveredActivity,
+                            list as java.util.ArrayList<Data>,object :DeliveryListener{
                             override fun onClick(id: Int) {
 
                             }
 
                         })
                         rvDelivered.adapter=deliveredAdapter
+                        rvDelivered.visibility = View.VISIBLE
+                    } else {
+                        rvDelivered.visibility = View.GONE
                     }
+                } else {
+                    rvDelivered.visibility = View.GONE
                 }
             }
         })
