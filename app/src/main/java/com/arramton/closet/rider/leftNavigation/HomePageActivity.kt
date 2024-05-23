@@ -109,33 +109,33 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
 
 
-        if (intent != null && intent.hasExtra("notificationCall")) {
-            val notificationCall =
-                intent.extras?.getString("notificationCall")//.getStringExtra("notificationCall")
-            if (notificationCall == "call") {
-                openBottomSheet()
-            }
-        }
+//        if (intent != null && intent.hasExtra("notificationCall")) {
+//            val notificationCall =
+//                intent.extras?.getString("notificationCall")//.getStringExtra("notificationCall")
+//            if (notificationCall == "call") {
+//                openBottomSheet()
+//            }
+//        }
 
 
-        LocalBroadcastManager.getInstance(this)
-            .registerReceiver(mHandler, IntentFilter("com.arramton.closet.rider"))
-        if (intent.extras != null) {
-            for (i in intent?.extras?.keySet()!!) {
-                if (i.equals("title")) {
-                    Toast.makeText(this@HomePageActivity, "" + title, Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+//        LocalBroadcastManager.getInstance(this)
+//            .registerReceiver(mHandler, IntentFilter("com.arramton.closet.rider"))
+//        if (intent.extras != null) {
+//            for (i in intent?.extras?.keySet()!!) {
+//                if (i.equals("title")) {
+//                    Toast.makeText(this@HomePageActivity, "" + title, Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
 
 
 
 
-        val data = intent?.getStringExtra("data")
-        if (data != null) {
-            if (data == "1")
-                openBottomSheet()
-        }
+//        val data = intent?.getStringExtra("data")
+//        if (data != null) {
+//            if (data == "1")
+//                openBottomSheet()
+//        }
 
 
     }
@@ -262,21 +262,21 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         dialog.show()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mHandler)
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        LocalBroadcastManager.getInstance(this).unregisterReceiver(mHandler)
+//    }
 
-    private val mHandler = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            println("intent = " + intent?.extras)
-            Toast.makeText(
-                this@HomePageActivity,
-                "Title is: \n" + intent?.getStringExtra("title"),
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
+//    private val mHandler = object : BroadcastReceiver() {
+//        override fun onReceive(context: Context?, intent: Intent?) {
+//            println("intent = " + intent?.extras)
+//            Toast.makeText(
+//                this@HomePageActivity,
+//                "Title is: \n" + intent?.getStringExtra("title"),
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        }
+//    }
 
 
 }

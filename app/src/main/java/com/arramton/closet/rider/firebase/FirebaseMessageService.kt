@@ -33,8 +33,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             val intent = Intent("com.arramton.closet.rider")
                 .putExtra("title",remoteMessage.notification?.title.toString())
             remoteMessage.data
-            val localeManager = LocalBroadcastManager.getInstance(this)
-            localeManager.sendBroadcast(intent)
+//            val localeManager = LocalBroadcastManager.getInstance(this)
+//            localeManager.sendBroadcast(intent)
 
         }else
             Log.d(TAG,"null Notification")
