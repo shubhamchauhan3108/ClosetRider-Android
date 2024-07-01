@@ -41,6 +41,7 @@
         <activity
             android:name=".activity.TotalDeliveryActivity"
             android:exported="false" />
+
         <activity
             android:name=".activity.EditNewJobActivity"
             android:exported="true">
@@ -131,7 +132,7 @@
 
 
         <service
-            android:name=".firebase.MyFirebaseMessagingService"
+            android:name=".firebase.NotificationService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
